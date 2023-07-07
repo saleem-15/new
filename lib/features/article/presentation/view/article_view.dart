@@ -8,9 +8,14 @@ class ArticleView extends GetView<ArticleController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: WebViewWidget(
-        controller: controller.webViewController,
+    return WillPopScope(
+      onWillPop: controller.back,
+      child: Scaffold(
+        body: SafeArea(
+          child: WebViewWidget(
+            controller: controller.webViewController,
+          ),
+        ),
       ),
     );
   }

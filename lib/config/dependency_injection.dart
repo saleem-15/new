@@ -399,6 +399,7 @@ initArticleModule() {
 }
 
 disposeArticleModule() {
+  log('disposeArticleModule');
   Get.delete<ArticleController>();
 }
 

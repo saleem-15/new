@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nuntium/config/dependency_injection.dart';
+import 'package:nuntium/core/cache/cache.dart';
 import 'package:nuntium/features/home/presentation/model/article.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -11,9 +13,12 @@ class ArticleController extends GetxController {
   void onInit() {
     super.onInit();
 
-    _article = Get.arguments;
-    final String url = _article.url!;
+    _article = CacheData().getArticle()!;
 
+    initWebController(_article.url!);
+  }
+
+  void initWebController(String url) {
     webViewController = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(const Color(0x00000000))
@@ -34,5 +39,10 @@ class ArticleController extends GetxController {
         ),
       )
       ..loadRequest(Uri.parse(url));
+  }
+
+  Future<bool> back() async {
+    disposeArticleModule();
+    return true;
   }
 }

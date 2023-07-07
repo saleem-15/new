@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nuntium/core/cache/cache.dart';
 import 'package:nuntium/core/resorces/manager_colors.dart';
 import 'package:nuntium/core/resorces/manager_fonts.dart';
 import 'package:nuntium/core/resorces/manager_icons.dart';
@@ -9,6 +10,7 @@ import 'package:nuntium/core/widgets/screen_header.dart';
 import 'package:nuntium/features/home/presentation/controller/home_controller.dart';
 import 'package:nuntium/features/home/presentation/view/widgets/category.dart';
 import 'package:nuntium/features/home/presentation/view/widgets/article_card.dart';
+import 'package:nuntium/routes/routes.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -106,10 +108,27 @@ class HomeView extends StatelessWidget {
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: controller.articles.length,
-                    itemBuilder: (context, index) => ArticleCard(
-                      imageUrl: controller.articles[index].imageUrl,
-                      text: controller.articles[index].title ?? controller.articles[index].description ?? '',
-                    ),
+                    itemBuilder: (_, index) {
+                      final article = controller.articles[index];
+
+                      return MaterialButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(ManagerRadius.r20),
+                          ),
+                        ),
+                        splashColor: ManagerColors.greyLight.withOpacity(.1),
+                        padding: EdgeInsets.zero,
+                        onPressed: () {
+                          CacheData().setArticle(article);
+                          Get.toNamed(Routes.article);
+                        },
+                        child: ArticleCard(
+                          imageUrl: article.imageUrl,
+                          text: article.title ?? article.description ?? article.description ?? '',
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],
