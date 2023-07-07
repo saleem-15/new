@@ -112,7 +112,7 @@ Widget authView(
                             children: [
                               const Spacer(),
                               InkWell(
-                                onTap: () => Get.offAllNamed(Routes.forget),
+                                onTap: () => Get.offAllNamed(Routes.forget_password),
                                 child: Text(
                                   ManagerStrings.forgetPassword,
                                   style: getMediumTextStyle(

@@ -21,7 +21,7 @@ import 'package:nuntium/features/auth/domain/use_case/register_use_case.dart';
 import 'package:nuntium/features/auth/presentation/controller/login_controller.dart';
 import 'package:nuntium/features/auth/presentation/controller/register_controller.dart';
 import 'package:nuntium/features/category/presentation/controller/categories_controller.dart';
-import 'package:nuntium/features/category/data/data_source/remote_favorite_topic_data_source.dart';
+import 'package:nuntium/features/category/data/data_source/local_favorite_topic_data_source.dart';
 import 'package:nuntium/features/category/data/data_source/remote_topics_data_source.dart';
 import 'package:nuntium/features/category/data/repository/favorite_topic_repository.dart';
 import 'package:nuntium/features/category/data/repository/topics_repository.dart';
@@ -38,6 +38,7 @@ import 'package:nuntium/features/home/data/repository/home_repository.dart';
 import 'package:nuntium/features/home/domain/use_case/home_use_case.dart';
 import 'package:nuntium/features/home/presentation/controller/home_controller.dart';
 import 'package:nuntium/features/language/presentation/controller/language_controller.dart';
+import 'package:nuntium/features/main/presentation/controller/main_controller.dart';
 import 'package:nuntium/features/out_boarding/presentaion/controller/out_boarding_controller.dart';
 import 'package:nuntium/features/out_boarding/presentaion/controller/welcome_controller.dart';
 import 'package:nuntium/features/terms_and_conditions/presentation/controller/terms_and_conditions_controller.dart';
@@ -62,11 +63,6 @@ initModule() async {
   instance.registerLazySingleton<AppSettingsSharedPreferences>(
     () => AppSettingsSharedPreferences(instance()),
   );
-
-  //!!!!!!!!!!! ONLY FOR TEST !!!!!!!!!!!!!
-  // AppSettingsPreferences appSettingsPreferences =
-  //     instance<AppSettingsPreferences>();
-  // appSettingsSharedPreferences.clear();
 
   //why ? you dont use generic type in bellow!
   instance.registerLazySingleton(() => DioFactory());
@@ -93,7 +89,7 @@ disposeSplash() {
 
 initOutBoarding() {
   disposeSplash();
-  Get.put<OutBoardingController>(OutBoardingController());
+  Get.put(OutBoardingController());
 }
 
 disposeOutBoarding() {
@@ -101,11 +97,14 @@ disposeOutBoarding() {
 }
 
 initMainModule() {
-  // Get.put(MainController());
-  // initHome();
+  Get.put(MainController());
+  debugger();
+  initHome();
+  // initProfile();
 }
 
 initHome() {
+  debugger();
   disposeWelcome();
   if (!GetIt.I.isRegistered<RemoteHomeDataSource>()) {
     instance.registerLazySingleton<RemoteHomeDataSource>(
@@ -131,7 +130,7 @@ initHome() {
       ),
     );
   }
-  Get.put<HomeController>(HomeController());
+  Get.put(HomeController());
 }
 
 disposeHome() {
@@ -140,7 +139,7 @@ disposeHome() {
 
 initWelcome() {
   disposeOutBoarding();
-  Get.put<WelcomeController>(WelcomeController());
+  Get.put(WelcomeController());
 }
 
 initWelcomeModule() {
@@ -153,6 +152,7 @@ initWelcomeModule() {
 
 disposeWelcome() {
   disposeOutBoarding();
+  Get.delete<WelcomeController>();
 }
 
 initLoginModule() {
@@ -185,7 +185,7 @@ initLoginModule() {
     );
   }
 
-  Get.put<LoginController>(LoginController());
+  Get.put(LoginController());
 }
 
 disposeLoginModule() {
@@ -231,7 +231,7 @@ initRegisterModule() {
     );
   }
 
-  Get.put<RegisterController>(RegisterController());
+  Get.put(RegisterController());
 }
 
 disposeRegisterModule() {
@@ -326,13 +326,13 @@ initVerificationModule() {
 }
 
 initSelectFavouriteModule() {
-  instance.safeRegisterLazySingleton<RemoteFavoriteTopicDataSource>(
-    RemoteFavoriteTopicDataSourceImplement(),
+  instance.safeRegisterLazySingleton<LocalFavoriteTopicDataSource>(
+    LocalFavoriteTopicDataSourceImplement(),
   );
 
   instance.safeRegisterLazySingleton<FavoriteTopicRepository>(
     FavoriteTopicRepositoryImplement(
-      instance<RemoteFavoriteTopicDataSource>(),
+      instance<LocalFavoriteTopicDataSource>(),
       instance<NetworkInfo>(),
     ),
   );
@@ -367,7 +367,7 @@ disposeSelectFavouriteModule() {
 }
 
 initTermsAndConditionsModule() {
-  Get.put<TermsAndConditionsController>(TermsAndConditionsController());
+  Get.put(TermsAndConditionsController());
 }
 
 disposeTermsAndConditionsModule() {
@@ -375,7 +375,7 @@ disposeTermsAndConditionsModule() {
 }
 
 initLanguageModule() {
-  Get.put<LanguageController>(LanguageController());
+  Get.put(LanguageController());
 }
 
 disposeLanguageModule() {
@@ -383,7 +383,7 @@ disposeLanguageModule() {
 }
 
 initArticleModule() {
-  Get.put<ArticleController>(ArticleController());
+  Get.put(ArticleController());
 }
 
 disposeArticleModule() {

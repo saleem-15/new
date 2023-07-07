@@ -4,7 +4,7 @@ import 'package:nuntium/core/error_handler/error_handler.dart';
 import 'package:nuntium/core/error_handler/response_code.dart';
 import 'package:nuntium/core/internet_checker/internet_checker.dart';
 import 'package:nuntium/core/resorces/manager_strings.dart';
-import 'package:nuntium/features/category/data/data_source/remote_favorite_topic_data_source.dart';
+import 'package:nuntium/features/category/data/data_source/local_favorite_topic_data_source.dart';
 import 'package:nuntium/features/category/data/request/favorite_topic_request.dart';
 
 abstract class FavoriteTopicRepository {
@@ -12,11 +12,11 @@ abstract class FavoriteTopicRepository {
 }
 
 class FavoriteTopicRepositoryImplement implements FavoriteTopicRepository {
-  final RemoteFavoriteTopicDataSource _remoteFavoriteTopicDataSource;
+  final LocalFavoriteTopicDataSource _localFavoriteTopicDataSource;
   final NetworkInfo _networkInfo;
 
   FavoriteTopicRepositoryImplement(
-    this._remoteFavoriteTopicDataSource,
+    this._localFavoriteTopicDataSource,
     this._networkInfo,
   );
 
@@ -24,9 +24,7 @@ class FavoriteTopicRepositoryImplement implements FavoriteTopicRepository {
   Future<Either<Failure, void>> selectFavoriteTopic(
       SelectFavoriteTopicRequest selectFavoriteTopicRequest) async {
     if (await _networkInfo.isConnected) {
-      await _remoteFavoriteTopicDataSource.selectFavoriteTopic(
-        SelectFavoriteTopicRequest(),
-      );
+      await _localFavoriteTopicDataSource.selectFavoriteTopic();
       return const Right(null);
     } else {
       return Left(

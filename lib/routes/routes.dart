@@ -9,12 +9,15 @@ import 'package:nuntium/features/forget_password/presentation/view/forget_passwo
 import 'package:nuntium/features/forget_password/presentation/view/verification_view.dart';
 import 'package:nuntium/features/home/presentation/view/home_view.dart';
 import 'package:nuntium/features/language/presentation/view/language_view.dart';
+import 'package:nuntium/features/main/presentation/view/main_view.dart';
 import 'package:nuntium/features/out_boarding/presentaion/view/out_boarding_view.dart';
 import 'package:nuntium/features/out_boarding/presentaion/view/welcome_screen.dart';
 import 'package:nuntium/features/splash/presentaion/view/splash_view.dart';
 import 'package:nuntium/features/terms_and_conditions/presentation/view/terms_and_conditions_view.dart';
 
 import '../config/dependency_injection.dart';
+
+import 'dart:developer';
 
 class Routes {
   static const String splashView = '/splash_view';
@@ -25,9 +28,9 @@ class Routes {
   static const String welcome = '/welcome_view';
   static const String categories = '/categories_view';
   static const String register = '/register';
-  static const String forget = '/forget';
+  static const String forget_password = '/forget';
   static const String article = '/article';
-  static const String verification = '/verification';
+  static const String verify_code = '/verification';
   static const String select_favourite_topic = '/favourite';
   static const String termsAndConditions = '/termsAndConditions';
   static const String language = '/language';
@@ -36,54 +39,75 @@ class Routes {
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
     switch (settings.name) {
+      //************************** Welcoming Views **************************
       case Routes.splashView:
         initSplash();
         return MaterialPageRoute(builder: (_) => const SplashView());
+
       case Routes.outBoardingView:
         initOutBoarding();
         return MaterialPageRoute(builder: (_) => const OutBoardingView());
-      // case Routes.mainView:
-      //   initMainModule();
-      //   return MaterialPageRoute(builder: (_) => const MainView());
-      case Routes.homeView:
-        initHome();
-        return MaterialPageRoute(builder: (_) => const HomeView());
-      // case Routes.loginView:
-      //   initOutBoarding();
-      //   return MaterialPageRoute(builder: (_) => const LoginView());
+
       case Routes.welcome:
         initWelcome();
         return MaterialPageRoute(builder: (_) => const WelcomeScreen());
 
-      case Routes.article:
-        initArticleModule();
-        return MaterialPageRoute(builder: (_) => const ArticleView());
+      //************************** Auth Views **************************
+      case Routes.loginView:
+        initLoginModule();
+        return MaterialPageRoute(builder: (_) => const LoginView());
+
+      case Routes.register:
+        initRegisterModule();
+        return MaterialPageRoute(builder: (_) => const RegisterView());
+
+      case Routes.forget_password:
+        initForgetPassword();
+        return MaterialPageRoute(builder: (_) => const ForgetPasswordView());
+
+      case Routes.verify_code:
+        initVerificationModule();
+        return MaterialPageRoute(builder: (_) => const VerificationView());
+
+      //************************** Main Views **************************
+      case Routes.mainView:
+        debugger();
+        initMainModule();
+        return MaterialPageRoute(builder: (_) => const MainView());
+
+      case Routes.homeView:
+        initHome();
+        return MaterialPageRoute(builder: (_) => const HomeView());
 
       case Routes.categories:
         initCategoreisModule();
         return MaterialPageRoute(builder: (_) => const CategoriesView());
 
-      case Routes.loginView:
-        initLoginModule();
-        return MaterialPageRoute(builder: (_) => const LoginView());
-      case Routes.register:
-        initRegisterModule();
-        return MaterialPageRoute(builder: (_) => const RegisterView());
-      case Routes.forget:
-        initForgetPassword();
-        return MaterialPageRoute(builder: (_) => const ForgetPasswordView());
-      case Routes.verification:
-        initVerificationModule();
-        return MaterialPageRoute(builder: (_) => const VerificationView());
-      case Routes.select_favourite_topic:
-        initSelectFavouriteModule();
-        return MaterialPageRoute(builder: (_) => const SelectFavouriteView());
+      // case Routes.categories:
+      //   initCategoreisModule();
+      //   return MaterialPageRoute(builder: (_) => const CategoriesView());
+
+      // case Routes.categories:
+      //   initCategoreisModule();
+      // return MaterialPageRoute(builder: (_) => const ProfileView());
+
+      //************************** Views From Home **************************
+      case Routes.article:
+        initArticleModule();
+        return MaterialPageRoute(builder: (_) => const ArticleView());
+
+      //************************** Views From Profile **************************
       case Routes.termsAndConditions:
         initTermsAndConditionsModule();
         return MaterialPageRoute(builder: (_) => const TermsAndConditionsView());
+
       case Routes.language:
         initLanguageModule();
         return MaterialPageRoute(builder: (_) => const LanguageView());
+
+      case Routes.select_favourite_topic:
+        initSelectFavouriteModule();
+        return MaterialPageRoute(builder: (_) => const SelectFavouriteView());
 
       default:
         return unDefinedRoute();

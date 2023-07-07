@@ -12,6 +12,10 @@ import 'config/dependency_injection.dart';
 
 void main() async {
   await initModule();
+
+  //!!!!!!!!!!! Delete app data (ONLY FOR TEST) !!!!!!!!!!!!!
+  // await instance<AppSettingsSharedPreferences>().clear();
+
   runApp(
     EasyLocalization(
       supportedLocales: localeSettings.supportedLocales,
@@ -44,7 +48,7 @@ class MyApp extends StatelessWidget {
           supportedLocales: context.supportedLocales,
           debugShowCheckedModeBanner: false,
           onGenerateRoute: RouteGenerator.getRoute,
-          initialRoute: Routes.loginView,
+          initialRoute: Routes.splashView,
           theme: _themeService.getThemeData(),
           themeMode: _themeService.getThemeMode(),
         );
