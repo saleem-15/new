@@ -359,6 +359,20 @@ initSelectFavouriteModule() {
 }
 
 initCategoreisModule() {
+  instance.safeRegisterLazySingleton<RemoteTopicsDataSource>(
+    RemoteTopicsDataSourceImplement(),
+  );
+
+  instance.safeRegisterLazySingleton<TopicsRepository>(
+    TopicsRepositoryImplement(
+      instance<RemoteTopicsDataSource>(),
+      instance<NetworkInfo>(),
+    ),
+  );
+
+  instance.safeRegisterLazySingleton(
+    TopicsUseCase(instance<TopicsRepository>()),
+  );
   Get.put(CategoriesController());
 }
 
