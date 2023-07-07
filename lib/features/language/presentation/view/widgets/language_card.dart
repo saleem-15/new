@@ -7,16 +7,13 @@ import 'package:nuntium/core/resorces/manager_sizes.dart';
 import 'package:nuntium/core/resorces/manager_styles.dart';
 import 'package:nuntium/features/language/presentation/controller/language_controller.dart';
 
-Widget language(
-    {required String language, bool isChecked = false, required int pos}) {
+Widget language({required String language, bool isChecked = false, required int pos}) {
   return GetBuilder<LanguageController>(
     builder: (controller) => Container(
       height: ManagerHeight.h60,
       margin: EdgeInsets.only(bottom: ManagerHeight.h16),
       decoration: BoxDecoration(
-          color: isChecked
-              ? ManagerColors.purplePrimary
-              : ManagerColors.greyLighter,
+          color: isChecked ? ManagerColors.purplePrimary : ManagerColors.greyLighter,
           borderRadius: BorderRadius.all(
             Radius.circular(
               ManagerRadius.r16,

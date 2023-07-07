@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:nuntium/core/resorces/manager_sizes.dart';
 import 'package:nuntium/core/resorces/manager_strings.dart';
 import 'package:nuntium/features/language/presentation/controller/language_controller.dart';
-import 'package:nuntium/features/language/presentation/view/widgets/languageCard.dart';
+import 'package:nuntium/features/language/presentation/view/widgets/language_card.dart';
 
 class LanguageView extends StatelessWidget {
   const LanguageView({Key? key}) : super(key: key);

@@ -65,7 +65,7 @@ class RouteGenerator {
 
       case Routes.loginView:
         initLoginModule();
-        return MaterialPageRoute(builder: (_) => LoginView());
+        return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.register:
         initRegisterModule();
         return MaterialPageRoute(builder: (_) => const RegisterView());
@@ -80,15 +80,11 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const SelectFavouriteView());
       case Routes.termsAndConditions:
         initTermsAndConditionsModule();
-        return MaterialPageRoute(
-            builder: (_) => const TermsAndConditionsView());
+        return MaterialPageRoute(builder: (_) => const TermsAndConditionsView());
       case Routes.language:
         initLanguageModule();
         return MaterialPageRoute(builder: (_) => const LanguageView());
 
-      case Routes.article:
-        initArticleModule();
-        return MaterialPageRoute(builder: (_) => const ArticleView());
       default:
         return unDefinedRoute();
     }
