@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:nuntium/config/dependency_injection.dart';
 import 'package:nuntium/core/resorces/manager_colors.dart';
 import 'package:nuntium/core/resorces/manager_sizes.dart';
 import 'package:nuntium/core/resorces/manager_styles.dart';
@@ -10,8 +13,7 @@ import 'package:nuntium/features/profile/presentation/view/profile_view.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class MainController extends GetxController {
-  PersistentTabController persistentTabController =
-      PersistentTabController(initialIndex: 0);
+  PersistentTabController persistentTabController = PersistentTabController(initialIndex: 0);
 
   final homeIcon =
       '''<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -64,7 +66,6 @@ class MainController extends GetxController {
         ),
         activeColorPrimary: ManagerColors.purplePrimary,
         inactiveColorPrimary: ManagerColors.greyLight,
-        // inactiveColorPrimary: ManagerColors.greyLight,
         iconSize: ManagerIconSize.s24,
       ),
       PersistentBottomNavBarItem(
@@ -73,6 +74,13 @@ class MainController extends GetxController {
         ),
         activeColorPrimary: ManagerColors.purplePrimary,
         inactiveColorPrimary: ManagerColors.greyLight,
+        // onPressed: (p0) => (p0) {
+        //   log('message');
+        // },
+        onSelectedTabPressWhenNoScreensPushed: () {
+          initCategoreisModule();
+          log('message');
+        },
         iconSize: ManagerIconSize.s24,
       ),
       PersistentBottomNavBarItem(
