@@ -98,13 +98,11 @@ disposeOutBoarding() {
 
 initMainModule() {
   Get.put(MainController());
-  debugger();
   initHome();
   // initProfile();
 }
 
 initHome() {
-  debugger();
   disposeWelcome();
   if (!GetIt.I.isRegistered<RemoteHomeDataSource>()) {
     instance.registerLazySingleton<RemoteHomeDataSource>(
@@ -359,6 +357,20 @@ initSelectFavouriteModule() {
 }
 
 initCategoreisModule() {
+  instance.safeRegisterLazySingleton<RemoteTopicsDataSource>(
+    RemoteTopicsDataSourceImplement(),
+  );
+
+  instance.safeRegisterLazySingleton<TopicsRepository>(
+    TopicsRepositoryImplement(
+      instance<RemoteTopicsDataSource>(),
+      instance<NetworkInfo>(),
+    ),
+  );
+
+  instance.safeRegisterLazySingleton(
+    TopicsUseCase(instance<TopicsRepository>()),
+  );
   Get.put(CategoriesController());
 }
 
@@ -396,8 +408,11 @@ extension SafeDependencyInjection on GetIt {
       registerLazySingleton<T>(() => dependency);
     } else {
       log(
-        'The ${dependency.runtimeType} is Already registered !!',
-        name: 'Dependency Injection:',
+        '(${dependency.runtimeType}) is Already registered !!',
+        // '\n${StackTrace.current.toString()}',
+        stackTrace: StackTrace.current,
+
+        name: 'Dependency Injection',
       );
     }
   }

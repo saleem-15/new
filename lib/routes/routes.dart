@@ -17,8 +17,6 @@ import 'package:nuntium/features/terms_and_conditions/presentation/view/terms_an
 
 import '../config/dependency_injection.dart';
 
-import 'dart:developer';
-
 class Routes {
   static const String splashView = '/splash_view';
   static const String outBoardingView = '/out_boarding_view';
@@ -71,7 +69,6 @@ class RouteGenerator {
 
       //************************** Main Views **************************
       case Routes.mainView:
-        debugger();
         initMainModule();
         return MaterialPageRoute(builder: (_) => const MainView());
 
