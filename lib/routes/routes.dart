@@ -4,7 +4,7 @@ import 'package:nuntium/features/article/presentation/view/article_view.dart';
 import 'package:nuntium/features/auth/presentation/view/login_view.dart';
 import 'package:nuntium/features/auth/presentation/view/register_view.dart';
 import 'package:nuntium/features/category/presentation/view/categories_view.dart';
-import 'package:nuntium/features/favorite_topic/presentation/view/select_favourite_view.dart';
+import 'package:nuntium/features/category/presentation/view/select_favourite_view.dart';
 import 'package:nuntium/features/forget_password/presentation/view/forget_password.dart';
 import 'package:nuntium/features/forget_password/presentation/view/verification_view.dart';
 import 'package:nuntium/features/home/presentation/view/home_view.dart';

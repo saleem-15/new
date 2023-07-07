@@ -1,5 +1,5 @@
 import 'package:nuntium/core/network/firestore.dart';
-import 'package:nuntium/features/favorite_topic/data/response/topics_response.dart';
+import 'package:nuntium/features/category/data/response/topics_response.dart';
 
 abstract class RemoteTopicsDataSource {
   Future<TopicsResopnse> topics();

@@ -1,4 +1,4 @@
-import 'package:nuntium/features/favorite_topic/data/request/favorite_topic_request.dart';
+import 'package:nuntium/features/category/data/request/favorite_topic_request.dart';
 
 abstract class RemoteFavoriteTopicDataSource {
   Future<void> selectFavoriteTopic(SelectFavoriteTopicRequest selectFavoriteTopicRequest);

@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 import 'package:nuntium/config/dependency_injection.dart';
-import 'package:nuntium/features/favorite_topic/domain/mapper/topics_entity_mapper.dart';
-import 'package:nuntium/features/favorite_topic/domain/use_case/select_favorite_topic_use_case.dart';
-import 'package:nuntium/features/favorite_topic/domain/use_case/topics_use_case.dart';
-import 'package:nuntium/features/favorite_topic/presentation/models/topic.dart';
+import 'package:nuntium/features/category/domain/mapper/topics_entity_mapper.dart';
+import 'package:nuntium/features/category/domain/use_case/select_favorite_topic_use_case.dart';
+import 'package:nuntium/features/category/domain/use_case/topics_use_case.dart';
+import 'package:nuntium/features/category/presentation/models/topic.dart';
 
 class CategoriesController extends GetxController {
   late final _selectFavoriteTopicUseCase = instance<SelectFavoriteTopicUseCase>();
