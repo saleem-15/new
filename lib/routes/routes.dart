@@ -28,7 +28,7 @@ class Routes {
   static const String forget = '/forget';
   static const String article = '/article';
   static const String verification = '/verification';
-  static const String favourite = '/favourite';
+  static const String select_favourite_topic = '/favourite';
   static const String termsAndConditions = '/termsAndConditions';
   static const String language = '/language';
 }
@@ -75,7 +75,7 @@ class RouteGenerator {
       case Routes.verification:
         initVerificationModule();
         return MaterialPageRoute(builder: (_) => const VerificationView());
-      case Routes.favourite:
+      case Routes.select_favourite_topic:
         initSelectFavouriteModule();
         return MaterialPageRoute(builder: (_) => const SelectFavouriteView());
       case Routes.termsAndConditions:

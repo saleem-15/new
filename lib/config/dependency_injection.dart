@@ -53,14 +53,15 @@ initModule() async {
 
   await Firebase.initializeApp();
 
-  final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  final sharedPreferences = await SharedPreferences.getInstance();
 
   instance.registerLazySingleton<SharedPreferences>(
     () => sharedPreferences,
   );
 
-  instance
-      .registerLazySingleton<AppSettingsSharedPreferences>(() => AppSettingsSharedPreferences(instance()));
+  instance.registerLazySingleton<AppSettingsSharedPreferences>(
+    () => AppSettingsSharedPreferences(instance()),
+  );
 
   //!!!!!!!!!!! ONLY FOR TEST !!!!!!!!!!!!!
   // AppSettingsPreferences appSettingsPreferences =
@@ -77,11 +78,13 @@ initModule() async {
     () => AppApi(dio),
   );
 
-  instance.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(InternetConnectionCheckerPlus()));
+  instance.registerLazySingleton<NetworkInfo>(
+    () => NetworkInfoImpl(InternetConnectionCheckerPlus()),
+  );
 }
 
 initSplash() {
-  Get.put<SplashController>(SplashController());
+  Get.put(SplashController());
 }
 
 disposeSplash() {

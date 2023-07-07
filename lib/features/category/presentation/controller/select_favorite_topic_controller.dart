@@ -1,15 +1,20 @@
 import 'package:get/get.dart';
 import 'package:nuntium/config/dependency_injection.dart';
-import 'package:nuntium/features/category/domain/mapper/topics_entity_mapper.dart';
 import 'package:nuntium/features/category/domain/use_case/select_favorite_topic_use_case.dart';
+import 'package:nuntium/features/category/domain/mapper/topics_entity_mapper.dart';
 import 'package:nuntium/features/category/domain/use_case/topics_use_case.dart';
 import 'package:nuntium/features/category/presentation/models/topic.dart';
+import 'package:nuntium/routes/routes.dart';
 
 class SelectFavoriteTopicController extends GetxController {
   late final _selectFavoriteTopicUseCase = instance<SelectFavoriteTopicUseCase>();
   late final _topicsUseCase = instance<TopicsUseCase>();
 
   List<Topic> topics = [];
+
+  List<Topic> get selectedTopics {
+    return topics.where((topic) => topic.isSelected).toList();
+  }
 
   @override
   void onInit() {
@@ -19,24 +24,33 @@ class SelectFavoriteTopicController extends GetxController {
 
   Future<void> selectFavoriteTopic() async {
     (await _selectFavoriteTopicUseCase.execute(
-      //Todo enter the ids of the selected topics here
-      SelectFavoriteTopicUseCaseInput(topics: []),
+      SelectFavoriteTopicUseCaseInput(
+        topics: selectedTopics.map((e) => e.name).toList(),
+      ),
     ))
         .fold(
-      // Todo: حالة الفشل
-      (l) => null,
-      //Todo: حالة النجاح
-      (r) => null,
+      (l) => Get.rawSnackbar(message: l.message),
+      (r) => Get.toNamed(Routes.mainView),
     );
   }
 
   Future<void> fetchTopics() async {
     (await _topicsUseCase.execute()).fold(
-      // Todo: حالة الفشل
-      (l) => null,
-
-      //Todo: حالة النجاح
-      (r) => topics = r.toPresentation(),
+      (l) => Get.rawSnackbar(message: l.message),
+      (r) {
+        topics = r.toPresentation();
+        update();
+      },
     );
+  }
+
+  onTopicPressed(int index) {
+    topics[index].isSelected = !topics[index].isSelected;
+
+    update();
+  }
+
+  void onNextPressed() {
+    selectFavoriteTopic();
   }
 }

@@ -21,8 +21,7 @@ class AppSettingsSharedPreferences {
 
   //----------------------------------------------------------------------------
 
-  String get locale =>
-      _preferences.getString(ConstantsPrefsKeys.locale).parseToLocale();
+  String get locale => _preferences.getString(ConstantsPrefsKeys.locale).parseToLocale();
 
   Future<void> setLocale(String locale) async {
     await _preferences.setString(ConstantsPrefsKeys.locale, locale);
@@ -33,19 +32,19 @@ class AppSettingsSharedPreferences {
   }
 
   Future<void> setEmail(String email) async {
-    await _preferences.setString("email", email);
+    await _preferences.setString(ConstantsPrefsKeys.email, email);
   }
 
   String getName() {
-    return _preferences.getString("name").onNull();
+    return _preferences.getString(ConstantsPrefsKeys.name).onNull();
   }
 
   String getEmail() {
-    return _preferences.getString("email").onNull();
+    return _preferences.getString(ConstantsPrefsKeys.email).onNull();
   }
 
-  void clear() {
-    _preferences.clear();
+  Future<void> clear() async {
+    await _preferences.clear();
   }
 
   Future<void> setLoggedIn() async {
@@ -62,14 +61,6 @@ class AppSettingsSharedPreferences {
 
   bool getFavouriteViewed() {
     return _preferences.getBool(ConstantsPrefsKeys.FavouriteViewed).onNull();
-  }
-
-  Future<void> setRegisterd() async {
-    await _preferences.setBool(ConstantsPrefsKeys.Registered, true);
-  }
-
-  Future<void> getRegistered() async {
-    _preferences.getBool(ConstantsPrefsKeys.Registered).onNull();
   }
 
   Future<void> setTopicsSelected(NewsTopics topic, bool isChecked) async {
