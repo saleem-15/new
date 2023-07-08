@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nuntium/config/dependency_injection.dart';
+import 'package:nuntium/core/storage/local/app_settings_shared_preferences.dart';
 import 'package:nuntium/routes/routes.dart';
 
 class ProfileController extends GetxController {
+  final _appSettingsSharedPreferences = instance<AppSettingsSharedPreferences>();
+
   late String name;
   late String email;
   late bool isNotificationOn;
   late ImageProvider userImage;
 
-  void setIsNotificationOn(bool value) {
+  Future<void> setIsNotificationOn(bool value) async {
     isNotificationOn = value;
+    await _appSettingsSharedPreferences.setNotificationOn(value);
     update();
   }
 
@@ -18,27 +23,27 @@ class ProfileController extends GetxController {
     super.onInit();
     //Todo: get user data from storage
     // I've done!
-    // name = _appSettingsSharedPreferences.getName();
-    // email = _appSettingsSharedPreferences.getEmail();
-    // isNotificationOn = _appSettingsSharedPreferences.getNotification();
+    name = _appSettingsSharedPreferences.getName();
+    email = _appSettingsSharedPreferences.getEmail();
+    isNotificationOn = _appSettingsSharedPreferences.getNotificationOn();
 
     userImage = const AssetImage('assets/images/user_image.png');
   }
 
-  changePassword() {}
+  changePassword() {
+    Get.toNamed(Routes.change_password);
+  }
 
   privacy() {}
 
   termsAndConditions() {
-    //Todo: go to terms and conditions screen
-    Get.offAllNamed(Routes.termsAndConditions);
+    Get.toNamed(Routes.termsAndConditions);
   }
 
   signout() {}
 
   language() {
-    //Todo: go to language screen
-    Get.offAllNamed(Routes.language);
+    Get.toNamed(Routes.language);
   }
 
   notification() {

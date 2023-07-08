@@ -28,6 +28,7 @@ import 'package:nuntium/features/category/data/repository/topics_repository.dart
 import 'package:nuntium/features/category/domain/use_case/select_favorite_topic_use_case.dart';
 import 'package:nuntium/features/category/domain/use_case/topics_use_case.dart';
 import 'package:nuntium/features/category/presentation/controller/select_favorite_topic_controller.dart';
+import 'package:nuntium/features/change_password/presentation/controller/change_password_controller.dart';
 import 'package:nuntium/features/forget_password/data/data_source/remote_forget_password_data_source.dart';
 import 'package:nuntium/features/forget_password/data/repository/forget_password_repository.dart';
 import 'package:nuntium/features/forget_password/domain/use_case/forget_password_use_case.dart';
@@ -41,6 +42,7 @@ import 'package:nuntium/features/language/presentation/controller/language_contr
 import 'package:nuntium/features/main/presentation/controller/main_controller.dart';
 import 'package:nuntium/features/out_boarding/presentaion/controller/out_boarding_controller.dart';
 import 'package:nuntium/features/out_boarding/presentaion/controller/welcome_controller.dart';
+import 'package:nuntium/features/profile/presentation/controller/profile_controller.dart';
 import 'package:nuntium/features/terms_and_conditions/presentation/controller/terms_and_conditions_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -99,7 +101,8 @@ disposeOutBoarding() {
 initMainModule() {
   Get.put(MainController());
   initHome();
-  // initProfile();
+  initCategoreisModule();
+  initProfileModule();
 }
 
 initHome() {
@@ -386,6 +389,14 @@ disposeTermsAndConditionsModule() {
   Get.delete<TermsAndConditionsController>();
 }
 
+initChangePassword() {
+  Get.put(ChangePasswordController());
+}
+
+disposeChangePassword() {
+  Get.delete<ChangePasswordController>();
+}
+
 initLanguageModule() {
   Get.put(LanguageController());
 }
@@ -399,8 +410,15 @@ initArticleModule() {
 }
 
 disposeArticleModule() {
-  log('disposeArticleModule');
   Get.delete<ArticleController>();
+}
+
+initProfileModule() {
+  Get.put(ProfileController());
+}
+
+disposeProfileModule() {
+  Get.delete<ProfileController>();
 }
 
 extension SafeDependencyInjection on GetIt {

@@ -5,6 +5,7 @@ import 'package:nuntium/features/auth/presentation/view/login_view.dart';
 import 'package:nuntium/features/auth/presentation/view/register_view.dart';
 import 'package:nuntium/features/category/presentation/view/categories_view.dart';
 import 'package:nuntium/features/category/presentation/view/select_favourite_view.dart';
+import 'package:nuntium/features/change_password/presentation/view/change_password_view.dart';
 import 'package:nuntium/features/forget_password/presentation/view/forget_password.dart';
 import 'package:nuntium/features/forget_password/presentation/view/verification_view.dart';
 import 'package:nuntium/features/home/presentation/view/home_view.dart';
@@ -12,6 +13,7 @@ import 'package:nuntium/features/language/presentation/view/language_view.dart';
 import 'package:nuntium/features/main/presentation/view/main_view.dart';
 import 'package:nuntium/features/out_boarding/presentaion/view/out_boarding_view.dart';
 import 'package:nuntium/features/out_boarding/presentaion/view/welcome_screen.dart';
+import 'package:nuntium/features/profile/presentation/view/profile_view.dart';
 import 'package:nuntium/features/splash/presentaion/view/splash_view.dart';
 import 'package:nuntium/features/terms_and_conditions/presentation/view/terms_and_conditions_view.dart';
 
@@ -28,10 +30,12 @@ class Routes {
   static const String register = '/register';
   static const String forget_password = '/forget';
   static const String article = '/article';
+  static const String profile = '/profile';
   static const String verify_code = '/verification';
   static const String select_favourite_topic = '/favourite';
   static const String termsAndConditions = '/termsAndConditions';
   static const String language = '/language';
+  static const String change_password = '/change_password';
 }
 
 class RouteGenerator {
@@ -63,6 +67,10 @@ class RouteGenerator {
         initForgetPassword();
         return MaterialPageRoute(builder: (_) => const ForgetPasswordView());
 
+      case Routes.change_password:
+        initChangePassword();
+        return MaterialPageRoute(builder: (_) => ChangePasswordView());
+
       case Routes.verify_code:
         initVerificationModule();
         return MaterialPageRoute(builder: (_) => const VerificationView());
@@ -84,9 +92,9 @@ class RouteGenerator {
       //   initCategoreisModule();
       //   return MaterialPageRoute(builder: (_) => const CategoriesView());
 
-      // case Routes.categories:
-      //   initCategoreisModule();
-      // return MaterialPageRoute(builder: (_) => const ProfileView());
+      case Routes.profile:
+        initProfileModule();
+        return MaterialPageRoute(builder: (_) => const ProfileView());
 
       //************************** Views From Home **************************
       case Routes.article:
@@ -123,4 +131,5 @@ class RouteGenerator {
       ),
     );
   }
+  
 }

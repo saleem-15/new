@@ -22,6 +22,7 @@ class ConstantsPrefsKeys {
   static const String locale = 'locale';
   static const String email = 'email';
   static const String name = 'name';
+  static const String notificationOn = 'notification_on';
 }
 
 class FirestoreConstants {
