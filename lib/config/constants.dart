@@ -55,6 +55,7 @@ class ApiConstants {
   static const String status = 'status';
   static const String source = 'source';
   static const String articles = 'articles';
+  static const String totalResults = 'totalResults';
 
   //article (Home Response)
   static const String author = 'author';

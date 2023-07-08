@@ -1,5 +1,3 @@
-import 'package:nuntium/config/constants.dart';
-
 class HomeRequest {
   int? page;
   int? pageSize;
@@ -10,9 +8,10 @@ class HomeRequest {
 
   HomeRequest({
     required this.page,
+    required this.pageSize,
     required this.country,
     required this.category,
     required this.sources,
     required this.search,
-  }) : pageSize = ApiConstants.homeaPgeSizeValue;
+  });
 }

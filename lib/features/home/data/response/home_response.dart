@@ -12,6 +12,9 @@ class HomeResopnse {
   @JsonKey(name: ApiConstants.status)
   String status;
 
+  @JsonKey(name: ApiConstants.totalResults)
+  int totalResults;
+
   @JsonKey(name: ApiConstants.source)
   SourceResponse? source;
 
@@ -22,6 +25,7 @@ class HomeResopnse {
     required this.status,
     required this.articles,
     required this.source,
+    required this.totalResults,
   });
 
   factory HomeResopnse.fromJson(Map<String, dynamic> json) => _$HomeResopnseFromJson(json);

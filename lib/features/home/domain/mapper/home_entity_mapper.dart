@@ -7,6 +7,7 @@ extension HomeEntityMapper on HomeEntity {
   Home toPresentation() {
     return Home(
       source: source,
+      totalResults: totalResults,
       articles: articles
               ?.map(
                 (article) => article.toPresentation(),
