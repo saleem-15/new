@@ -7,6 +7,7 @@ extension HomeResopnseMapper on HomeResopnse {
   HomeEntity toDomain() {
     return HomeEntity(
       source: source?.name,
+      totalResults: totalResults,
       articles: articles
           ?.map(
             (article) => article.toDomain(),

@@ -14,11 +14,13 @@ HomeResopnse _$HomeResopnseFromJson(Map<String, dynamic> json) => HomeResopnse(
       source: json['source'] == null
           ? null
           : SourceResponse.fromJson(json['source'] as Map<String, dynamic>),
+      totalResults: json['totalResults'] as int,
     );
 
 Map<String, dynamic> _$HomeResopnseToJson(HomeResopnse instance) =>
     <String, dynamic>{
       'status': instance.status,
+      'totalResults': instance.totalResults,
       'source': instance.source,
       'articles': instance.articles,
     };
