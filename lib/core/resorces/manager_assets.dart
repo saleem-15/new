@@ -21,6 +21,7 @@ class ManagerJson {
   // static const String success = '$jsonPath/success.json';
 }
 class ManagerIcons {
+  static const String book = '$baseVectorPath/book.svg';
   static const String home = '$baseIconPath/home.svg';
   static const String user = '$baseIconPath/user.svg';
   static const String category = '$baseIconPath/category.svg';
