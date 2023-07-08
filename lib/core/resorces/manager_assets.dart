@@ -3,7 +3,6 @@ const String baseVectorPath = 'assets/images/vectors';
 const String translationPath = 'assets/translation';
 const String baseIconPath = 'assets/icons';
 
-
 class ManagerAssets {
   static const String logo = '$baseVectorPath/Vector.svg';
   static const String outboarding = '$baseImagePath/outboarding.png';
@@ -20,10 +19,12 @@ class ManagerJson {
   // static const String error = '$jsonPath/error.json';
   // static const String success = '$jsonPath/success.json';
 }
-class ManagerIcons {
+
+class VectorIcons {
   static const String book = '$baseVectorPath/book.svg';
   static const String home = '$baseIconPath/home.svg';
   static const String user = '$baseIconPath/user.svg';
   static const String category = '$baseIconPath/category.svg';
   static const String bookmark = '$baseIconPath/bookmark.svg';
+  static const String bookmark_filled = '$baseIconPath/bookmark_filled.svg';
 }
