@@ -25,7 +25,7 @@ class SelectFavouriteView extends GetView<SelectFavoriteTopicController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              header(
+              Header(
                 title: ManagerStrings.selectYourFavouriteTopics,
                 paragraph: ManagerStrings.selectYourFavouriteTopicsParagraph,
               ),

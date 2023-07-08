@@ -29,8 +29,8 @@ class HomeView extends StatelessWidget {
                 ///Header
                 SliverPadding(
                   padding: EdgeInsets.symmetric(horizontal: ManagerWidth.w20),
-                  sliver: SliverToBoxAdapter(
-                    child: header(
+                  sliver: const SliverToBoxAdapter(
+                    child: Header(
                       title: 'Browse',
                       paragraph: 'Discover things of this world',
                     ),
@@ -143,6 +143,7 @@ class HomeView extends StatelessWidget {
                       },
                       child: ArticleCard(
                         imageUrl: article.imageUrl,
+                        isSaved: article.isSaved,
                         text: article.title ?? article.description ?? '',
                       ),
                     ),
@@ -150,117 +151,6 @@ class HomeView extends StatelessWidget {
                 ),
               ],
             ),
-            //   child: CustomScrollView(
-            //     slivers: [
-            //       Padding(
-            //         padding: EdgeInsets.symmetric(horizontal: ManagerWidth.w20),
-            //         child: header(
-            //           title: 'Browse',
-            //           paragraph: 'Discover things of this world',
-            //         ),
-            //       ),
-            //       Padding(
-            //         padding: EdgeInsets.symmetric(horizontal: ManagerWidth.w20),
-            //         child: Container(
-            //           height: ManagerHeight.h56,
-            //           decoration: BoxDecoration(
-            //             color: ManagerColors.greyLighter,
-            //             borderRadius: BorderRadius.all(
-            //               Radius.circular(ManagerRadius.r16),
-            //             ),
-            //           ),
-            //           child: TextField(
-            //             decoration: InputDecoration(
-            //               contentPadding: EdgeInsetsDirectional.symmetric(
-            //                 vertical: ManagerHeight.h16,
-            //               ),
-            //               hintText: "Search",
-            //               hintStyle: getMediumTextStyle(
-            //                 fontSize: ManagerFontSize.s16,
-            //                 color: ManagerColors.greyPrimary,
-            //               ),
-            //               border: InputBorder.none,
-            //               prefixIcon: Icon(
-            //                 ManagerIcons.search,
-            //                 color: ManagerColors.greyPrimary,
-            //               ),
-            //               suffixIcon: Icon(
-            //                 ManagerIcons.mic,
-            //                 color: ManagerColors.greyPrimary,
-            //               ),
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //       SizedBox(
-            //         height: ManagerHeight.h24,
-            //       ),
-            //       SizedBox(
-            //         height: ManagerHeight.h32,
-            //         child: ListView(
-            //           shrinkWrap: true,
-            //           scrollDirection: Axis.horizontal,
-            //           children: [
-            //             SizedBox(
-            //               width: ManagerWidth.w20,
-            //             ),
-            //             category(
-            //               text: "Random",
-            //               isChecked: true,
-            //             ),
-            //             category(
-            //               text: "Sports",
-            //               isChecked: true,
-            //             ),
-            //             category(
-            //               text: "Gaming",
-            //               isChecked: true,
-            //             ),
-            //             category(
-            //               text: "Politics",
-            //               isChecked: true,
-            //             ),
-            //             category(
-            //               text: "History",
-            //               isChecked: true,
-            //               margin: 0,
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //       SizedBox(
-            //         height: ManagerHeight.h24,
-            //       ),
-            //       PagedSliverList<int, Article>(
-            //         pagingController: controller.pagingController,
-            //         builderDelegate: PagedChildBuilderDelegate<Article>(
-            //           itemBuilder: (_, article, index) => MaterialButton(
-            //             shape: RoundedRectangleBorder(
-            //               borderRadius: BorderRadius.all(
-            //                 Radius.circular(ManagerRadius.r20),
-            //               ),
-            //             ),
-            //             splashColor: ManagerColors.greyLight.withOpacity(.1),
-            //             padding: EdgeInsets.zero,
-            //             onPressed: () {
-            //               CacheData().setArticle(article);
-            //               Get.toNamed(Routes.article);
-            //             },
-            //             child: ArticleCard(
-            //               imageUrl: article.imageUrl,
-            //               text: article.title ?? article.description ?? article.description ?? '',
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //       // Padding(
-            //       //   padding: EdgeInsets.symmetric(horizontal: ManagerWidth.w20),
-            //       //   child: ListView.builder(
-            //       //     shrinkWrap: true,
-            //       //     physics: const NeverScrollableScrollPhysics(),
-            //       //     itemCount: controller.articles.length,
-            //       //     itemBuilder: (_, index) {
-            //       //       final article = controller.articles[index];
           ),
         );
       },

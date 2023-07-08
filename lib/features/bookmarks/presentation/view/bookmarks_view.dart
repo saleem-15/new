@@ -19,8 +19,8 @@ class BookmarksView extends GetView<BookmarksController> {
           padding: EdgeInsets.symmetric(horizontal: ManagerWidth.w20),
           child: CustomScrollView(
             slivers: [
-              SliverToBoxAdapter(
-                child: header(
+              const SliverToBoxAdapter(
+                child: Header(
                   title: 'Bookmarks',
                   paragraph: 'Saved articles to the library',
                 ),
