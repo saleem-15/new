@@ -11,6 +11,8 @@ import 'package:nuntium/core/internet_checker/internet_checker.dart';
 import 'package:nuntium/core/network/app_api.dart';
 import 'package:nuntium/core/network/dio_factory.dart';
 import 'package:nuntium/core/storage/local/app_settings_shared_preferences.dart';
+import 'package:nuntium/core/storage/local/hive_db.dart';
+import 'package:nuntium/core/storage/local/model/bookmark_db_model.dart';
 import 'package:nuntium/features/article/presentation/controller/article_controller.dart';
 import 'package:nuntium/features/auth/data/data_source/remote_login_data_source.dart';
 import 'package:nuntium/features/auth/data/data_source/remote_register_data_source.dart';
@@ -20,6 +22,10 @@ import 'package:nuntium/features/auth/domain/use_case/login_use_case.dart';
 import 'package:nuntium/features/auth/domain/use_case/register_use_case.dart';
 import 'package:nuntium/features/auth/presentation/controller/login_controller.dart';
 import 'package:nuntium/features/auth/presentation/controller/register_controller.dart';
+import 'package:nuntium/features/bookmarks/data/data_source/local_bookmarks_data_source.dart';
+import 'package:nuntium/features/bookmarks/data/repository/bookmarks_repository.dart';
+import 'package:nuntium/features/bookmarks/domain/use_case/get_bookmark_use_case.dart';
+import 'package:nuntium/features/bookmarks/presentation/controller/bookmarks_controller.dart';
 import 'package:nuntium/features/category/presentation/controller/categories_controller.dart';
 import 'package:nuntium/features/category/data/data_source/local_favorite_topic_data_source.dart';
 import 'package:nuntium/features/category/data/data_source/remote_topics_data_source.dart';
@@ -57,6 +63,11 @@ initModule() async {
   await Firebase.initializeApp();
 
   final sharedPreferences = await SharedPreferences.getInstance();
+
+  // initialize local db (hive) and register custom adapters
+  await MyHive.init(registerAdapters: (hive) {
+    hive.registerAdapter(BookmarkModelAdapter());
+  });
 
   instance.registerLazySingleton<SharedPreferences>(
     () => sharedPreferences,
@@ -102,6 +113,7 @@ initMainModule() {
   Get.put(MainController());
   initHome();
   initCategoreisModule();
+  initBookmarksModule();
   initProfileModule();
 }
 
@@ -377,6 +389,33 @@ initCategoreisModule() {
   Get.put(CategoriesController());
 }
 
+initBookmarksModule() {
+  instance.safeRegisterLazySingleton<LocalBookmarksDataSource>(
+    LocalBookmarksDataSourceImpl(),
+  );
+
+  instance.safeRegisterLazySingleton<BookmarksRepository>(
+    BookmarksRepositoryImplement(
+      instance<LocalBookmarksDataSource>(),
+    ),
+  );
+
+  instance.safeRegisterLazySingleton(
+    ViewBookmarksUseCase(instance<BookmarksRepository>()),
+  );
+
+  Get.put(BookmarksController());
+}
+
+disposeBookmarksModule() {
+  instance
+    ..safeUnRegisterLazySingleton<LocalBookmarksDataSource>()
+    ..safeUnRegisterLazySingleton<BookmarksRepository>()
+    ..safeUnRegisterLazySingleton<ViewBookmarksUseCase>();
+
+  Get.delete<BookmarksController>();
+}
+
 disposeSelectFavouriteModule() {
   Get.delete<SelectFavoriteTopicController>();
 }
@@ -428,6 +467,20 @@ extension SafeDependencyInjection on GetIt {
     } else {
       log(
         '(${dependency.runtimeType}) is Already registered !!',
+        // '\n${StackTrace.current.toString()}',
+        stackTrace: StackTrace.current,
+
+        name: 'Dependency Injection',
+      );
+    }
+  }
+
+  void safeUnRegisterLazySingleton<T extends Object>() {
+    if (isRegistered<T>()) {
+      unregister<T>();
+    } else {
+      log(
+        '(${T.runtimeType}) is Not registered !!',
         // '\n${StackTrace.current.toString()}',
         stackTrace: StackTrace.current,
 
