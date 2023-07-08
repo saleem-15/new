@@ -69,14 +69,14 @@ class ManagerRadius {
 }
 
 class ManagerIconSize {
-  static double s2 = 2;
-  static double s4 = 4;
-  static double s6 = 6;
-  static double s8 = 8;
-  static double s10 = 10;
-  static double s12 = 12;
-  static double s16 = 16;
-  static double s24 = 24;
+  static const double s2 = 2;
+  static const double s4 = 4;
+  static const double s6 = 6;
+  static const double s8 = 8;
+  static const double s10 = 10;
+  static const double s12 = 12;
+  static const double s16 = 16;
+  static const double s24 = 24;
 }
 
 class ManagerOpacity {
