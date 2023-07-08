@@ -52,11 +52,10 @@ class SettingsListTile extends StatelessWidget {
 
               /// trailing widget
               trailing ??
-                  Icon(
+                  const Icon(
                     Icons.arrow_forward_ios,
                     color: ManagerColors.greyDarker,
                     size: ManagerIconSize.s16,
-                    
                   )
             ],
           ),
