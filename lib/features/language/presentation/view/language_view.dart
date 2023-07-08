@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nuntium/core/resorces/manager_colors.dart';
 import 'package:nuntium/core/resorces/manager_sizes.dart';
 import 'package:nuntium/core/resorces/manager_strings.dart';
 import 'package:nuntium/features/language/presentation/controller/language_controller.dart';
@@ -13,6 +14,9 @@ class LanguageView extends StatelessWidget {
     return GetBuilder<LanguageController>(
       builder: (controller) => Scaffold(
         appBar: AppBar(
+          leading: const BackButton(
+            color: ManagerColors.greyPrimary,
+          ),
           title: Text(ManagerStrings.language),
         ),
         body: Padding(
@@ -22,27 +26,14 @@ class LanguageView extends StatelessWidget {
               SizedBox(
                 height: ManagerHeight.h16,
               ),
-              language(
-                  language: ManagerStrings.english,
-                  pos: 1,
-                  isChecked: controller.isChecked(1)),
-              language(
-                  language: ManagerStrings.arabic,
-                  pos: 2,
-                  isChecked: controller.isChecked(2)),
-              language(
-                  language: ManagerStrings.german,
-                  pos: 3,
-                  isChecked: controller.isChecked(3)),
-              language(
-                  language: ManagerStrings.spanish,
-                  pos: 4,
-                  isChecked: controller.isChecked(4)),
+              language(language: ManagerStrings.english, pos: 1, isChecked: controller.isChecked(1)),
+              language(language: ManagerStrings.arabic, pos: 2, isChecked: controller.isChecked(2)),
+              language(language: ManagerStrings.german, pos: 3, isChecked: controller.isChecked(3)),
+              language(language: ManagerStrings.spanish, pos: 4, isChecked: controller.isChecked(4)),
             ],
           ),
         ),
       ),
     );
-
   }
 }

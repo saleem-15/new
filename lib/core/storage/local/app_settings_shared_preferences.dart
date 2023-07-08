@@ -70,6 +70,14 @@ class AppSettingsSharedPreferences {
   bool getTopicSelected(NewsTopics topic) {
     return _preferences.getBool(topic.toString()).onNull();
   }
+
+  Future<void> setNotificationOn(bool isNotificationOn) async {
+    await _preferences.setBool(ConstantsPrefsKeys.notificationOn, isNotificationOn);
+  }
+
+  bool getNotificationOn() {
+    return _preferences.getBool(ConstantsPrefsKeys.notificationOn).onNull();
+  }
 }
 
 enum NewsTopics {
