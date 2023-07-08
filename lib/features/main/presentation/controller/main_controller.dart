@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:nuntium/config/dependency_injection.dart';
 import 'package:nuntium/core/resorces/manager_colors.dart';
 import 'package:nuntium/core/resorces/manager_sizes.dart';
-import 'package:nuntium/core/resorces/manager_styles.dart';
+import 'package:nuntium/features/bookmarks/presentation/view/bookmarks_view.dart';
 import 'package:nuntium/features/category/presentation/view/categories_view.dart';
 import 'package:nuntium/features/home/presentation/view/home_view.dart';
 import 'package:nuntium/features/profile/presentation/view/profile_view.dart';
@@ -42,15 +42,7 @@ class MainController extends GetxController {
   List<Widget> screens = [
     const HomeView(),
     const CategoriesView(),
-    Center(
-      child: Text(
-        'Under Development',
-        style: getBoldTextStyle(
-          fontSize: 30,
-          color: ManagerColors.greyDarker,
-        ),
-      ),
-    ),
+    const BookmarksView(),
     const ProfileView()
   ];
 
