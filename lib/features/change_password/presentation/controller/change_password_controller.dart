@@ -1,24 +1,53 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:nuntium/config/dependency_injection.dart';
+import 'package:quickalert/quickalert.dart';
+
+import '../../domain/use_case/change_password_use_case.dart';
 
 class ChangePasswordController extends GetxController {
-  late final TextEditingController currentPasswordController;
-  late final TextEditingController newPasswordController;
-  late final TextEditingController repeatPasswordController;
+  final currentPasswordController = TextEditingController();
+  final newPasswordController = TextEditingController();
+  final repeatPasswordController = TextEditingController();
 
-  @override
-  void onInit() {
-    super.onInit();
-    currentPasswordController = TextEditingController();
-    newPasswordController = TextEditingController();
-    repeatPasswordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+
+  final _changePasswordUseCase = instance<ChangePasswordUseCase>();
+
+  Future<void> performChangePassword(BuildContext context) async {
+    if (formKey.currentState!.validate()) {
+      _changePassword(context);
+    }
   }
 
-  @override
-  void onClose() {
-    currentPasswordController.dispose();
-    newPasswordController.dispose();
-    repeatPasswordController.dispose();
-    super.onClose();
+  Future<void> _changePassword(BuildContext context) async {
+    (await _changePasswordUseCase.execute(
+      ChangePasswordUseCaseInput(
+        currentPassword: currentPasswordController.text,
+        newPassword: newPasswordController.text,
+      ),
+    ))
+        .fold(
+      (l) async => await QuickAlert.show(
+        context: context,
+        type: QuickAlertType.error,
+        text: l.message,
+      ),
+      (r) async {
+        await QuickAlert.show(
+          context: context,
+          type: QuickAlertType.success,
+          autoCloseDuration: const Duration(seconds: 4),
+        );
+
+        disposeChangePassword();
+        Get.back();
+      },
+    );
+  }
+
+  Future<bool> onWillPop() async {
+    disposeChangePassword();
+    return true;
   }
 }
