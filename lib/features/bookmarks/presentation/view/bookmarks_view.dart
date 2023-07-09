@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nuntium/core/resorces/manager_fonts.dart';
 import 'package:nuntium/core/resorces/manager_sizes.dart';
+import 'package:nuntium/core/resorces/manager_strings.dart';
 import 'package:nuntium/core/resorces/manager_styles.dart';
 import 'package:nuntium/core/storage/local/model/bookmark_db_model.dart';
 import 'package:nuntium/core/widgets/screen_header.dart';
@@ -19,10 +20,10 @@ class BookmarksView extends GetView<BookmarksController> {
           padding: EdgeInsets.symmetric(horizontal: ManagerWidth.w20),
           child: CustomScrollView(
             slivers: [
-              const SliverToBoxAdapter(
+              SliverToBoxAdapter(
                 child: Header(
-                  title: 'Bookmarks',
-                  paragraph: 'Saved articles to the library',
+                  title: ManagerStrings.bookmarks,
+                  paragraph: ManagerStrings.bookmarksParagraph,
                 ),
               ),
 
