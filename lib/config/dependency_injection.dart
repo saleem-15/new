@@ -34,6 +34,9 @@ import 'package:nuntium/features/category/data/repository/topics_repository.dart
 import 'package:nuntium/features/category/domain/use_case/select_favorite_topic_use_case.dart';
 import 'package:nuntium/features/category/domain/use_case/topics_use_case.dart';
 import 'package:nuntium/features/category/presentation/controller/select_favorite_topic_controller.dart';
+import 'package:nuntium/features/change_password/data/data_source/remote_change_password_data_source.dart';
+import 'package:nuntium/features/change_password/data/repository/change_password_repository.dart';
+import 'package:nuntium/features/change_password/domain/use_case/change_password_use_case.dart';
 import 'package:nuntium/features/change_password/presentation/controller/change_password_controller.dart';
 import 'package:nuntium/features/forget_password/data/data_source/remote_forget_password_data_source.dart';
 import 'package:nuntium/features/forget_password/data/repository/forget_password_repository.dart';
@@ -429,10 +432,32 @@ disposeTermsAndConditionsModule() {
 }
 
 initChangePassword() {
+  instance.safeRegisterLazySingleton<RemoteChangePasswordDataSource>(
+    RemoteChangePasswordDataSourceImpl(
+      instance<AppSettingsSharedPreferences>(),
+    ),
+  );
+
+  instance.safeRegisterLazySingleton<ChangePasswordRepository>(
+    ChangePasswordRepositoryImpl(
+      instance<RemoteChangePasswordDataSource>(),
+      instance<NetworkInfo>(),
+    ),
+  );
+  instance.safeRegisterLazySingleton(
+    ChangePasswordUseCase(instance<ChangePasswordRepository>()),
+  );
+
   Get.put(ChangePasswordController());
 }
 
 disposeChangePassword() {
+  instance
+    ..safeUnRegisterLazySingleton<RemoteChangePasswordDataSource>()
+    ..safeUnRegisterLazySingleton<ChangePasswordRepository>()
+    ..safeUnRegisterLazySingleton<ChangePasswordUseCase>();
+
+
   Get.delete<ChangePasswordController>();
 }
 
