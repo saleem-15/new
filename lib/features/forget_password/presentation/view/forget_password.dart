@@ -6,7 +6,7 @@ import 'package:nuntium/features/auth/presentation/view/widgets/footer_message.d
 import 'package:nuntium/features/forget_password/presentation/controller/forget_password_controller.dart';
 
 class ForgetPasswordView extends StatelessWidget {
-  const ForgetPasswordView({Key? key}) : super(key: key);
+  const ForgetPasswordView({super.key});
 
   @override
   Widget build(BuildContext context) {

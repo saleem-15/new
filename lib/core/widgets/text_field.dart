@@ -5,8 +5,6 @@ import 'package:nuntium/core/resorces/manager_sizes.dart';
 import 'package:nuntium/core/resorces/manager_styles.dart';
 import 'package:nuntium/core/service/icon_service.dart';
 
-import '../util/size_util.dart';
-
 class MyTextField extends StatelessWidget {
   final bool isObscureText;
   final TextEditingController controller;
@@ -57,7 +55,7 @@ class MyTextField extends StatelessWidget {
           // Adjust the padding as needed (to get the needed height)
           contentPadding: EdgeInsets.symmetric(
             vertical: ManagerHeight.h20,
-          ), 
+          ),
 
           hintStyle: getMediumTextStyle(
             fontSize: ManagerFontSize.s16,

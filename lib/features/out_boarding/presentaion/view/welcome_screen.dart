@@ -10,7 +10,7 @@ import 'package:nuntium/core/widgets/rect_button.dart';
 import 'package:nuntium/routes/routes.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({Key? key}) : super(key: key);
+  const WelcomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +31,7 @@ class WelcomeScreen extends StatelessWidget {
           ),
           Text(
             ManagerStrings.appName,
-            style: getBoldTextStyle(
-                fontSize: ManagerFontSize.s35,
-                color: ManagerColors.blackPrimary),
+            style: getBoldTextStyle(fontSize: ManagerFontSize.s35, color: ManagerColors.blackPrimary),
           ),
           SizedBox(
             height: ManagerHeight.h24,
@@ -41,8 +39,7 @@ class WelcomeScreen extends StatelessWidget {
           Text(
             textAlign: TextAlign.center,
             ManagerStrings.paragraph,
-            style: getRegularTextStyle(
-                fontSize: 16, color: ManagerColors.greyPrimary),
+            style: getRegularTextStyle(fontSize: 16, color: ManagerColors.greyPrimary),
           ),
           SizedBox(
             height: ManagerHeight.h64,

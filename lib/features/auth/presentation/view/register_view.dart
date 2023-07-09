@@ -7,7 +7,7 @@ import 'package:nuntium/features/auth/presentation/view/widgets/footer_message.d
 import 'package:nuntium/routes/routes.dart';
 
 class RegisterView extends StatelessWidget {
-  const RegisterView({Key? key}) : super(key: key);
+  const RegisterView({super.key});
 
   @override
   Widget build(BuildContext context) {

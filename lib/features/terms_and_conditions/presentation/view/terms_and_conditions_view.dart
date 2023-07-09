@@ -6,7 +6,7 @@ import 'package:nuntium/core/resorces/manager_strings.dart';
 import 'package:nuntium/core/resorces/manager_styles.dart';
 
 class TermsAndConditionsView extends StatelessWidget {
-  const TermsAndConditionsView({Key? key}) : super(key: key);
+  const TermsAndConditionsView({super.key});
 
   @override
   Widget build(BuildContext context) {
