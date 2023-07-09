@@ -8,7 +8,7 @@ import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import '../controller/main_controller.dart';
 
 class MainView extends StatelessWidget {
-  const MainView({Key? key}) : super(key: key);
+  const MainView({super.key});
 
   @override
   Widget build(BuildContext context) {

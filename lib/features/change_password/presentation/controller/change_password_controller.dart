@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:nuntium/config/dependency_injection.dart';
+import 'package:nuntium/core/resorces/manager_strings.dart';
 import 'package:quickalert/quickalert.dart';
 
 import '../../domain/use_case/change_password_use_case.dart';
@@ -30,8 +31,10 @@ class ChangePasswordController extends GetxController {
         .fold(
       (l) async => await QuickAlert.show(
         context: context,
+        title: ManagerStrings.error,
         type: QuickAlertType.error,
         text: l.message,
+        confirmBtnText: ManagerStrings.ok,
       ),
       (r) async {
         await QuickAlert.show(

@@ -1,33 +1,41 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nuntium/config/dependency_injection.dart';
 import 'package:nuntium/config/localization/locale_settings.dart';
-import 'package:nuntium/core/storage/local/app_settings_shared_preferences.dart';
+import 'package:nuntium/features/language/model/language.dart';
 
 class LanguageController extends GetxController {
-  int languageChecked = 1;
+  Locale get currentLocale => localeSettings.currentLocale(Get.context!);
 
-  bool isChecked(int pos) {
-    return languageChecked == pos;
+  List<Language> languages = [];
+
+  @override
+  void onInit() {
+    super.onInit();
+    initLanguageList();
   }
 
-  myUpdate() {
+  void initLanguageList() {
+    const supportedLanguages = LocaleSettings.languages;
+
+    supportedLanguages.forEach((key, value) {
+      languages.add(
+        Language(
+          langCode: key,
+          name: value,
+        ),
+      );
+    });
+  }
+
+  onLanguageTilePressed(BuildContext context, Language languag) async {
+    await localeSettings.changeLanguage(
+      context: context,
+      langCode: languag.langCode,
+    );
     update();
   }
 
-  final AppSettingsSharedPreferences _appSettingsSharedPreferences = instance<AppSettingsSharedPreferences>();
-  final languageList = LocaleSettings.languages;
-
-  String get currentLanguage => _appSettingsSharedPreferences.locale;
-
-  Future<void> changeLanguage({
-    required BuildContext context,
-    required String langCode,
-  }) async {
-    _appSettingsSharedPreferences.setLocale(langCode);
-    await EasyLocalization.of(context)!.setLocale(Locale(langCode));
-    Get.updateLocale(Locale(langCode));
-    update();
+  bool isCurrentLocale(Language language) {
+    return currentLocale.languageCode == language.langCode;
   }
 }

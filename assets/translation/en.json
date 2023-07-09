@@ -17,6 +17,7 @@
   "forget": "Forgot Password 🤔",
   "password": "Password",
   "forgetPassword": "Forgot Password?",
+  "currentPassword": "Current Password",
   "confirmPasswordHint": "Repeat New Password",
   "forgetParagraph": "We need your email adress so we can send you the password reset code.",
   "signUpFooterMessage": "Already have an account?",
@@ -35,6 +36,7 @@
   "notVerifiedEmail": "notVerifiedEmail",
   "invalidEmptyFullName": "invalidEmptyFullName",
   "invalidFullName": "invalidFullName",
+  "requiredField": "Required",
   "requiredFullName": "requiredFullName",
   "termsAndConditionsTitle": "Terms & Conditions",
   "termsAndConditionsPolicy": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\nSed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.\n\nNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.\n\nNeque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
@@ -42,6 +44,7 @@
   "notifications": "Notifications",
   "language": "Language",
   "changePassword": "Change Password",
+  "ok": "OK",
   "privacy": "Privacy",
   "termsAndConditions": "Terms & Conditions",
   "signout": "Sign Out",
@@ -57,10 +60,10 @@
   "browse": "Browse",
   "homeParagraph": "Discover things of this world",
   "search": "Search",
-  "english": "english",
-  "arabic": "arabic",
-  "german": "german",
-  "spanish": "spanish",
+  "english": "English",
+  "arabic": "Arabic",
+  "german": "German",
+  "spanish": "Spanish",
   "getStarted": "Get Started",
   "verificationCodeParagraph": "You need to enter 4-digit code we send to\n your email adress.",
   "sportsText": "Sports",
@@ -73,7 +76,7 @@
   "natureText": "Nature",
   "foodText": "Food",
   "artText": "Art",
-  "sports": "🏈 Sports",
+  "fashionText": "Fashion",
   "politics": "⚖️ Politics",
   "life": "🌞 Life",
   "gaming": "🎮 Gaming",
@@ -82,5 +85,20 @@
   "art": "🎨 Art",
   "history": "📜 History",
   "fashion": "👗 Fashion",
-  "nature": "🌴 Nature"
+  "business": "business",
+  "entertainment": "entertainment",
+  "general": "general",
+  "health": "health",
+  "science": "science",
+  "sports": "sports",
+  "technology": "technology",
+
+
+  "bookmarks": "Bookmarks",
+  "bookmarksParagraph": "Saved articles to the library",
+
+  "categories": "Categories",
+  "categoriesParagraph": "Thousands of articles in each category"
+
+
 }

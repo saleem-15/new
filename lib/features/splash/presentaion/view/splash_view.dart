@@ -5,7 +5,7 @@ import 'package:nuntium/core/resorces/manager_sizes.dart';
 import 'package:nuntium/core/widgets/scaffold_with_background_image.dart';
 
 class SplashView extends StatelessWidget {
-  const SplashView({Key? key}) : super(key: key);
+  const SplashView({super.key});
 
   @override
   Widget build(BuildContext context) {

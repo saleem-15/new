@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:nuntium/core/resorces/manager_colors.dart';
 import 'package:nuntium/core/resorces/manager_fonts.dart';
 import 'package:nuntium/core/resorces/manager_sizes.dart';
+import 'package:nuntium/core/resorces/manager_strings.dart';
 import 'package:nuntium/core/resorces/manager_styles.dart';
 import 'package:nuntium/core/widgets/screen_header.dart';
 import 'package:nuntium/features/category/presentation/controller/categories_controller.dart';
@@ -19,9 +20,10 @@ class CategoriesView extends GetView<CategoriesController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Header(
-                title: 'Categories',
-                paragraph: 'Thousands of articles in each category',
+              Header(
+                title: ManagerStrings.categories,
+                paragraph: ManagerStrings.categoriesParagraph,
+                // 'Thousands of articles in each category',
               ),
               GetBuilder<CategoriesController>(builder: (_) {
                 return GridView.builder(

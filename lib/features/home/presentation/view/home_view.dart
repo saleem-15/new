@@ -6,6 +6,7 @@ import 'package:nuntium/core/resorces/manager_colors.dart';
 import 'package:nuntium/core/resorces/manager_fonts.dart';
 import 'package:nuntium/core/resorces/manager_icons.dart';
 import 'package:nuntium/core/resorces/manager_sizes.dart';
+import 'package:nuntium/core/resorces/manager_strings.dart';
 import 'package:nuntium/core/resorces/manager_styles.dart';
 import 'package:nuntium/core/widgets/screen_header.dart';
 import 'package:nuntium/features/home/presentation/controller/home_controller.dart';
@@ -29,10 +30,10 @@ class HomeView extends StatelessWidget {
                 ///Header
                 SliverPadding(
                   padding: EdgeInsets.symmetric(horizontal: ManagerWidth.w20),
-                  sliver: const SliverToBoxAdapter(
+                  sliver: SliverToBoxAdapter(
                     child: Header(
-                      title: 'Browse',
-                      paragraph: 'Discover things of this world',
+                      title: ManagerStrings.browse,
+                      paragraph: ManagerStrings.homeParagraph,
                     ),
                   ),
                 ),
@@ -54,7 +55,7 @@ class HomeView extends StatelessWidget {
                           contentPadding: EdgeInsetsDirectional.symmetric(
                             vertical: ManagerHeight.h16,
                           ),
-                          hintText: "Search",
+                          hintText: ManagerStrings.search,
                           hintStyle: getMediumTextStyle(
                             fontSize: ManagerFontSize.s16,
                             color: ManagerColors.greyPrimary,

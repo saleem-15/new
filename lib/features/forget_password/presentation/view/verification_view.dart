@@ -6,7 +6,7 @@ import 'package:nuntium/features/auth/presentation/view/widgets/footer_message.d
 import 'package:nuntium/features/forget_password/presentation/controller/verification_controller.dart';
 
 class VerificationView extends StatelessWidget {
-  const VerificationView({Key? key}) : super(key: key);
+  const VerificationView({super.key});
 
   @override
   Widget build(BuildContext context) {

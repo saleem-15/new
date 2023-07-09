@@ -47,7 +47,7 @@ class ChangePasswordView extends GetView<ChangePasswordController> {
                     MyTextField(
                       controller: controller.currentPasswordController,
                       icon: ManagerIcons.password,
-                      hintText: 'Current Password',
+                      hintText: ManagerStrings.currentPassword,
                       validator: (value) => _validator.validatePassword(value),
                       keyboardType: TextInputType.visiblePassword,
                       isObscureText: true,
