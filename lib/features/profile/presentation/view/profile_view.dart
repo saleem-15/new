@@ -102,7 +102,7 @@ class ProfileView extends GetView<ProfileController> {
               ),
               SettingsListTile(
                 title: ManagerStrings.signout,
-                trailing: Icon(
+                trailing: const Icon(
                   Icons.login_outlined,
                   color: ManagerColors.greyDarker,
                   size: ManagerIconSize.s24,

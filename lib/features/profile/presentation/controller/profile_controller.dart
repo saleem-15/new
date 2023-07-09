@@ -21,8 +21,6 @@ class ProfileController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    //Todo: get user data from storage
-    // I've done!
     name = _appSettingsSharedPreferences.getName();
     email = _appSettingsSharedPreferences.getEmail();
     isNotificationOn = _appSettingsSharedPreferences.getNotificationOn();

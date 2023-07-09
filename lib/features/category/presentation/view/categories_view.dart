@@ -19,42 +19,40 @@ class CategoriesView extends GetView<CategoriesController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              header(
+              const Header(
                 title: 'Categories',
                 paragraph: 'Thousands of articles in each category',
               ),
-              GetBuilder<CategoriesController>(
-                builder: (_) {
-                  return GridView.builder(
-                    shrinkWrap: true,
-                    itemCount: controller.topics.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: ManagerWidth.w16,
-                        mainAxisSpacing: ManagerHeight.h16,
-                        childAspectRatio: 160 / 72),
-                    itemBuilder: (context, index) {
-                      return Container(
-                        decoration: BoxDecoration(
-                          color: ManagerColors.greyLighter,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(ManagerRadius.r12),
+              GetBuilder<CategoriesController>(builder: (_) {
+                return GridView.builder(
+                  shrinkWrap: true,
+                  itemCount: controller.topics.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: ManagerWidth.w16,
+                      mainAxisSpacing: ManagerHeight.h16,
+                      childAspectRatio: 160 / 72),
+                  itemBuilder: (context, index) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        color: ManagerColors.greyLighter,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(ManagerRadius.r12),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          controller.topics[index].name,
+                          style: getSemiBoldTextStyle(
+                            fontSize: ManagerFontSize.s16,
+                            color: ManagerColors.greyDarker,
                           ),
                         ),
-                        child: Center(
-                          child: Text(
-                            controller.topics[index].name,
-                            style: getSemiBoldTextStyle(
-                              fontSize: ManagerFontSize.s16,
-                              color: ManagerColors.greyDarker,
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                }
-              ),
+                      ),
+                    );
+                  },
+                );
+              }),
             ],
           ),
         ),

@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:nuntium/core/resorces/manager_assets.dart';
 import 'package:nuntium/core/resorces/manager_colors.dart';
 import 'package:nuntium/core/resorces/manager_fonts.dart';
 import 'package:nuntium/core/resorces/manager_sizes.dart';
 import 'package:nuntium/core/resorces/manager_styles.dart';
+import 'package:nuntium/core/storage/local/hive_db.dart';
+import 'package:nuntium/core/storage/local/model/bookmark_db_model.dart';
 
 class ArticleCard extends StatelessWidget {
   final String? imageUrl;
   final String text;
+  final bool isSaved;
 
   const ArticleCard({
     super.key,
     this.imageUrl,
+    required this.isSaved,
     required this.text,
   });
 
@@ -68,30 +73,22 @@ class ArticleCard extends StatelessWidget {
                           fontSize: ManagerFontSize.s16, color: ManagerColors.blackPrimary),
                     ),
                     trailing: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.bookmark_border_outlined,
-                        size: ManagerFontSize.s30,
+                      onPressed: () {
+                        MyHive.saveBookmark(
+                          BookmarkModel.fromData(
+                            title: text,
+                            imageUrl: imageUrl!,
+                          ),
+                        );
+                      },
+                      icon: SvgPicture.asset(
+                        isSaved ? VectorIcons.home : VectorIcons.bookmark_filled,
                       ),
                     ),
                   ),
                 ),
               ),
             ),
-            // Positioned.fill(
-            //   child: MaterialButton(
-            //     shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.all(
-            //         Radius.circular(ManagerRadius.r20),
-            //       ),
-            //     ),
-            //     splashColor: ManagerColors.greyLight.withOpacity(.1),
-            //     padding: EdgeInsets.zero,
-            //     onPressed: () {
-            //       Get.toNamed(Routes.article);
-            //     },
-            //   ),
-            // ),
           ],
         ),
         SizedBox(

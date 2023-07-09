@@ -3,6 +3,7 @@ import 'package:nuntium/core/resorces/manager_strings.dart';
 import 'package:nuntium/features/article/presentation/view/article_view.dart';
 import 'package:nuntium/features/auth/presentation/view/login_view.dart';
 import 'package:nuntium/features/auth/presentation/view/register_view.dart';
+import 'package:nuntium/features/bookmarks/presentation/view/bookmarks_view.dart';
 import 'package:nuntium/features/category/presentation/view/categories_view.dart';
 import 'package:nuntium/features/category/presentation/view/select_favourite_view.dart';
 import 'package:nuntium/features/change_password/presentation/view/change_password_view.dart';
@@ -27,6 +28,7 @@ class Routes {
   static const String loginView = '/login_view';
   static const String welcome = '/welcome_view';
   static const String categories = '/categories_view';
+  static const String bookmarks = '/bookmarks_view';
   static const String register = '/register';
   static const String forget_password = '/forget';
   static const String article = '/article';
@@ -88,9 +90,9 @@ class RouteGenerator {
         initCategoreisModule();
         return MaterialPageRoute(builder: (_) => const CategoriesView());
 
-      // case Routes.categories:
-      //   initCategoreisModule();
-      //   return MaterialPageRoute(builder: (_) => const CategoriesView());
+      case Routes.bookmarks:
+        initBookmarksModule();
+        return MaterialPageRoute(builder: (_) => const BookmarksView());
 
       case Routes.profile:
         initProfileModule();
@@ -131,5 +133,4 @@ class RouteGenerator {
       ),
     );
   }
-  
 }
