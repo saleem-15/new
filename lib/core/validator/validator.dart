@@ -20,13 +20,20 @@ class FieldValidator {
 
   String? validatePassword(String? password) {
     if (password!.isEmpty) {
+      return 'Required';
+    }
+
+    if (password.length < 7) {
       return ManagerStrings.invalidPasswordLength;
     }
 
-    if (password.length < 8) {
-      return ManagerStrings.invalidPasswordDigit;
-    }
+    return null;
+  }
 
+  String? validatePasswordsMatch(String? newPassword, String? repeatPassword) {
+    if (newPassword != repeatPassword) {
+      return 'Passwords do not match';
+    }
     return null;
   }
 
