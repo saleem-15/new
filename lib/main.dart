@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
           supportedLocales: context.supportedLocales,
           debugShowCheckedModeBanner: false,
           onGenerateRoute: RouteGenerator.getRoute,
-          initialRoute: Routes.splashView,
+          initialRoute: Routes.mainView,
           theme: _themeService.getThemeData(),
           themeMode: _themeService.getThemeMode(),
         );
