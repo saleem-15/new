@@ -60,7 +60,7 @@ Widget authView(
                       children: [
                         Visibility(
                           visible: name,
-                          child: myTextField(
+                          child: MyTextField(
                             controller: controllers['nameController'] ?? TextEditingController(),
                             icon: ManagerIcons.user,
                             keyboardType: TextInputType.text,
@@ -70,7 +70,7 @@ Widget authView(
                         SizedBox(
                           height: name ? ManagerHeight.h16 : 0,
                         ),
-                        myTextField(
+                        MyTextField(
                           controller: controllers['emailController'] ?? TextEditingController(),
                           icon: ManagerIcons.email,
                           keyboardType: TextInputType.emailAddress,
@@ -81,7 +81,7 @@ Widget authView(
                         ),
                         Visibility(
                           visible: password,
-                          child: myTextField(
+                          child: MyTextField(
                             controller: controllers['passwordController'] ?? TextEditingController(),
                             icon: ManagerIcons.password,
                             keyboardType: TextInputType.text,
@@ -95,7 +95,7 @@ Widget authView(
                         ),
                         Visibility(
                           visible: confirmPassword,
-                          child: myTextField(
+                          child: MyTextField(
                             controller: controllers['confirmPasswordController'] ?? TextEditingController(),
                             icon: ManagerIcons.password,
                             isObscureText: true,
