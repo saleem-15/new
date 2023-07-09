@@ -36,15 +36,16 @@ class ManagerStrings {
 
   static String get forgetPassword => tr('forgetPassword');
 
+  static String get currentPassword => 'currentPassword'.tr();
   static String get confirmPasswordHint => tr('confirmPasswordHint');
   static String get currentPasswordHint => tr('currentPasswordHint');
+  static String get ok => 'ok'.tr();
 
   static String get forgetParagraph => tr('forgetParagraph');
 
   static String get signUpFooterMessage => tr('signUpFooterMessage');
 
-  static String get forgetPasswordFooterMessage =>
-      tr('forgetPasswordFooterMessage');
+  static String get forgetPasswordFooterMessage => tr('forgetPasswordFooterMessage');
 
   static String get sendAgain => tr('sendAgain');
 
@@ -67,6 +68,8 @@ class ManagerStrings {
   static String get invalidEmptyFullName => tr('invalidEmptyFullName');
   static String get invalidFullName => tr('invalidFullName');
   static String get requiredFullName => tr('requiredFullName');
+  static String get requiredField => 'requiredField'.tr();
+
   static String get termsAndConditionsTitle => tr('termsAndConditionsTitle');
   static String get termsAndConditionsPolicy => tr('termsAndConditionsPolicy');
   static String get profile => tr('profile');
@@ -78,11 +81,9 @@ class ManagerStrings {
   static String get signout => tr('signout');
 
   static String get newPasswordHint => tr('newPasswordHint');
-  static String get selectYourFavouriteTopicsParagraph =>
-      tr('selectYourFavouriteTopicsParagraph');
+  static String get selectYourFavouriteTopicsParagraph => tr('selectYourFavouriteTopicsParagraph');
   static String get repeatNewPassword => tr('repeatNewPassword');
-  static String get selectYourFavouriteTopics =>
-      tr('selectYourFavouriteTopics');
+  static String get selectYourFavouriteTopics => tr('selectYourFavouriteTopics');
   static String get verificationCodeTitle => tr('verificationCodeTitle');
   static String get dontReceive => tr('dontReceive');
   static String get confirm => tr('confirm');
@@ -94,8 +95,7 @@ class ManagerStrings {
   static String get german => tr('german');
   static String get spanish => tr('spanish');
   static String get getStarted => tr('getStarted');
-  static String get verificationCodeParagraph =>
-      tr('verificationCodeParagraph');
+  static String get verificationCodeParagraph => tr('verificationCodeParagraph');
   static String get sportsText => tr('sportsText');
   static String get randomText => tr('randomText');
   static String get gamingText => tr('gamingText');
@@ -115,5 +115,21 @@ class ManagerStrings {
   static String get art => tr('art');
   static String get history => tr('history');
   static String get fashion => tr('fashion');
+  static String get fashionText => tr('fashionText');
   static String get nature => tr('nature');
+
+  static String get business => tr('business');
+  static String get entertainment => tr('entertainment');
+  static String get general => tr('general');
+  static String get health => tr('health');
+  static String get science => tr('science');
+  static String get technology => tr('technology');
+
+  static String get bookmarks => 'bookmarks'.tr();
+
+  static String get bookmarksParagraph => 'bookmarksParagraph'.tr();
+
+  static String get categories => tr('categories');
+
+  static String get categoriesParagraph => 'categoriesParagraph'.tr();
 }
