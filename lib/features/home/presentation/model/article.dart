@@ -7,7 +7,10 @@ class Article {
   String? content;
   String? description;
 
+  bool isSaved;
+
   Article({
+    required this.isSaved,
     required this.author,
     required this.publishedAt,
     required this.content,
