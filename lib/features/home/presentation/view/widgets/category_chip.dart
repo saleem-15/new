@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:nuntium/core/resorces/manager_colors.dart';
 import 'package:nuntium/core/resorces/manager_fonts.dart';
@@ -35,7 +36,7 @@ class CategoryChip extends StatelessWidget {
             horizontal: ManagerWidth.w6,
           ),
           child: Text(
-            text,
+            tr(text),
             style: getSemiBoldTextStyle(
               fontSize: ManagerFontSize.s12,
               color: isChecked ? ManagerColors.white : ManagerColors.greyPrimary,
