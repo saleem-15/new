@@ -86,7 +86,7 @@ Widget authView(
                             icon: ManagerIcons.password,
                             keyboardType: TextInputType.text,
                             isObscureText: true,
-                            hintText: passwordHint ?? "Password",
+                            hintText: passwordHint ?? ManagerStrings.password,
                             validator: (value) => failedValidator.validatePassword(value),
                           ),
                         ),

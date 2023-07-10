@@ -4,7 +4,7 @@ const String translationPath = 'assets/translation';
 const String baseIconPath = 'assets/icons';
 
 class ManagerAssets {
-  static const String logo = '$baseVectorPath/Vector.svg';
+  static const String logo = '$baseVectorPath/logo.svg';
   static const String outboarding = '$baseImagePath/outboarding.png';
   static const String illustration = '$baseImagePath/3d-illustration.png';
   static const String facebook = '$baseImagePath/facebook-logo.png';
