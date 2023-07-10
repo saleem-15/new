@@ -19,9 +19,7 @@ Widget loginWidget() {
         Center(
           child: Text(
             "or",
-            style: getSemiBoldTextStyle(
-                fontSize: ManagerFontSize.s16,
-                color: ManagerColors.greyPrimary),
+            style: getSemiBoldTextStyle(fontSize: ManagerFontSize.s16, color: ManagerColors.greyPrimary),
           ),
         ),
         SizedBox(

@@ -16,42 +16,46 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: Column(
-        children: [
-          SizedBox(
-            height: ManagerHeight.h90,
-          ),
-          Image.asset(
-            ManagerAssets.illustration,
-            fit: BoxFit.cover,
-            width: double.infinity,
-          ),
-          SizedBox(
-            height: ManagerHeight.h120,
-          ),
-          Text(
-            ManagerStrings.appName,
-            style: getBoldTextStyle(fontSize: ManagerFontSize.s35, color: ManagerColors.blackPrimary),
-          ),
-          SizedBox(
-            height: ManagerHeight.h24,
-          ),
-          Text(
-            textAlign: TextAlign.center,
-            ManagerStrings.paragraph,
-            style: getRegularTextStyle(fontSize: 16, color: ManagerColors.greyPrimary),
-          ),
-          SizedBox(
-            height: ManagerHeight.h64,
-          ),
-          rectButton(
-              onPressed: () {
-                Get.offAllNamed(Routes.loginView);
-              },
-              text: ManagerStrings.getStarted,
-              isHasMargin: true)
-        ],
-      )),
+        child: Column(
+          children: [
+            SizedBox(
+              height: ManagerHeight.h90,
+            ),
+            Image.asset(
+              ManagerAssets.illustration,
+              fit: BoxFit.cover,
+              width: double.infinity,
+            ),
+            SizedBox(
+              height: ManagerHeight.h120,
+            ),
+            Text(
+              ManagerStrings.appName,
+              style: getBoldTextStyle(fontSize: ManagerFontSize.s35, color: ManagerColors.blackPrimary),
+            ),
+            SizedBox(
+              height: ManagerHeight.h24,
+            ),
+            Text(
+              textAlign: TextAlign.center,
+              ManagerStrings.paragraph,
+              style: getRegularTextStyle(fontSize: 16, color: ManagerColors.greyPrimary),
+            ),
+            SizedBox(
+              height: ManagerHeight.h64,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: ManagerWidth.w20),
+              child: rectButton(
+                  onPressed: () {
+                    Get.offAllNamed(Routes.loginView);
+                  },
+                  text: ManagerStrings.getStarted,
+                  isHasMargin: true),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
