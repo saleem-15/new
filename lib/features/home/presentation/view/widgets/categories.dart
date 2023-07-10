@@ -40,7 +40,7 @@ class Categories extends StatelessWidget {
               return CategoryChip(
                 text: category,
                 onPressed: () => controller.onCategoryPressed(category),
-                isChecked: category == controller.selctedCategory,
+                isChecked: category == controller.selectedCategory,
               );
             },
           ),
