@@ -85,15 +85,15 @@
   "art": "🎨 Art",
   "history": "📜 History",
   "fashion": "👗 Fashion",
-  "business": "business",
-  "entertainment": "entertainment",
-  "general": "general",
-  "health": "health",
-  "science": "science",
-  "sports": "sports",
-  "technology": "technology",
-
-
+  
+    "General": "General",
+    "Business": "Business",
+    "Technology": "Technology",
+    "Health": "Health",
+    "Entertainment": "Entertainment",
+    "Science": "Science",
+    "Sports": "Sports",
+  
   "bookmarks": "Bookmarks",
   "bookmarksParagraph": "Saved articles to the library",
 
