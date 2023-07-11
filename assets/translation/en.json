@@ -10,18 +10,26 @@
   "signUpTitle": "Welcome to Nuntium 👋",
   "signUpParagraph": "Hello, I guess you are new around here. You\ncan start using the application after sign up.",
   "loginParagraph": "I am happy to see you again. You can \nncontinue where you left off by logging in",
+  
+  "signIn": "Sign In",
+  "emailAddress": "Email Address",
+  "or": "Or",
   "google": "Sign In With Google",
   "facebook": "Sign In with Facebook",
-  "signIn": "Sign In",
+  "dontHaveAnAccount": "Don't have an account? ",
   "signUp": "Sign Up",
+
+  "youHaventSavedAnyArticles": "You haven't saved any articles yet. Start reading and bookmarking them now",
+
   "forget": "Forgot Password 🤔",
   "password": "Password",
+  
   "forgetPassword": "Forgot Password?",
   "currentPassword": "Current Password",
   "confirmPasswordHint": "Repeat New Password",
   "forgetParagraph": "We need your email adress so we can send you the password reset code.",
-  "signUpFooterMessage": "Already have an account?",
-  "forgetPasswordFooterMessage": "Didn’t receive an email?",
+  "signUpFooterMessage": "Already have an account? ",
+  "didntRecieveEmail?": "Didn’t receive an email? ",
   "sendAgain": "Send again",
   "invalidEmail": "invalidEmail",
   "invalidPasswordLength": "invalidPasswordLength",
@@ -45,6 +53,8 @@
   "language": "Language",
   "changePassword": "Change Password",
   "ok": "OK",
+  "username":"Username",
+
   "privacy": "Privacy",
   "termsAndConditions": "Terms & Conditions",
   "signout": "Sign Out",
