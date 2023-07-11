@@ -113,6 +113,8 @@ disposeOutBoarding() {
 }
 
 initMainModule() {
+  disposeSplash();
+  disposeWelcome();
   Get.put(MainController());
   initHome();
   initCategoreisModule();
@@ -122,34 +124,37 @@ initMainModule() {
 
 initHome() {
   disposeWelcome();
-  if (!GetIt.I.isRegistered<RemoteHomeDataSource>()) {
-    instance.registerLazySingleton<RemoteHomeDataSource>(
-      () => RemoteHomeDataSourceImplement(
-        instance<AppApi>(),
-      ),
-    );
-  }
 
-  if (!GetIt.I.isRegistered<HomeRepository>()) {
-    instance.registerLazySingleton<HomeRepository>(
-      () => HomeRepositoryImplement(
-        instance<RemoteHomeDataSource>(),
-        instance<NetworkInfo>(),
-      ),
-    );
-  }
+  instance.safeRegisterLazySingleton<RemoteHomeDataSource>(
+    RemoteHomeDataSourceImpl(instance<AppApi>()),
+  );
 
-  if (!GetIt.I.isRegistered<HomeUseCase>()) {
-    instance.registerLazySingleton<HomeUseCase>(
-      () => HomeUseCase(
-        instance<HomeRepository>(),
-      ),
-    );
-  }
+  instance.safeRegisterLazySingleton<HomeRepository>(
+    HomeRepositoryImpl(
+      instance<RemoteHomeDataSource>(),
+      instance<NetworkInfo>(),
+    ),
+  );
+
+  instance.safeRegisterLazySingleton<HomeUseCase>(
+    HomeUseCase(instance<HomeRepository>()),
+  );
+
   Get.put(HomeController());
 }
 
 disposeHome() {
+  log(
+    'disposeHome !!',
+    stackTrace: StackTrace.current,
+    name: 'Dependency Injection',
+  );
+
+  instance
+    ..safeUnRegisterLazySingleton<RemoteHomeDataSource>()
+    ..safeUnRegisterLazySingleton<HomeRepository>()
+    ..safeUnRegisterLazySingleton<HomeUseCase>();
+
   Get.delete<HomeController>();
 }
 
@@ -159,11 +164,9 @@ initWelcome() {
 }
 
 initWelcomeModule() {
-  if (!GetIt.I.isRegistered<RemoteLoginDataSource>()) {
-    instance.registerLazySingleton<RemoteLoginDataSource>(
-      () => RemoteLoginDataSourceImplement(),
-    );
-  }
+  instance.safeRegisterLazySingleton<RemoteLoginDataSource>(
+    RemoteLoginDataSourceImpl(),
+  );
 }
 
 disposeWelcome() {
@@ -177,29 +180,22 @@ initLoginModule() {
   disposeWelcome();
   // initVerificationModule();
   // initFcmToken();
+  instance.safeRegisterLazySingleton<RemoteLoginDataSource>(
+    RemoteLoginDataSourceImpl(),
+  );
 
-  if (!GetIt.I.isRegistered<RemoteLoginDataSource>()) {
-    instance.registerLazySingleton<RemoteLoginDataSource>(
-      () => RemoteLoginDataSourceImplement(),
-    );
-  }
+  instance.safeRegisterLazySingleton<LoginRepository>(
+    LoginRepositoryImplement(
+      instance(),
+      instance(),
+    ),
+  );
 
-  if (!GetIt.I.isRegistered<LoginRepository>()) {
-    instance.registerLazySingleton<LoginRepository>(
-      () => LoginRepositoryImplement(
-        instance(),
-        instance(),
-      ),
-    );
-  }
-
-  if (!GetIt.I.isRegistered<LoginUseCase>()) {
-    instance.registerFactory<LoginUseCase>(
-      () => LoginUseCase(
-        instance<LoginRepository>(),
-      ),
-    );
-  }
+  instance.safeRegisterLazySingleton<LoginUseCase>(
+    LoginUseCase(
+      instance<LoginRepository>(),
+    ),
+  );
 
   Get.put(LoginController());
 }
@@ -207,61 +203,42 @@ initLoginModule() {
 disposeLoginModule() {
   // disposeFcmToken();
 
-  if (GetIt.I.isRegistered<RemoteLoginDataSource>()) {
-    instance.unregister<RemoteLoginDataSource>();
-  }
-
-  if (GetIt.I.isRegistered<LoginRepository>()) {
-    instance.unregister<LoginRepository>();
-  }
-
-  if (GetIt.I.isRegistered<LoginUseCase>()) {
-    instance.unregister<LoginUseCase>();
-  }
+  instance
+    ..safeUnRegisterLazySingleton<RemoteLoginDataSource>()
+    ..safeUnRegisterLazySingleton<LoginRepository>()
+    ..safeUnRegisterLazySingleton<LoginUseCase>();
 
   Get.delete<LoginController>();
 }
 
 initRegisterModule() {
   disposeLoginModule();
-  if (!GetIt.I.isRegistered<RemoteRegisterDataSource>()) {
-    instance.registerLazySingleton<RemoteRegisterDataSource>(
-      () => RemoteRegisterDataSourceImplement(),
-    );
-  }
 
-  if (!GetIt.I.isRegistered<RegisterRepository>()) {
-    instance.registerLazySingleton<RegisterRepository>(
-      () => RegisterRepositoryImpl(
-        instance<RemoteRegisterDataSource>(),
-        instance<NetworkInfo>(),
-      ),
-    );
-  }
+  instance.safeRegisterLazySingleton<RemoteRegisterDataSource>(
+    RemoteRegisterDataSourceImpl(),
+  );
 
-  if (!GetIt.I.isRegistered<RegisterUseCase>()) {
-    instance.registerLazySingleton<RegisterUseCase>(
-      () => RegisterUseCase(
-        instance<RegisterRepository>(),
-      ),
-    );
-  }
+  instance.safeRegisterLazySingleton<RegisterRepository>(
+    RegisterRepositoryImpl(
+      instance<RemoteRegisterDataSource>(),
+      instance<NetworkInfo>(),
+    ),
+  );
+
+  instance.safeRegisterLazySingleton<RegisterUseCase>(
+    RegisterUseCase(
+      instance<RegisterRepository>(),
+    ),
+  );
 
   Get.put(RegisterController());
 }
 
 disposeRegisterModule() {
-  if (GetIt.I.isRegistered<RemoteRegisterDataSource>()) {
-    instance.unregister<RemoteRegisterDataSource>();
-  }
-
-  if (GetIt.I.isRegistered<RegisterRepository>()) {
-    instance.unregister<RegisterRepository>();
-  }
-
-  if (GetIt.I.isRegistered<RegisterUseCase>()) {
-    instance.unregister<RegisterUseCase>();
-  }
+  instance
+    ..safeUnRegisterLazySingleton<RemoteRegisterDataSource>()
+    ..safeUnRegisterLazySingleton<RegisterRepository>()
+    ..safeUnRegisterLazySingleton<RegisterUseCase>();
 
   Get.delete<RegisterController>();
 }
@@ -269,44 +246,30 @@ disposeRegisterModule() {
 initForgetPassword() async {
   disposeLoginModule();
 
-  if (!GetIt.I.isRegistered<RemoteForgetPasswordDataSource>()) {
-    instance.registerLazySingleton<RemoteForgetPasswordDataSource>(
-      () => RemoteForgetPasswordDataSourceImplement(),
-    );
-  }
-
-  if (!GetIt.I.isRegistered<ForgetPasswordRepository>()) {
-    instance.registerLazySingleton<ForgetPasswordRepository>(
-      () => ForgetPasswordRepositoryImplement(
-        instance<RemoteForgetPasswordDataSource>(),
-        instance<NetworkInfo>(),
-      ),
-    );
-  }
-
-  if (!GetIt.I.isRegistered<ForgetPasswordUseCase>()) {
-    instance.registerLazySingleton<ForgetPasswordUseCase>(
-      () => ForgetPasswordUseCase(
-        instance<ForgetPasswordRepository>(),
-      ),
-    );
-  }
+  instance.safeRegisterLazySingleton<RemoteForgetPasswordDataSource>(
+    RemoteForgetPasswordDataSourceImplement(),
+  );
+  instance.safeRegisterLazySingleton<ForgetPasswordRepository>(
+    ForgetPasswordRepositoryImplement(
+      instance<RemoteForgetPasswordDataSource>(),
+      instance<NetworkInfo>(),
+    ),
+  );
+  instance.safeRegisterLazySingleton<ForgetPasswordUseCase>(
+    ForgetPasswordUseCase(
+      instance<ForgetPasswordRepository>(),
+    ),
+  );
 
   Get.put(ForgetPasswordController());
 }
 
 disposeForgetPassword() async {
-  if (GetIt.I.isRegistered<RemoteForgetPasswordDataSource>()) {
-    instance.unregister<RemoteForgetPasswordDataSource>();
-  }
+  instance
+    ..safeUnRegisterLazySingleton<RemoteForgetPasswordDataSource>()
+    ..safeUnRegisterLazySingleton<ForgetPasswordRepository>()
+    ..safeUnRegisterLazySingleton<ForgetPasswordUseCase>();
 
-  if (GetIt.I.isRegistered<ForgetPasswordRepository>()) {
-    instance.unregister<ForgetPasswordRepository>();
-  }
-
-  if (GetIt.I.isRegistered<ForgetPasswordUseCase>()) {
-    instance.unregister<ForgetPasswordUseCase>();
-  }
   Get.delete<ForgetPasswordController>();
 }
 
@@ -457,7 +420,6 @@ disposeChangePassword() {
     ..safeUnRegisterLazySingleton<ChangePasswordRepository>()
     ..safeUnRegisterLazySingleton<ChangePasswordUseCase>();
 
-
   Get.delete<ChangePasswordController>();
 }
 
@@ -505,7 +467,7 @@ extension SafeDependencyInjection on GetIt {
       unregister<T>();
     } else {
       log(
-        '(${T.runtimeType}) is Not registered !!',
+        '($T) is Not registered !!',
         // '\n${StackTrace.current.toString()}',
         stackTrace: StackTrace.current,
 
