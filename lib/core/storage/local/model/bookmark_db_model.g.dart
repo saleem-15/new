@@ -18,15 +18,18 @@ class BookmarkModelAdapter extends TypeAdapter<BookmarkModel> {
     };
     return BookmarkModel()
       ..title = fields[0] as String
-      ..imageUrl = fields[2] as String;
+      ..url = fields[1] as String
+      ..imageUrl = fields[2] as String?;
   }
 
   @override
   void write(BinaryWriter writer, BookmarkModel obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.title)
+      ..writeByte(1)
+      ..write(obj.url)
       ..writeByte(2)
       ..write(obj.imageUrl);
   }

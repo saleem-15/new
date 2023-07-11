@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import 'package:nuntium/features/home/presentation/model/article.dart';
 
 part 'bookmark_db_model.g.dart';
 
@@ -7,8 +8,11 @@ class BookmarkModel {
   @HiveField(0)
   late final String title;
 
+  @HiveField(1)
+  late final String url;
+
   @HiveField(2)
-  late final String imageUrl;
+  late final String? imageUrl;
 
   // you must provide empty constructor
   // so hive can generate(serializable) object
@@ -17,6 +21,20 @@ class BookmarkModel {
 
   BookmarkModel.fromData({
     required this.title,
+    required this.url,
     required this.imageUrl,
   });
+
+  Article toArticle() {
+    return Article(
+      isSaved: false,
+      author: null,
+      publishedAt: null,
+      content: null,
+      imageUrl: imageUrl,
+      url: url,
+      description: null,
+      title: title,
+    );
+  }
 }
