@@ -88,19 +88,26 @@ import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:nuntium/config/constants.dart';
 import 'package:nuntium/config/dependency_injection.dart';
+import 'package:nuntium/core/cache/cache.dart';
+import 'package:nuntium/core/storage/local/hive_db.dart';
+import 'package:nuntium/core/storage/local/model/bookmark_db_model.dart';
 import 'package:nuntium/features/home/domain/mapper/home_entity_mapper.dart';
 import 'package:nuntium/features/home/presentation/model/category.dart';
+import 'package:nuntium/routes/routes.dart';
 
 import '../../domain/use_case/home_use_case.dart';
 import '../model/article.dart';
 import '../view/widgets/categories.dart';
 
+int counter = 0;
+
 class HomeController extends GetxController {
-  final PagingController<int, Article> pagingController = PagingController(firstPageKey: 0);
+  final PagingController<int, Article> pagingController =
+      PagingController(firstPageKey: ApiConstants.firstPageKey);
 
   final _homeUseCase = instance<HomeUseCase>();
 
-  int page = 1;
+  // int page = 1;
   late int totalResults;
   List<Article> articles = [];
   List<Category> categories = [];
@@ -109,6 +116,7 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
+    log('----------------------------------- Home Controller ${++counter} -----------------------------------');
     super.onInit();
     categories = CategoriesEnum.values.map((e) => Category(name: e.name)).toList();
     selectedCategory = categories.first.name;
@@ -147,7 +155,7 @@ class HomeController extends GetxController {
       if (isLastPage) {
         pagingController.appendLastPage(newFetchedArticles);
       } else {
-        final nextPageKey = page++;
+        final nextPageKey = pageKey++;
         pagingController.appendPage(newFetchedArticles, nextPageKey);
       }
     } catch (error) {
@@ -158,15 +166,43 @@ class HomeController extends GetxController {
   @override
   void onClose() {
     pagingController.dispose();
+
     super.onClose();
   }
 
   void onCategoryPressed(String category) {
     selectedCategory = category;
     // Reset the page and clear the existing articles when the category changes
-    page = 1;
+    // page = 1;
+    // pagingController.page;
     articles.clear();
     pagingController.refresh();
     update();
+  }
+
+  onBookmarkPressed(Article article) async {
+    if (article.isSaved) {
+      await MyHive.deleteBookmark(article.url!);
+    } else {
+      await MyHive.saveBookmark(
+        BookmarkModel.fromData(
+          title: article.displayText,
+        
+          url: article.url!,
+          imageUrl: article.imageUrl,
+        ),
+      );
+    }
+
+    log('message');
+
+    article.isSaved = !article.isSaved;
+    // update([GetBuilderConstants.article_bookmark_icon]);
+    update([article.title!]);
+  }
+
+  void onArticleCardPressed(Article article) {
+    CacheData().setArticle(article);
+    Get.toNamed(Routes.article);
   }
 }

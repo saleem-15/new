@@ -19,7 +19,8 @@ class MainView extends StatelessWidget {
             context,
             controller: controller.persistentTabController,
             backgroundColor: Colors.white,
-            navBarStyle: NavBarStyle.style5,
+            // 14,
+            navBarStyle: NavBarStyle.style14,
             confineInSafeArea: true,
             navBarHeight: ManagerHeight.h90,
             decoration: NavBarDecoration(

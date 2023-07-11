@@ -21,6 +21,7 @@ class AddBookmarkUseCase implements BaseInUseCase<AddBookmarkUseCaseInput> {
     return await _bookmarkRepository.addBookmark(
       BookmarkModel.fromData(
         imageUrl: input.article.imageUrl!,
+        url: input.article.url!,
         title: input.article.title!,
       ),
     );

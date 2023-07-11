@@ -2,6 +2,7 @@ const String baseImagePath = 'assets/images';
 const String baseVectorPath = 'assets/images/vectors';
 const String translationPath = 'assets/translation';
 const String baseIconPath = 'assets/icons';
+const String baseAnimationPath = 'assets/animations';
 
 class ManagerAssets {
   static const String logo = '$baseVectorPath/logo.svg';
@@ -12,6 +13,7 @@ class ManagerAssets {
   static const String white_house = '$baseImagePath/white_house.png';
   static const String news2 = '$baseImagePath/news2.png';
   static const String news_placeholder = '$baseImagePath/news_placeholder.jpg';
+  static const String coming_soon = '$baseAnimationPath/coming-soon.json';
 }
 
 class ManagerJson {

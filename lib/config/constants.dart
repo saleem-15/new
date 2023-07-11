@@ -35,6 +35,9 @@ class ApiConstants {
   static const String authorization = 'authorization';
   static const int sendTimeOutDuration = 120;
   static const int receiveTimeOutDuration = 120;
+  
+  /// the key that is used for the first page in paginatoin
+  static const int firstPageKey = 1;
   static const String message = "message";
   static const String token = 'token';
   static const String noInternetConnection = 'No Internet connection';
@@ -69,4 +72,10 @@ class ApiConstants {
   //source (Home Response)
   static const String id = 'id';
   static const String name = 'name';
+}
+
+class GetBuilderConstants {
+  GetBuilderConstants._();
+
+  static const String article_bookmark_icon = 'article_bookmark_icon';
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nuntium/core/resorces/manager_strings.dart';
+import 'package:nuntium/core/widgets/coming_soon_dialog.dart';
 
 import '../../../../../core/resorces/manager_colors.dart';
 import '../../../../../core/resorces/manager_fonts.dart';
@@ -14,35 +16,37 @@ Widget loginWidget() {
     child: Column(
       children: [
         SizedBox(
-          height: ManagerHeight.h48,
+          height: ManagerHeight.h40,
         ),
         Center(
           child: Text(
-            "or",
-            style: getSemiBoldTextStyle(fontSize: ManagerFontSize.s16, color: ManagerColors.greyPrimary),
+            ManagerStrings.or,
+            style: getSemiBoldTextStyle(
+              fontSize: ManagerFontSize.s16,
+              color: ManagerColors.greyPrimary,
+            ),
           ),
         ),
         SizedBox(
-          height: ManagerHeight.h48,
+          height: ManagerHeight.h40,
         ),
         socialButton(
-          onPressed: () {},
+          onPressed: () => showComingSoonDialog(Get.context!),
           socialMedia: SocialMedia.Google,
         ),
         SizedBox(
           height: ManagerHeight.h16,
         ),
         socialButton(
-          onPressed: () {},
+          onPressed: () => showComingSoonDialog(Get.context!),
           socialMedia: SocialMedia.Facebook,
         ),
-        SizedBox(
-          height: ManagerHeight.h50,
-        ),
+        const Spacer(),
         footerMessage(
-            onPressed: () => Get.offAllNamed(
-                  Routes.register,
-                )),
+          message: ManagerStrings.dontHaveAnAccount,
+          clickableText: ManagerStrings.signUp,
+          onPressed: () => Get.offAllNamed(Routes.register),
+        ),
       ],
     ),
   );

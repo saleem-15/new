@@ -38,7 +38,11 @@ class ProfileController extends GetxController {
     Get.toNamed(Routes.termsAndConditions);
   }
 
-  signout() {}
+  signout() {
+    // QuickAlert.show(
+      
+    // );
+  }
 
   language() {
     Get.toNamed(Routes.language);

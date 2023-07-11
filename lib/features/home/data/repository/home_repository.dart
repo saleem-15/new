@@ -15,11 +15,11 @@ abstract class HomeRepository {
   Future<Either<Failure, HomeEntity>> home(HomeRequest homeRequest);
 }
 
-class HomeRepositoryImplement implements HomeRepository {
+class HomeRepositoryImpl implements HomeRepository {
   final RemoteHomeDataSource _remoteHomeDataSource;
   final NetworkInfo _networkInfo;
 
-  HomeRepositoryImplement(
+  HomeRepositoryImpl(
     this._remoteHomeDataSource,
     this._networkInfo,
   );

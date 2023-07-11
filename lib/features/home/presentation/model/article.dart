@@ -19,4 +19,10 @@ class Article {
     required this.description,
     required this.title,
   });
+
+
+  /// returnes the text that should be displayed 
+  String get displayText{
+    return title ?? description ?? content ?? '';
+  }
 }

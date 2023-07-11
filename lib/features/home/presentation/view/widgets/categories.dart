@@ -36,7 +36,7 @@ class Categories extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemBuilder: (_, index) {
               final category = CategoriesEnum.values[index].name;
-              
+
               return CategoryChip(
                 text: category,
                 onPressed: () => controller.onCategoryPressed(category),

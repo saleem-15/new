@@ -59,7 +59,7 @@ class RouteGenerator {
       //************************** Auth Views **************************
       case Routes.loginView:
         initLoginModule();
-        return MaterialPageRoute(builder: (_) => const LoginView());
+        return MaterialPageRoute(builder: (_) => LoginView());
 
       case Routes.register:
         initRegisterModule();

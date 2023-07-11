@@ -7,7 +7,7 @@ abstract class RemoteRegisterDataSource {
   Future<RegisterResponse> register(RegisterRequest registerRequest);
 }
 
-class RemoteRegisterDataSourceImplement implements RemoteRegisterDataSource {
+class RemoteRegisterDataSourceImpl implements RemoteRegisterDataSource {
   @override
   Future<RegisterResponse> register(RegisterRequest registerRequest) async {
     return RegisterResponse(

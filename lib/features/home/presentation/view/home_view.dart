@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:nuntium/core/cache/cache.dart';
 import 'package:nuntium/core/resorces/manager_colors.dart';
 import 'package:nuntium/core/resorces/manager_fonts.dart';
 import 'package:nuntium/core/resorces/manager_icons.dart';
@@ -11,12 +10,9 @@ import 'package:nuntium/core/resorces/manager_styles.dart';
 import 'package:nuntium/core/widgets/screen_header.dart';
 import 'package:nuntium/features/home/presentation/controller/home_controller.dart';
 import 'package:nuntium/features/home/presentation/model/article.dart';
-import 'package:nuntium/routes/routes.dart';
 
 import 'widgets/article_card.dart';
 import 'widgets/categories.dart';
-
-
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -102,22 +98,18 @@ class HomeView extends GetView<HomeController> {
                     ),
                   );
                 },
-                itemBuilder: (_, article, index) => MaterialButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(ManagerRadius.r20),
+                animateTransitions: true,
+                itemBuilder: (_, article, index) => Center(
+                  key: Key(article.url!),
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: ManagerHeight.h24),
+                    child: ArticleCard(
+                      imageUrl: article.imageUrl,
+                      isSaved: article.isSaved,
+                      text: article.displayText,
+                      onPressed: () => controller.onArticleCardPressed(article),
+                      onBookmarkPressed: () => controller.onBookmarkPressed(article),
                     ),
-                  ),
-                  splashColor: ManagerColors.greyLight.withOpacity(.1),
-                  padding: EdgeInsets.zero,
-                  onPressed: () {
-                    CacheData().setArticle(article);
-                    Get.toNamed(Routes.article);
-                  },
-                  child: ArticleCard(
-                    imageUrl: article.imageUrl,
-                    isSaved: article.isSaved,
-                    text: article.title ?? article.description ?? '',
                   ),
                 ),
               ),

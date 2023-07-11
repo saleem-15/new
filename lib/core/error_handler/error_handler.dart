@@ -14,7 +14,7 @@ class ErrorHandler implements Exception {
 
   ErrorHandler.handle(dynamic error) {
     try {
-      if (error is DioError) {
+      if (error is DioException) {
         failure = Failure(
           400,
           error.response?.data['message'] ??

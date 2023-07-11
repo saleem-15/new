@@ -5,8 +5,11 @@ import 'package:nuntium/core/resorces/manager_fonts.dart';
 import 'package:nuntium/core/resorces/manager_sizes.dart';
 import 'package:nuntium/core/resorces/manager_strings.dart';
 
-Padding socialButton(
-    {required void Function() onPressed, bool isHasMargin = false, required SocialMedia socialMedia}) {
+Padding socialButton({
+  required void Function() onPressed,
+  bool isHasMargin = false,
+  required SocialMedia socialMedia,
+}) {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: isHasMargin ? ManagerWidth.w20 : 0),
     child: ElevatedButton.icon(

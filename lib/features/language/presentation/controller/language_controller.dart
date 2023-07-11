@@ -4,7 +4,7 @@ import 'package:nuntium/config/localization/locale_settings.dart';
 import 'package:nuntium/features/language/model/language.dart';
 
 class LanguageController extends GetxController {
-  Locale get currentLocale => localeSettings.currentLocale(Get.context!);
+  Locale get currentLocale => localeSettings.currentLocale();
 
   List<Language> languages = [];
 

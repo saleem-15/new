@@ -37,6 +37,7 @@ class BookmarksView extends GetView<BookmarksController> {
                       padding: EdgeInsets.only(bottom: ManagerHeight.h16),
                       child: BookmarkListTile(
                         bookmark: controller.bookmarks[index],
+                        onPressed: () => controller.onBookmarkTilePressed(controller.bookmarks[index]),
                       ),
                     ),
                   ),
