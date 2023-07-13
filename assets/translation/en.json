@@ -10,7 +10,7 @@
   "signUpTitle": "Welcome to Nuntium 👋",
   "signUpParagraph": "Hello, I guess you are new around here. You\ncan start using the application after sign up.",
   "loginParagraph": "I am happy to see you again. You can \nncontinue where you left off by logging in",
-  
+  "noArticlesFound": "No articles found",
   "signIn": "Sign In",
   "emailAddress": "Email Address",
   "or": "Or",
@@ -23,7 +23,8 @@
 
   "forget": "Forgot Password 🤔",
   "password": "Password",
-  
+  "errorLoadingArticles": "Error loading Articles",
+
   "forgetPassword": "Forgot Password?",
   "currentPassword": "Current Password",
   "confirmPasswordHint": "Repeat New Password",

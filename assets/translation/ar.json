@@ -16,7 +16,8 @@
   "ok": "حسنا",
   "username":"اسم المستخدم",
   
-  
+  "noArticlesFound": "لم يتم العثور على مقالات",
+  "errorLoadingArticles": "حدث خطأ أثناء تحميل المقالات",
   "signIn": "تسجيل الدخول",
   "emailAddress": "عنوان البريد الإلكتروني",
   "password": "كلمة المرور",
