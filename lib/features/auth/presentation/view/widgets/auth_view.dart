@@ -6,6 +6,7 @@ import 'package:nuntium/core/resorces/manager_icons.dart';
 import 'package:nuntium/core/resorces/manager_sizes.dart';
 import 'package:nuntium/core/resorces/manager_strings.dart';
 import 'package:nuntium/core/resorces/manager_styles.dart';
+import 'package:nuntium/core/service/icon_service.dart';
 import 'package:nuntium/core/validator/validator.dart';
 import 'package:nuntium/core/widgets/rect_button.dart';
 import 'package:nuntium/core/widgets/text_field.dart';
@@ -54,7 +55,9 @@ class AuthView extends StatelessWidget {
 
       return MyTextField(
         controller: controllers['nameController'] ?? TextEditingController(),
-        icon: ManagerIcons.user,
+        icon: IconService.getIcon(
+          icon: ManagerIcons.user,
+        ),
         keyboardType: TextInputType.text,
         validator: (value) => failedValidator.validateFullName(value),
       );
@@ -65,7 +68,9 @@ class AuthView extends StatelessWidget {
 
       return MyTextField(
         controller: controllers['passwordController'] ?? TextEditingController(),
-        icon: ManagerIcons.password,
+        icon: IconService.getIcon(
+          icon: ManagerIcons.password,
+        ),
         keyboardType: TextInputType.text,
         isObscureText: true,
         hintText: passwordHint ?? ManagerStrings.password,
@@ -78,7 +83,9 @@ class AuthView extends StatelessWidget {
 
       return MyTextField(
         controller: controllers['confirmPasswordController'] ?? TextEditingController(),
-        icon: ManagerIcons.password,
+        icon: IconService.getIcon(
+          icon: ManagerIcons.password,
+        ),
         isObscureText: true,
         hintText: confirmPasswordHint ?? 'Repeat New Password',
         validator: (value) => failedValidator.validatePassword(value),
@@ -122,7 +129,9 @@ class AuthView extends StatelessWidget {
                           ),
                           MyTextField(
                             controller: controllers['emailController'] ?? TextEditingController(),
-                            icon: ManagerIcons.email,
+                            icon: IconService.getIcon(
+                              icon: ManagerIcons.email,
+                            ),
                             keyboardType: TextInputType.emailAddress,
                             validator: (value) => failedValidator.validateEmail(value),
                           ),

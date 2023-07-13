@@ -6,6 +6,7 @@ import 'package:nuntium/core/resorces/manager_icons.dart';
 import 'package:nuntium/core/resorces/manager_sizes.dart';
 import 'package:nuntium/core/resorces/manager_strings.dart';
 import 'package:nuntium/core/resorces/manager_styles.dart';
+import 'package:nuntium/core/service/icon_service.dart';
 import 'package:nuntium/core/validator/validator.dart';
 import 'package:nuntium/core/widgets/rect_button.dart';
 import 'package:nuntium/core/widgets/text_field.dart';
@@ -46,7 +47,9 @@ class ChangePasswordView extends GetView<ChangePasswordController> {
                     ),
                     MyTextField(
                       controller: controller.currentPasswordController,
-                      icon: ManagerIcons.password,
+                      icon: IconService.getIcon(
+                        icon: ManagerIcons.password,
+                      ),
                       hintText: ManagerStrings.currentPassword,
                       validator: (value) => _validator.validatePassword(value),
                       keyboardType: TextInputType.visiblePassword,
@@ -57,7 +60,9 @@ class ChangePasswordView extends GetView<ChangePasswordController> {
                     ),
                     MyTextField(
                       controller: controller.newPasswordController,
-                      icon: ManagerIcons.password,
+                      icon: IconService.getIcon(
+                        icon: ManagerIcons.password,
+                      ),
                       hintText: ManagerStrings.newPasswordHint,
                       validator: (value) => _validator.validatePassword(value),
                       keyboardType: TextInputType.text,
@@ -68,7 +73,9 @@ class ChangePasswordView extends GetView<ChangePasswordController> {
                     ),
                     MyTextField(
                       controller: controller.repeatPasswordController,
-                      icon: ManagerIcons.password,
+                      icon: IconService.getIcon(
+                        icon: ManagerIcons.password,
+                      ),
                       hintText: ManagerStrings.repeatNewPassword,
                       textInputAction: TextInputAction.done,
                       validator: (value) => _validator.validatePasswordsMatch(

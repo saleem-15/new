@@ -7,6 +7,7 @@ import 'package:nuntium/core/resorces/manager_icons.dart';
 import 'package:nuntium/core/resorces/manager_sizes.dart';
 import 'package:nuntium/core/resorces/manager_strings.dart';
 import 'package:nuntium/core/resorces/manager_styles.dart';
+import 'package:nuntium/core/service/icon_service.dart';
 import 'package:nuntium/core/validator/validator.dart';
 import 'package:nuntium/core/widgets/rect_button.dart';
 import 'package:nuntium/core/widgets/screen_header.dart';
@@ -47,7 +48,9 @@ class LoginView extends GetView<LoginController> {
                   ///email field
                   MyTextField(
                     controller: controller.emailController,
-                    icon: ManagerIcons.email,
+                    icon: IconService.getIcon(
+                      icon: ManagerIcons.email,
+                    ),
                     hintText: ManagerStrings.emailAddress,
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) => failedValidator.validateEmail(value),
@@ -59,7 +62,9 @@ class LoginView extends GetView<LoginController> {
                   ///password field
                   MyTextField(
                     controller: controller.passwordController,
-                    icon: ManagerIcons.password,
+                    icon: IconService.getIcon(
+                      icon: ManagerIcons.password,
+                    ),
                     keyboardType: TextInputType.text,
                     textInputAction: TextInputAction.done,
                     hintText: ManagerStrings.password,

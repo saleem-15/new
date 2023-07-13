@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:nuntium/core/resorces/manager_icons.dart';
 import 'package:nuntium/core/resorces/manager_sizes.dart';
 import 'package:nuntium/core/resorces/manager_strings.dart';
+import 'package:nuntium/core/service/icon_service.dart';
 import 'package:nuntium/core/validator/validator.dart';
 import 'package:nuntium/core/widgets/rect_button.dart';
 import 'package:nuntium/core/widgets/screen_header.dart';
@@ -37,7 +38,9 @@ class RegisterView extends GetView<RegisterController> {
               ///name field
               MyTextField(
                 controller: controller.nameController,
-                icon: ManagerIcons.user,
+                icon: IconService.getIcon(
+                  icon: ManagerIcons.user,
+                ),
                 hintText: ManagerStrings.username,
                 keyboardType: TextInputType.text,
                 validator: (value) => FieldValidator().validateFullName(value),
@@ -47,7 +50,9 @@ class RegisterView extends GetView<RegisterController> {
               ///email field
               MyTextField(
                 controller: controller.emailController,
-                icon: ManagerIcons.email,
+                icon: IconService.getIcon(
+                  icon: ManagerIcons.email,
+                ),
                 hintText: ManagerStrings.emailAddress,
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) => FieldValidator().validateEmail(value),
@@ -58,7 +63,9 @@ class RegisterView extends GetView<RegisterController> {
               ///password field
               MyTextField(
                 controller: controller.passwordController,
-                icon: ManagerIcons.password,
+                icon: IconService.getIcon(
+                  icon: ManagerIcons.password,
+                ),
                 keyboardType: TextInputType.text,
                 isObscureText: true,
                 hintText: ManagerStrings.password,
@@ -69,7 +76,9 @@ class RegisterView extends GetView<RegisterController> {
               ///repeatNewPassword field
               MyTextField(
                 controller: controller.confirmPasswordController,
-                icon: ManagerIcons.password,
+                icon: IconService.getIcon(
+                  icon: ManagerIcons.password,
+                ),
                 textInputAction: TextInputAction.done,
                 isObscureText: true,
                 hintText: ManagerStrings.repeatNewPassword,

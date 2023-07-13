@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nuntium/core/resorces/manager_strings.dart';
+import 'package:nuntium/core/service/icon_service.dart';
 import 'package:nuntium/core/validator/validator.dart';
 import 'package:nuntium/core/widgets/screen_header.dart';
 import 'package:nuntium/features/auth/presentation/view/widgets/footer_message.dart';
@@ -33,7 +34,9 @@ class ForgetPasswordView extends GetView<ForgetPasswordController> {
               ),
               MyTextField(
                 controller: controller.emailController,
-                icon: ManagerIcons.email,
+                icon: IconService.getIcon(
+                  icon: ManagerIcons.email,
+                ),
                 textInputAction: TextInputAction.done,
                 hintText: ManagerStrings.emailAddress,
                 keyboardType: TextInputType.emailAddress,
