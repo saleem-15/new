@@ -10,6 +10,7 @@ class ManagerAssets {
   static const String illustration = '$baseImagePath/3d-illustration.png';
   static const String facebook = '$baseImagePath/facebook-logo.png';
   static const String google = '$baseImagePath/google-logo.png';
+  static const String error = '$baseImagePath/error.png';
   static const String white_house = '$baseImagePath/white_house.png';
   static const String news2 = '$baseImagePath/news2.png';
   static const String news_placeholder = '$baseImagePath/news_placeholder.jpg';
@@ -25,6 +26,8 @@ class ManagerJson {
 class VectorIcons {
   static const String book = '$baseVectorPath/book.svg';
   static const String home = '$baseIconPath/home.svg';
+  static const String search = '$baseIconPath/search.svg';
+  static const String microphone = '$baseIconPath/microphone.svg';
   static const String user = '$baseIconPath/user.svg';
   static const String category = '$baseIconPath/category.svg';
   static const String bookmark = '$baseIconPath/bookmark.svg';

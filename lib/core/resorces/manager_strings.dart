@@ -86,6 +86,8 @@ class ManagerStrings {
   static String get privacy => tr('privacy');
   static String get termsAndConditions => tr('termsAndConditions');
   static String get signout => tr('signout');
+  static String get noArticlesFound => tr('No articles found');
+  static String get errorLoadingArticles => tr('Error loading Articles');
 
   static String get newPasswordHint => tr('newPasswordHint');
   static String get selectYourFavouriteTopicsParagraph => tr('selectYourFavouriteTopicsParagraph');

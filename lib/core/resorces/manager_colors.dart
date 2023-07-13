@@ -17,5 +17,3 @@ class ManagerColors {
   static const Color greyLighter = Color(0xffF3F4F6);
   static const Color transparent = Colors.transparent;
 }
-
-//ليش احنا بنعرف ألوان سهلة زي الأبيض مثلا!
