@@ -24,16 +24,21 @@ class MyHive {
   }
 
   static Future<void> saveBookmark(BookmarkModel bookmark) async {
-    await _bookmarkBox.put(bookmark.title, bookmark);
+    
+    await _bookmarkBox.put(bookmark.url, bookmark);
+  }
+
+  static Future<void> clear() async {
+    await _bookmarkBox.clear();
   }
 
   static List<BookmarkModel> getAllBookmarks() {
     return _bookmarkBox.values.toList();
   }
 
-  static Future<bool> deleteBookmark(String title) async {
+  static Future<bool> deleteBookmark(String url) async {
     try {
-      await _bookmarkBox.delete(title);
+      await _bookmarkBox.delete(url);
       return true;
     } catch (error) {
       return false;

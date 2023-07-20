@@ -6,7 +6,7 @@ abstract class RemoteLoginDataSource {
   Future<LoginResponse> login(LoginRequest loginRequest);
 }
 
-class RemoteLoginDataSourceImplement implements RemoteLoginDataSource {
+class RemoteLoginDataSourceImpl implements RemoteLoginDataSource {
   @override
   Future<LoginResponse> login(LoginRequest loginRequest) async {
     return LoginResponse(

@@ -7,10 +7,10 @@ abstract class RemoteHomeDataSource {
   Future<HomeResopnse> home(HomeRequest homeRequest);
 }
 
-class RemoteHomeDataSourceImplement implements RemoteHomeDataSource {
+class RemoteHomeDataSourceImpl implements RemoteHomeDataSource {
   final AppApi _appApi;
 
-  RemoteHomeDataSourceImplement(
+  RemoteHomeDataSourceImpl(
     this._appApi,
   );
   @override

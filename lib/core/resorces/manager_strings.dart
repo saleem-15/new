@@ -32,9 +32,13 @@ class ManagerStrings {
 
   static String get forget => tr('forget');
 
+  //login view
+  static String get emailAddress => 'emailAddress'.tr();
   static String get password => tr('password');
-
   static String get forgetPassword => tr('forgetPassword');
+  static String get or => 'or'.tr();
+  static String get dontHaveAnAccount => "dontHaveAnAccount".tr();
+  static String get username => tr('username');
 
   static String get currentPassword => 'currentPassword'.tr();
   static String get confirmPasswordHint => tr('confirmPasswordHint');
@@ -45,11 +49,14 @@ class ManagerStrings {
 
   static String get signUpFooterMessage => tr('signUpFooterMessage');
 
-  static String get forgetPasswordFooterMessage => tr('forgetPasswordFooterMessage');
+  static String get didntRecieveEmail => tr('didntRecieveEmail?');
 
   static String get sendAgain => tr('sendAgain');
 
   static String get noRouteFound => tr('noRouteFound');
+
+  //bookmarks view
+  static String get youHaventSavedAnyArticles => tr('youHaventSavedAnyArticles');
 
 //---------------------------------------------------
   static String get outBoardingTitle3 => tr('outBoardingTitle3');
@@ -79,6 +86,8 @@ class ManagerStrings {
   static String get privacy => tr('privacy');
   static String get termsAndConditions => tr('termsAndConditions');
   static String get signout => tr('signout');
+  static String get noArticlesFound => tr('No articles found');
+  static String get errorLoadingArticles => tr('Error loading Articles');
 
   static String get newPasswordHint => tr('newPasswordHint');
   static String get selectYourFavouriteTopicsParagraph => tr('selectYourFavouriteTopicsParagraph');

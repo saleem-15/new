@@ -3,12 +3,12 @@ import 'package:nuntium/core/resorces/manager_colors.dart';
 import 'package:nuntium/core/resorces/manager_fonts.dart';
 import 'package:nuntium/core/resorces/manager_sizes.dart';
 import 'package:nuntium/core/resorces/manager_styles.dart';
-import 'package:nuntium/core/service/icon_service.dart';
 
 class MyTextField extends StatelessWidget {
   final bool isObscureText;
   final TextEditingController controller;
-  final IconData icon;
+  final Widget icon;
+  final Widget? suffixIcon;
   final TextInputType? keyboardType;
   final String? Function(String?)? validator;
   final String? hintText;
@@ -20,6 +20,7 @@ class MyTextField extends StatelessWidget {
     super.key,
     required this.controller,
     required this.icon,
+    this.suffixIcon,
     this.keyboardType,
     this.textInputAction = TextInputAction.next,
     this.hintText,
@@ -53,19 +54,34 @@ class MyTextField extends StatelessWidget {
           hintText: hintText,
 
           // Adjust the padding as needed (to get the needed height)
-          contentPadding: EdgeInsets.symmetric(
-            vertical: ManagerHeight.h20,
+          contentPadding: EdgeInsetsDirectional.only(
+            top: ManagerHeight.h20,
+            bottom: ManagerHeight.h20,
           ),
 
           hintStyle: getMediumTextStyle(
             fontSize: ManagerFontSize.s16,
             color: ManagerColors.greyPrimary,
           ),
-          prefixIcon: IconService().getIcon(
-            icon: icon,
-            iconSize: ManagerFontSize.s24,
-            color: ManagerColors.greyPrimary,
+          prefixIcon: Padding(
+            padding: EdgeInsetsDirectional.only(
+              /// distance between prefix icon and textField border
+              start: ManagerWidth.w16,
+
+              /// distance between prefix icon and the text
+              end: ManagerWidth.w24,
+            ),
+            child: icon,
           ),
+          suffixIcon: Padding(
+            padding: EdgeInsetsDirectional.only(
+              /// distance between suffix icon and textField border
+              end: ManagerWidth.w16,
+            ),
+            child: suffixIcon,
+          ),
+          prefixIconConstraints: BoxConstraints.loose(Size.square(ManagerWidth.w120)),
+          suffixIconConstraints: BoxConstraints.loose(Size.square(ManagerWidth.w120)),
           focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(
               color: ManagerColors.purplePrimary,
@@ -86,6 +102,8 @@ class MyTextField extends StatelessWidget {
               ),
             ),
           ),
+          isDense: true,
+
           enabledBorder: OutlineInputBorder(
             borderSide: const BorderSide(
               color: ManagerColors.white,

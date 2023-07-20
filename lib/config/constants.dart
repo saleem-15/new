@@ -1,11 +1,13 @@
+import 'package:nuntium/features/home/presentation/model/article.dart';
+
 class Constants {
   static const int splashDuration = 3;
-  static const int containerDuration = 1;
-  static const double elevationAppBar = 0;
 
+  //design dimensions
   static const double deviceWidth = 375;
   static const double deviceHeight = 812;
-  static const int codeVerificationMaxLine = 1;
+
+  //languages keys
   static const String arabicKey = 'ar';
   static const String englishKey = 'en';
   static const String arabic = 'العربية';
@@ -14,8 +16,6 @@ class Constants {
 
 class ConstantsPrefsKeys {
   static const String outBoardingViewedKey = 'out_boarding_viewed';
-  static const String token = 'token';
-  static const String tokenKey = 'token_key';
   static const String loggedIn = "loggedIn";
   static const String FavouriteViewed = "FavouriteViewed";
   static const String Registered = "Registered";
@@ -35,12 +35,12 @@ class ApiConstants {
   static const String authorization = 'authorization';
   static const int sendTimeOutDuration = 120;
   static const int receiveTimeOutDuration = 120;
-  static const String message = "message";
-  static const String token = 'token';
+
+  /// the key that is used for the first page in paginatoin
+  static const int firstPageKey = 1;
   static const String noInternetConnection = 'No Internet connection';
   static const String email = 'email';
   static const String password = 'password';
-  static const String passwordConfirmation = 'password_confirmation';
 
   //Home Request
   static const String pageSize = 'pageSize';
@@ -69,4 +69,11 @@ class ApiConstants {
   //source (Home Response)
   static const String id = 'id';
   static const String name = 'name';
+}
+
+class GetBuilderIDs {
+  GetBuilderIDs._();
+
+  static String articleBookmarkIcon(Article article) => article.displayText;
+  static const String categories_list = 'categories_list';
 }

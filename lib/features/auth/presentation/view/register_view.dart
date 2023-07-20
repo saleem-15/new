@@ -1,39 +1,106 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nuntium/core/resorces/manager_icons.dart';
+import 'package:nuntium/core/resorces/manager_sizes.dart';
 import 'package:nuntium/core/resorces/manager_strings.dart';
+import 'package:nuntium/core/service/icon_service.dart';
+import 'package:nuntium/core/validator/validator.dart';
+import 'package:nuntium/core/widgets/rect_button.dart';
+import 'package:nuntium/core/widgets/screen_header.dart';
+import 'package:nuntium/core/widgets/text_field.dart';
 import 'package:nuntium/features/auth/presentation/controller/register_controller.dart';
-import 'package:nuntium/features/auth/presentation/view/widgets/auth_view.dart';
-import 'package:nuntium/features/auth/presentation/view/widgets/footer_message.dart';
 import 'package:nuntium/routes/routes.dart';
 
-class RegisterView extends StatelessWidget {
+import 'widgets/footer_message.dart';
+
+class RegisterView extends GetView<RegisterController> {
   const RegisterView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<RegisterController>(
-      init: RegisterController(),
-      builder: (controller) {
-        return authView(
-          title: ManagerStrings.signUpTitle,
-          paragraph: ManagerStrings.signUpParagraph,
-          buttonText: ManagerStrings.signUp,
-          password: true,
-          confirmPassword: true,
-          name: true,
-          onPressed: () => controller.register(),
-          child: footerMessage(
-              onPressed: () => Get.offAllNamed(Routes.loginView),
-              firstMessage: ManagerStrings.signUpFooterMessage,
-              secondMessage: ManagerStrings.signIn),
-          controllers: {
-            'passwordController': controller.passwordController,
-            'emailController': controller.emailController,
-            'nameController': controller.nameController,
-            'confirmPasswordController': controller.confirmPasswordController,
-          },
-        );
-      },
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.only(
+            right: ManagerWidth.w20,
+            left: ManagerWidth.w20,
+            bottom: ManagerHeight.h28,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Header(
+                title: ManagerStrings.signUpTitle,
+                paragraph: ManagerStrings.signUpParagraph,
+              ),
+
+              ///name field
+              MyTextField(
+                controller: controller.nameController,
+                icon: IconService.getIcon(
+                  icon: ManagerIcons.user,
+                ),
+                hintText: ManagerStrings.username,
+                keyboardType: TextInputType.text,
+                validator: (value) => FieldValidator().validateFullName(value),
+              ),
+              SizedBox(height: ManagerHeight.h16),
+
+              ///email field
+              MyTextField(
+                controller: controller.emailController,
+                icon: IconService.getIcon(
+                  icon: ManagerIcons.email,
+                ),
+                hintText: ManagerStrings.emailAddress,
+                keyboardType: TextInputType.emailAddress,
+                validator: (value) => FieldValidator().validateEmail(value),
+              ),
+
+              SizedBox(height: ManagerHeight.h16),
+
+              ///password field
+              MyTextField(
+                controller: controller.passwordController,
+                icon: IconService.getIcon(
+                  icon: ManagerIcons.password,
+                ),
+                keyboardType: TextInputType.text,
+                isObscureText: true,
+                hintText: ManagerStrings.password,
+                validator: (value) => FieldValidator().validatePassword(value),
+              ),
+              SizedBox(height: ManagerHeight.h16),
+
+              ///repeatNewPassword field
+              MyTextField(
+                controller: controller.confirmPasswordController,
+                icon: IconService.getIcon(
+                  icon: ManagerIcons.password,
+                ),
+                textInputAction: TextInputAction.done,
+                isObscureText: true,
+                hintText: ManagerStrings.repeatNewPassword,
+                validator: (value) => FieldValidator().validatePassword(value),
+              ),
+              SizedBox(height: ManagerHeight.h16),
+
+              rectButton(
+                onPressed: () => controller.register(),
+                text: ManagerStrings.signUp,
+              ),
+
+              const Spacer(),
+              footerMessage(
+                onPressed: () => Get.offAllNamed(Routes.loginView),
+                message: ManagerStrings.signUpFooterMessage,
+                clickableText: ManagerStrings.signIn,
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

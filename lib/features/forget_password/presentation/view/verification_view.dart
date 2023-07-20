@@ -13,19 +13,17 @@ class VerificationView extends StatelessWidget {
     return GetBuilder<VerificationController>(
       init: VerificationController(),
       builder: (controller) {
-        return authView(
+        return AuthView(
           title: ManagerStrings.verificationCodeTitle,
           paragraph: ManagerStrings.verificationCodeParagraph,
           buttonText: ManagerStrings.confirm,
-          onPressed: () {
+          onButtonPressed: () {
             controller.verifyCode();
           },
           verification: true,
-          controllers: {},
+          controllers: const {},
           child: footerMessage(
-              onPressed: () {},
-              firstMessage: ManagerStrings.dontReceive,
-              secondMessage: ManagerStrings.sendAgain),
+              onPressed: () {}, message: ManagerStrings.dontReceive, clickableText: ManagerStrings.sendAgain),
         );
       },
     );
