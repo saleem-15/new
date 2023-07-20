@@ -1,19 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:nuntium/config/constants.dart';
 import 'package:nuntium/core/resorces/manager_sizes.dart';
 import 'package:nuntium/features/home/presentation/controller/home_controller.dart';
 
 import 'category_chip.dart';
-
-enum CategoriesEnum {
-  General,
-  Business,
-  Technology,
-  Health,
-  Entertainment,
-  Science,
-  Sports,
-}
 
 class Categories extends StatelessWidget {
   const Categories({super.key});
@@ -21,24 +12,24 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
+      assignId: true,
+      id: GetBuilderIDs.categories_list,
       builder: (controller) {
         return SizedBox(
           height: ManagerHeight.h34,
           child: ListView.separated(
-            separatorBuilder: (context, index) => SizedBox(
-              width: ManagerWidth.w16,
-            ),
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
             padding: EdgeInsetsDirectional.symmetric(
               horizontal: ManagerWidth.w20,
             ),
-            itemCount: CategoriesEnum.values.length,
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
+            itemCount: controller.categories.length,
+            separatorBuilder: (_, __) => SizedBox(width: ManagerWidth.w16),
             itemBuilder: (_, index) {
-              final category = CategoriesEnum.values[index].name;
+              final category = controller.categories[index];
 
               return CategoryChip(
-                text: category,
+                text: category.name,
                 onPressed: () => controller.onCategoryPressed(category),
                 isChecked: category == controller.selectedCategory,
               );
