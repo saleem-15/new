@@ -103,7 +103,8 @@ class HomeController extends GetxController {
     // debugger();
 
     /// Keep this if condition in order for the [loadingArticlesIndicator]
-    /// to be used by the [infinite_scroll_pagination] library
+    /// to be used by the [infinite_scroll_pagination] library 
+    /// (thats due to the library working in a stupid way)
     if (selectedCategory.articles.isNotEmpty) {
       pagingController.itemList = selectedCategory.articles;
     }
