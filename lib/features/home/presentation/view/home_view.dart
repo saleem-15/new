@@ -25,6 +25,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: SmartRefresher(
           header: WaterDropMaterialHeader(offset: ManagerHeight.h230),
@@ -80,9 +81,7 @@ class HomeView extends GetView<HomeController> {
                     child: Padding(
                       padding: EdgeInsets.only(bottom: ManagerHeight.h24),
                       child: ArticleCard(
-                        imageUrl: article.imageUrl,
-                        isSaved: article.isSaved,
-                        text: article.displayText,
+                        article: article,
                         onPressed: () => controller.onArticleCardPressed(article),
                         onBookmarkPressed: () => controller.onBookmarkPressed(article),
                       ),

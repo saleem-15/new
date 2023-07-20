@@ -1,34 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:nuntium/config/constants.dart';
 import 'package:nuntium/core/resorces/manager_assets.dart';
 import 'package:nuntium/core/resorces/manager_colors.dart';
 import 'package:nuntium/core/resorces/manager_fonts.dart';
 import 'package:nuntium/core/resorces/manager_sizes.dart';
 import 'package:nuntium/core/resorces/manager_styles.dart';
 import 'package:nuntium/features/home/presentation/controller/home_controller.dart';
+import 'package:nuntium/features/home/presentation/model/article.dart';
 
 class ArticleCard extends StatelessWidget {
-  final String? imageUrl;
-  final String text;
-  final bool isSaved;
+  final Article article;
   final void Function()? onBookmarkPressed;
   final void Function()? onPressed;
 
   const ArticleCard({
     super.key,
-    this.imageUrl,
+    required this.article,
     required this.onBookmarkPressed,
     required this.onPressed,
-    required this.isSaved,
-    required this.text,
   });
 
   @override
   Widget build(BuildContext context) {
-    final imageProvider = (imageUrl == null
+    final imageProvider = (article.imageUrl == null
         ? const AssetImage(ManagerAssets.news_placeholder)
-        : NetworkImage(imageUrl!)) as ImageProvider;
+        : NetworkImage(article.imageUrl!)) as ImageProvider;
 
     return Container(
       width: ManagerWidth.w336,
@@ -52,6 +50,7 @@ class ArticleCard extends StatelessWidget {
             ///article card image
             Image(
               image: imageProvider,
+              errorBuilder: (_, __, ___) => Image.asset(ManagerAssets.news_placeholder),
               fit: BoxFit.cover,
               width: double.infinity,
               height: ManagerHeight.h192,
@@ -70,7 +69,7 @@ class ArticleCard extends StatelessWidget {
                     /// article title
                     Expanded(
                       child: Text(
-                        text,
+                        article.displayText,
                         maxLines: 2,
                         style: getSemiBoldTextStyle(
                           fontSize: ManagerFontSize.s16,
@@ -83,12 +82,12 @@ class ArticleCard extends StatelessWidget {
                     GetBuilder<HomeController>(
                       autoRemove: false,
                       assignId: true,
-                      key: Key(text),
-                      id: text,
+                      key: Key(article.displayText),
+                      id: GetBuilderIDs.articleBookmarkIcon(article),
                       builder: (_) {
                         return IconButton(
                           onPressed: onBookmarkPressed,
-                          isSelected: isSaved,
+                          isSelected: article.isSaved,
                           selectedIcon: SvgPicture.asset(
                             VectorIcons.bookmark_filled,
                           ),
