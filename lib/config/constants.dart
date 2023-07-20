@@ -1,3 +1,5 @@
+import 'package:nuntium/features/home/presentation/model/article.dart';
+
 class Constants {
   static const int splashDuration = 3;
 
@@ -69,8 +71,9 @@ class ApiConstants {
   static const String name = 'name';
 }
 
-class GetBuilderConstants {
-  GetBuilderConstants._();
+class GetBuilderIDs {
+  GetBuilderIDs._();
 
-  static const String article_bookmark_icon = 'article_bookmark_icon';
+  static String articleBookmarkIcon(Article article) => article.displayText;
+  static const String categories_list = 'categories_list';
 }
