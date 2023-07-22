@@ -19,7 +19,7 @@ import 'config/dependency_injection.dart';
 void statusAndNavigationBarSettings({
   statusBarColor = ManagerColors.transparent,
   bool isStatusBarIconWhite = false,
-  Color systemNavigationBarColor = ManagerColors.white, // navigation bar color
+  Color systemNavigationBarColor = ManagerColors.black, // navigation bar color
 }) {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
