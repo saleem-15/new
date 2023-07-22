@@ -1,4 +1,7 @@
 {
+
+
+  
   "noRouteFound": "No Rout Found",
   "noInternetConnection": "No Internet Connection",
   "error": "Error",
@@ -25,6 +28,12 @@
   "password": "Password",
   "errorLoadingArticles": "Error loading Articles",
 
+  "logoutConfirmationYes": "Logout",
+  "logoutConfirmationNo": "Cancel",
+  "logoutConfirmation": "Do you want to logout?",  
+  "logoutSuccessful": "Logout successful",
+  "seeYouAgain": "See you again soon!",
+  
   "forgetPassword": "Forgot Password?",
   "currentPassword": "Current Password",
   "confirmPasswordHint": "Repeat New Password",

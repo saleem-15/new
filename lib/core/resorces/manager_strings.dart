@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 
 class ManagerStrings {
+  ManagerStrings._();
+
   static String get appName => 'Nuntium';
   static String get noInternetConnection => tr('noInternetConnection');
 
@@ -31,6 +33,11 @@ class ManagerStrings {
   static String get signUp => tr('signUp');
 
   static String get forget => tr('forget');
+
+  //-------------------------home view-------------------------
+
+  static String get noArticlesFound => tr('No articles found');
+  static String get errorLoadingArticles => tr('Error loading Articles');
 
   //login view
   static String get emailAddress => 'emailAddress'.tr();
@@ -77,6 +84,8 @@ class ManagerStrings {
   static String get requiredFullName => tr('requiredFullName');
   static String get requiredField => 'requiredField'.tr();
 
+  //-------------------------profile view-------------------------
+
   static String get termsAndConditionsTitle => tr('termsAndConditionsTitle');
   static String get termsAndConditionsPolicy => tr('termsAndConditionsPolicy');
   static String get profile => tr('profile');
@@ -86,8 +95,12 @@ class ManagerStrings {
   static String get privacy => tr('privacy');
   static String get termsAndConditions => tr('termsAndConditions');
   static String get signout => tr('signout');
-  static String get noArticlesFound => tr('No articles found');
-  static String get errorLoadingArticles => tr('Error loading Articles');
+
+  static String get logoutConfirmationYes => tr('logoutConfirmationYes');
+  static String get logoutConfirmationNo => tr('logoutConfirmationNo');
+  static String get logoutConfirmation => tr('logoutConfirmation');
+  static String get logoutSuccessful => tr('logoutSuccessful');
+  static String get seeYouAgain => tr('seeYouAgain');
 
   static String get newPasswordHint => tr('newPasswordHint');
   static String get selectYourFavouriteTopicsParagraph => tr('selectYourFavouriteTopicsParagraph');
