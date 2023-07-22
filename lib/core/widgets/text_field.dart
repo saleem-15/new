@@ -15,6 +15,7 @@ class MyTextField extends StatelessWidget {
   final FocusNode? focusNode;
   final TextInputAction? textInputAction;
   final void Function(String)? onChange;
+  final void Function(String)? onFieldSubmitted;
 
   const MyTextField({
     super.key,
@@ -27,6 +28,7 @@ class MyTextField extends StatelessWidget {
     this.validator,
     this.focusNode,
     this.onChange,
+    this.onFieldSubmitted,
     this.isObscureText = false,
   });
 
@@ -39,6 +41,7 @@ class MyTextField extends StatelessWidget {
         focusNode: focusNode,
         validator: validator,
         onChanged: onChange,
+        onFieldSubmitted: onFieldSubmitted,
         textInputAction: textInputAction,
         keyboardType: keyboardType,
         cursorColor: ManagerColors.purplePrimary,

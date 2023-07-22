@@ -50,8 +50,9 @@ class HomeView extends GetView<HomeController> {
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: ManagerWidth.w20),
                   child: MyTextField(
-                    controller: TextEditingController(),
+                    controller: controller.searchController,
                     textInputAction: TextInputAction.search,
+                    onFieldSubmitted: controller.onSearchPressed,
                     hintText: ManagerStrings.search,
                     icon: IconService.getIcon(
                       icon: ManagerIcons.search,
