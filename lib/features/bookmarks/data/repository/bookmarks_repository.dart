@@ -5,14 +5,28 @@ import 'package:nuntium/core/storage/local/model/bookmark_db_model.dart';
 import 'package:nuntium/features/bookmarks/data/data_source/local_bookmarks_data_source.dart';
 
 abstract class BookmarksRepository {
-  Future<Either<Failure, void>> addBookmark(BookmarkModel bookmark);
   Either<Failure, List<BookmarkModel>> getBookmarks();
+  Future<Either<Failure, void>> addBookmark(BookmarkModel bookmark);
+  Future<Either<Failure, void>> deleteBookmark(BookmarkModel bookmark);
 }
 
 class BookmarksRepositoryImplement implements BookmarksRepository {
   final LocalBookmarksDataSource _localBookmarksDataSource;
 
   BookmarksRepositoryImplement(this._localBookmarksDataSource);
+
+  @override
+  Either<Failure, List<BookmarkModel>> getBookmarks() {
+    try {
+      final bookmarks = _localBookmarksDataSource.getBookmarks();
+
+      return Right(bookmarks);
+    } catch (e) {
+      return Left(
+        ErrorHandler.handle(e).failure,
+      );
+    }
+  }
 
   @override
   Future<Either<Failure, void>> addBookmark(BookmarkModel bookmark) async {
@@ -27,11 +41,10 @@ class BookmarksRepositoryImplement implements BookmarksRepository {
   }
 
   @override
-  Either<Failure, List<BookmarkModel>> getBookmarks()  {
+  Future<Either<Failure, void>> deleteBookmark(BookmarkModel bookmark) async {
     try {
-      final bookmarks = _localBookmarksDataSource.getBookmarks();
-
-      return Right(bookmarks);
+      await _localBookmarksDataSource.deleteBookmark(bookmark);
+      return const Right(null);
     } catch (e) {
       return Left(
         ErrorHandler.handle(e).failure,

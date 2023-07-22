@@ -24,7 +24,6 @@ class MyHive {
   }
 
   static Future<void> saveBookmark(BookmarkModel bookmark) async {
-    
     await _bookmarkBox.put(bookmark.url, bookmark);
   }
 
@@ -36,12 +35,7 @@ class MyHive {
     return _bookmarkBox.values.toList();
   }
 
-  static Future<bool> deleteBookmark(String url) async {
-    try {
-      await _bookmarkBox.delete(url);
-      return true;
-    } catch (error) {
-      return false;
-    }
+  static Future<void> deleteBookmark(String url) async {
+    await _bookmarkBox.delete(url);
   }
 }
