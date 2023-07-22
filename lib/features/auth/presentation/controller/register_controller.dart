@@ -6,16 +6,16 @@ import 'package:nuntium/features/auth/domain/use_case/register_use_case.dart';
 import 'package:nuntium/routes/routes.dart';
 
 class RegisterController extends GetxController {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController confirmPasswordController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
-  late final RegisterUseCase _loginUseCase = instance<RegisterUseCase>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+  final nameController = TextEditingController();
 
-  final AppSettingsSharedPreferences _appSettingsSharedPreferences = instance<AppSettingsSharedPreferences>();
+  final _registerUseCase = instance<RegisterUseCase>();
+  final _appSettingsSharedPreferences = instance<AppSettingsSharedPreferences>();
 
   Future<void> register() async {
-    (await _loginUseCase.execute(
+    (await _registerUseCase.execute(
       RegisterUseCaseInput(
         name: nameController.text,
         email: emailController.text,
@@ -24,13 +24,13 @@ class RegisterController extends GetxController {
       ),
     ))
         .fold(
-      (l) => () {
-        Get.rawSnackbar(message: l.message);
-      },
+      (l) => Get.rawSnackbar(message: l.message),
       (r) {
-        _appSettingsSharedPreferences.setLoggedIn();
-        _appSettingsSharedPreferences.setEmail(emailController.text);
-        _appSettingsSharedPreferences.setName(nameController.text);
+        _appSettingsSharedPreferences
+          ..setLoggedIn()
+          ..setEmail(emailController.text)
+          ..setName(nameController.text);
+
         Get.offAllNamed(Routes.select_favourite_topic);
       },
     );
