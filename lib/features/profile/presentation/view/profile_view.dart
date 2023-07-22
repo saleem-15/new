@@ -107,7 +107,7 @@ class ProfileView extends GetView<ProfileController> {
                   color: ManagerColors.greyDarker,
                   size: ManagerIconSize.s24,
                 ),
-                onPressed: controller.signout,
+                onPressed: () => controller.signout(context),
               ),
             ],
           );

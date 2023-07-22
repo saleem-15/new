@@ -1,13 +1,14 @@
 import 'package:nuntium/features/home/presentation/model/article.dart';
 
 class CacheData {
+  CacheData._();
   static Article? currentArticle;
 
-  void setArticle(Article value) {
+  static void setArticle(Article value) {
     CacheData.currentArticle = value;
   }
 
-  Article? getArticle() {
+  static Article? getArticle() {
     return currentArticle;
   }
 }

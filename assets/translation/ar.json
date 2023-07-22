@@ -13,8 +13,16 @@
   "loginParagraph": "سعيد برؤيتك مجددًا. يمكنك متابعة حيث توقفت بتسجيل الدخول",
   "google": "تسجيل الدخول باستخدام Google",
   "facebook": "تسجيل الدخول باستخدام Facebook",
+  "yes": "نعم",
+  "no": "لا",
   "ok": "حسنا",
   "username":"اسم المستخدم",
+  
+  "logoutConfirmationYes": "نعم",
+  "logoutConfirmationNo": "إلغاء",
+  "logoutConfirmation": "هل ترغب في تسجيل الخروج؟",
+  "logoutSuccessful": "تم تسجيل الخروج بنجاح",
+  "seeYouAgain": "أراك قريبًا مرة أخرى!",
   
   "noArticlesFound": "لم يتم العثور على مقالات",
   "errorLoadingArticles": "حدث خطأ أثناء تحميل المقالات",

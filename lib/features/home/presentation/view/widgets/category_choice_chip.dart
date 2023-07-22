@@ -5,12 +5,12 @@ import 'package:nuntium/core/resorces/manager_fonts.dart';
 import 'package:nuntium/core/resorces/manager_sizes.dart';
 import 'package:nuntium/core/resorces/manager_styles.dart';
 
-class CategoryChip extends StatelessWidget {
+class CategoryChoiceChip extends StatelessWidget {
   final String text;
   final bool isChecked;
   final void Function()? onPressed;
 
-  const CategoryChip({
+  const CategoryChoiceChip({
     super.key,
     required this.text,
     required this.isChecked,

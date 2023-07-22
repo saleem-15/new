@@ -13,6 +13,7 @@ class ManagerIcons {
   static IconData check = Icons.check;
 
   static const String book = '$baseVectorPath/book.svg';
+  static const String delete = '$baseIconPath/delete.svg';
   static const String home = '$baseIconPath/home.svg';
   static const String search = '$baseIconPath/search.svg';
   static const String microphone = '$baseIconPath/microphone.svg';

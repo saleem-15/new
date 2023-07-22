@@ -43,6 +43,7 @@ class AppSettingsSharedPreferences {
     return _preferences.getString(ConstantsPrefsKeys.email).onNull();
   }
 
+  /// clears all app data
   Future<void> clear() async {
     await _preferences.clear();
   }

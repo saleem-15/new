@@ -4,7 +4,7 @@ import 'package:nuntium/config/constants.dart';
 import 'package:nuntium/core/resorces/manager_sizes.dart';
 import 'package:nuntium/features/home/presentation/controller/home_controller.dart';
 
-import 'category_chip.dart';
+import 'category_choice_chip.dart';
 
 class Categories extends StatelessWidget {
   const Categories({super.key});
@@ -28,7 +28,7 @@ class Categories extends StatelessWidget {
             itemBuilder: (_, index) {
               final category = controller.categories[index];
 
-              return CategoryChip(
+              return CategoryChoiceChip(
                 text: category.name,
                 onPressed: () => controller.onCategoryPressed(category),
                 isChecked: category == controller.selectedCategory,
