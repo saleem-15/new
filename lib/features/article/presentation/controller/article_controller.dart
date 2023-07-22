@@ -13,7 +13,7 @@ class ArticleController extends GetxController {
   void onInit() {
     super.onInit();
 
-    _article = CacheData().getArticle()!;
+    _article = CacheData.getArticle()!;
 
     initWebController(_article.url!);
   }
