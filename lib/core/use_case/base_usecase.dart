@@ -10,6 +10,11 @@ abstract class BaseUseCase<In, Out> {
 abstract class BaseInUseCase<In> {
   FutureOr<void> execute(In input);
 }
+
 abstract class BaseOutUseCase<Out> {
   Future<Either<Failure, Out>> execute();
+}
+
+abstract class BaseVoidUseCase  {
+  Future<Either<Failure, void>> execute();
 }
