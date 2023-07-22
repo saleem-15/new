@@ -18,10 +18,11 @@ class MainView extends StatelessWidget {
           return PersistentTabView(
             context,
             controller: controller.persistentTabController,
-            backgroundColor: Colors.white,
             navBarStyle: NavBarStyle.style14,
+            backgroundColor: Colors.white,
             confineInSafeArea: true,
             navBarHeight: ManagerHeight.h90,
+            //must be the same value like [navBarHeight] so the screen doesn't go behind navBar
             bottomScreenMargin: ManagerHeight.h90,
             decoration: NavBarDecoration(
               colorBehindNavBar: ManagerColors.white,
@@ -33,6 +34,7 @@ class MainView extends StatelessWidget {
                 topRight: Radius.circular(ManagerRadius.r16),
               ),
             ),
+            resizeToAvoidBottomInset: false,
             screens: controller.screens,
             items: controller.bottomNavBarItems,
             screenTransitionAnimation: const ScreenTransitionAnimation(
