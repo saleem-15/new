@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:nuntium/core/resorces/manager_assets.dart';
 import 'package:nuntium/core/resorces/manager_colors.dart';
@@ -18,7 +19,7 @@ class BookmarkListTile extends StatelessWidget {
     required this.onPressed,
   }) : image = (bookmark.imageUrl == null
             ? const AssetImage(ManagerAssets.news_placeholder)
-            : NetworkImage(bookmark.imageUrl!)) as ImageProvider;
+            : CachedNetworkImageProvider(bookmark.imageUrl!)) as ImageProvider;
 
   @override
   Widget build(BuildContext context) {
