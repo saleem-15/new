@@ -9,7 +9,7 @@ import 'package:nuntium/features/auth/data/request/login_request.dart';
 import 'package:nuntium/features/auth/data/response/login_response.dart';
 
 abstract class LoginRepository {
-  Future<Either<Failure, void>> login(LoginRequest loginRequest);
+  Future<Either<Failure, LoginResponse>> login(LoginRequest loginRequest);
 }
 
 class LoginRepositoryImplement implements LoginRepository {
