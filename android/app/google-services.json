@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "150646309144-2jdo0nuoajei4f7munnj2otq0jcs2ike.apps.googleusercontent.com",
+          "client_id": "150646309144-f1ipbgt9gn03t9la76kolqr4b6qd358n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nuntium",
+            "certificate_hash": "81f0d1c8d111c22ccf05359d355f985dae456d69"
+          }
+        },
+        {
+          "client_id": "150646309144-n5ra3hsu78drvoh5dj2rmlsiohmad0mk.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
