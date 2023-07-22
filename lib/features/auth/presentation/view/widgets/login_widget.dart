@@ -11,7 +11,7 @@ import '../../../../../routes/routes.dart';
 import 'footer_message.dart';
 import 'social_media_btn.dart';
 
-Widget loginWidget() {
+Widget loginWidget({required void Function() onGooglePressed}) {
   return Expanded(
     child: Column(
       children: [
@@ -31,7 +31,7 @@ Widget loginWidget() {
           height: ManagerHeight.h40,
         ),
         socialButton(
-          onPressed: () => showComingSoonDialog(Get.context!),
+          onPressed: onGooglePressed,
           socialMedia: SocialMedia.Google,
         ),
         SizedBox(
