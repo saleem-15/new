@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:nuntium/config/categories._enum.dart';
@@ -8,6 +9,7 @@ import 'package:nuntium/config/dependency_injection.dart';
 import 'package:nuntium/core/cache/cache.dart';
 import 'package:nuntium/core/storage/local/hive_db.dart';
 import 'package:nuntium/core/storage/local/model/bookmark_db_model.dart';
+import 'package:nuntium/features/bookmarks/presentation/controller/bookmarks_controller.dart';
 import '../../domain/mapper/home_entity_mapper.dart';
 import '../../presentation/model/category.dart';
 import 'package:nuntium/routes/routes.dart';
@@ -20,6 +22,7 @@ import '../view/home_view.dart';
 class HomeController extends GetxController {
   final _homeUseCase = instance<HomeUseCase>();
   final refreshController = RefreshController();
+  final searchController = TextEditingController();
 
   late final PagingController<int, Article> pagingController;
   late int totalResults;
@@ -46,12 +49,14 @@ class HomeController extends GetxController {
         pageSize: ApiConstants.homeaPgeSizeValue,
         country: 'us',
         category: category,
+        search: searchController.text.trim(),
       ),
     ))
         .fold(
       (l) {
         Get.rawSnackbar(message: l.message);
-        throw ''; // Throw an empty string to indicate an error
+
+        throw l.message; // Throw an exception to indicate an error
       },
       (r) {
         totalResults = r.totalResults;
@@ -103,7 +108,7 @@ class HomeController extends GetxController {
     // debugger();
 
     /// Keep this if condition in order for the [loadingArticlesIndicator]
-    /// to be used by the [infinite_scroll_pagination] library 
+    /// to be used by the [infinite_scroll_pagination] library
     /// (thats due to the library working in a stupid way)
     if (selectedCategory.articles.isNotEmpty) {
       pagingController.itemList = selectedCategory.articles;
@@ -126,11 +131,13 @@ class HomeController extends GetxController {
     }
 
     article.isSaved = !article.isSaved;
-    update([GetBuilderIDs.articleBookmarkIcon(article)]);
+    update([GetBuilderIDs.articleBookmarkIcon(article: article)]);
+
+    Get.find<BookmarksController>().updateBookmarksList();
   }
 
   void onArticleCardPressed(Article article) {
-    CacheData().setArticle(article);
+    CacheData.setArticle(article);
     Get.toNamed(Routes.article);
   }
 
@@ -150,11 +157,21 @@ class HomeController extends GetxController {
     update();
   }
 
+  updateBookmarkIcon(BookmarkModel bookmark) {
+    ///TODO: article model is not updated
+    update([GetBuilderIDs.articleBookmarkIcon(bookmark: bookmark)]);
+    debugger();
+  }
+
   @override
   void onClose() {
     pagingController.dispose();
     refreshController.dispose();
 
     super.onClose();
+  }
+
+  void onSearchPressed(String p1) {
+    // TODO: implement search functionality for home view page controller and ui design changes accordingly to show results
   }
 }

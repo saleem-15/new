@@ -1,3 +1,4 @@
+import 'package:nuntium/core/storage/local/model/bookmark_db_model.dart';
 import 'package:nuntium/features/home/presentation/model/article.dart';
 
 class Constants {
@@ -74,6 +75,16 @@ class ApiConstants {
 class GetBuilderIDs {
   GetBuilderIDs._();
 
-  static String articleBookmarkIcon(Article article) => article.displayText;
+  static String articleBookmarkIcon({Article? article, BookmarkModel? bookmark}) {
+    assert(article != null || bookmark != null);
+    
+    if (article != null) {
+      return article.url!;
+    } else {
+      return bookmark!.url;
+    }
+  }
+
   static const String categories_list = 'categories_list';
+  static const String bookmarks_list = 'bookmarks_list';
 }

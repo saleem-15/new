@@ -83,7 +83,7 @@ class ArticleCard extends StatelessWidget {
                       autoRemove: false,
                       assignId: true,
                       key: Key(article.displayText),
-                      id: GetBuilderIDs.articleBookmarkIcon(article),
+                      id: GetBuilderIDs.articleBookmarkIcon(article: article),
                       builder: (_) {
                         return IconButton(
                           onPressed: onBookmarkPressed,
