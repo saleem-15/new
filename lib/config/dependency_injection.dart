@@ -24,6 +24,7 @@ import 'package:nuntium/features/auth/presentation/controller/login_controller.d
 import 'package:nuntium/features/auth/presentation/controller/register_controller.dart';
 import 'package:nuntium/features/bookmarks/data/data_source/local_bookmarks_data_source.dart';
 import 'package:nuntium/features/bookmarks/data/repository/bookmarks_repository.dart';
+import 'package:nuntium/features/bookmarks/domain/use_case/delete_bookmark_use_case.dart';
 import 'package:nuntium/features/bookmarks/domain/use_case/get_bookmark_use_case.dart';
 import 'package:nuntium/features/bookmarks/presentation/controller/bookmarks_controller.dart';
 import 'package:nuntium/features/category/presentation/controller/categories_controller.dart';
@@ -55,6 +56,9 @@ import 'package:nuntium/features/profile/presentation/controller/profile_control
 import 'package:nuntium/features/terms_and_conditions/presentation/controller/terms_and_conditions_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../features/auth/data/data_source/remote_logout_data_source.dart';
+import '../features/auth/data/repository/logout_repository.dart';
+import '../features/auth/domain/use_case/logout_use_case.dart';
 import '../features/splash/controller/splash_controller.dart';
 
 final instance = GetIt.instance;
@@ -370,6 +374,10 @@ initBookmarksModule() {
     ViewBookmarksUseCase(instance<BookmarksRepository>()),
   );
 
+  instance.safeRegisterLazySingleton(
+    DeleteBookmarkUseCase(instance<BookmarksRepository>()),
+  );
+
   Get.put(BookmarksController());
 }
 
@@ -407,6 +415,7 @@ initChangePassword() {
       instance<NetworkInfo>(),
     ),
   );
+
   instance.safeRegisterLazySingleton(
     ChangePasswordUseCase(instance<ChangePasswordRepository>()),
   );
@@ -440,6 +449,20 @@ disposeArticleModule() {
 }
 
 initProfileModule() {
+  instance.safeRegisterLazySingleton<RemoteLogoutDataSource>(
+    RemoteLogoutDataSourceImpl(),
+  );
+
+  instance.safeRegisterLazySingleton<LogoutRepository>(
+    LogoutRepositoryImpl(
+      instance<RemoteLogoutDataSource>(),
+      instance<NetworkInfo>(),
+    ),
+  );
+  instance.safeRegisterLazySingleton(
+    LogoutUseCase(instance<LogoutRepository>()),
+  );
+
   Get.put(ProfileController());
 }
 
