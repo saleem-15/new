@@ -3,3 +3,4 @@ import 'package:nuntium/config/constants.dart';
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 final topicsCollection = firestore.collection(FirestoreConstants.topics);
+final usersCollection = firestore.collection(FirestoreConstants.users);

@@ -25,13 +25,21 @@ class LoginController extends GetxController {
         update(),
       },
       (r) {
-        _appSettingsSharedPreferences.setLoggedIn();
-        if (_appSettingsSharedPreferences.getFavouriteViewed()) {
-          Get.offAllNamed(Routes.mainView);
-        } else {
-          Get.offAllNamed(Routes.select_favourite_topic);
-        }
+        _appSettingsSharedPreferences
+          ..setLoggedIn()
+          ..setEmail(r.email)
+          ..setName(r.name);
+
+        goToNextScreen();
       },
     );
+  }
+
+  void goToNextScreen() {
+    if (_appSettingsSharedPreferences.getFavouriteViewed()) {
+      Get.offAllNamed(Routes.mainView);
+    } else {
+      Get.offAllNamed(Routes.select_favourite_topic);
+    }
   }
 }

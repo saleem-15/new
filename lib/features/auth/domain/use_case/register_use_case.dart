@@ -5,10 +5,10 @@ import 'package:nuntium/features/auth/data/request/register_request.dart';
 import 'package:nuntium/features/auth/data/repository/register_repository.dart';
 
 class RegisterUseCaseInput {
-  String? name;
-  String? email;
-  String? password;
-  String? confirmationPassword;
+  String name;
+  String email;
+  String password;
+  String confirmationPassword;
 
   RegisterUseCaseInput({
     required this.name,

@@ -3,6 +3,7 @@ import 'package:nuntium/core/error_handler/error_handler.dart';
 import 'package:nuntium/core/use_case/base_usecase.dart';
 import 'package:nuntium/features/auth/data/request/login_request.dart';
 import 'package:nuntium/features/auth/data/repository/login_repository.dart';
+import 'package:nuntium/features/auth/data/response/login_response.dart';
 
 class LoginUseCaseInput {
   String email;
@@ -20,7 +21,7 @@ class LoginUseCase implements BaseInUseCase<LoginUseCaseInput> {
   LoginUseCase(this._loginRepository);
 
   @override
-  Future<Either<Failure, void>> execute(LoginUseCaseInput input) async {
+  Future<Either<Failure, LoginResponse>> execute(LoginUseCaseInput input) async {
     return await _loginRepository.login(
       LoginRequest(
         email: input.email,

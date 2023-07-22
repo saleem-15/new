@@ -28,6 +28,11 @@ class ConstantsPrefsKeys {
 
 class FirestoreConstants {
   static const String topics = "categories";
+
+  //users
+  static const String users = "Users";
+  static const String name = "name";
+  static const String email = "email";
 }
 
 class ApiConstants {

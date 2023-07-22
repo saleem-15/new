@@ -1,8 +1,8 @@
 class RegisterRequest {
-  String? name;
-  String? email;
-  String? password;
-  String? confirmationPassword;
+  String name;
+  String email;
+  String password;
+  String confirmationPassword;
 
   RegisterRequest({
     required this.name,
