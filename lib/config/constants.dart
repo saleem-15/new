@@ -50,7 +50,7 @@ class ApiConstants {
 
   //Home Request
   static const String pageSize = 'pageSize';
-  static const int homeaPgeSizeValue = 10;
+  static const int homeaPgeSizeValue = 20;
   static const String page = 'page';
   static const String country = 'country';
   static const String category = 'category';
@@ -82,7 +82,7 @@ class GetBuilderIDs {
 
   static String articleBookmarkIcon({Article? article, BookmarkModel? bookmark}) {
     assert(article != null || bookmark != null);
-    
+
     if (article != null) {
       return article.url!;
     } else {

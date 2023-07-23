@@ -58,8 +58,10 @@ import 'package:nuntium/features/profile/presentation/controller/profile_control
 import 'package:nuntium/features/terms_and_conditions/presentation/controller/terms_and_conditions_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../features/auth/data/data_source/remote_login_with_google_data_source.dart';
 import '../features/auth/data/data_source/remote_logout_data_source.dart';
 import '../features/auth/data/repository/logout_repository.dart';
+import '../features/auth/domain/use_case/login_with_google_use_case.dart';
 import '../features/auth/domain/use_case/logout_use_case.dart';
 import '../features/splash/controller/splash_controller.dart';
 
@@ -432,7 +434,6 @@ initChangePassword() {
   instance.safeRegisterLazySingleton(
     ChangePasswordUseCase(instance<ChangePasswordRepository>()),
   );
-
   Get.put(ChangePasswordController());
 }
 

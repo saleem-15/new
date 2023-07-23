@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -26,7 +27,7 @@ class ArticleCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final imageProvider = (article.imageUrl == null
         ? const AssetImage(ManagerAssets.news_placeholder)
-        : NetworkImage(article.imageUrl!)) as ImageProvider;
+        : CachedNetworkImageProvider(article.imageUrl!)) as ImageProvider;
 
     return Container(
       width: ManagerWidth.w336,
@@ -55,6 +56,16 @@ class ArticleCard extends StatelessWidget {
               width: double.infinity,
               height: ManagerHeight.h192,
             ),
+
+            // FadeInImage(
+            //   // image: CachedNetworkImageProvider(article.imageUrl!),
+            //   image: imageProvider,
+            //   placeholder: const AssetImage(ManagerAssets.news_placeholder),
+            //   imageErrorBuilder: (_, __, ___) => Image.asset(ManagerAssets.news_placeholder),
+            //   fit: BoxFit.cover,
+            //   width: double.infinity,
+            //   height: ManagerHeight.h192,
+            // ),
 
             ///article card text + icon
             SizedBox(
