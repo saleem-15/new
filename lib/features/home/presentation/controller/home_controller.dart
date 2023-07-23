@@ -22,6 +22,7 @@ import '../view/home_view.dart';
 class HomeController extends GetxController {
   final _homeUseCase = instance<HomeUseCase>();
   final refreshController = RefreshController();
+  final scrollController = ScrollController();
   final searchController = TextEditingController();
 
   late final PagingController<int, Article> pagingController;
@@ -166,7 +167,9 @@ class HomeController extends GetxController {
   @override
   void onClose() {
     pagingController.dispose();
+    scrollController.dispose();
     refreshController.dispose();
+    searchController.dispose();
 
     super.onClose();
   }

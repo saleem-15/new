@@ -16,6 +16,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'widgets/article_card.dart';
 import 'widgets/articles_loading_error.dart';
+import 'widgets/back_to_top_button.dart';
 import 'widgets/categories.dart';
 import 'widgets/articles_loading_indicator.dart';
 
@@ -26,6 +27,9 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      floatingActionButton: BackToTopButton(
+        scrollController: controller.scrollController,
+      ),
       body: SafeArea(
         child: SmartRefresher(
           header: WaterDropMaterialHeader(offset: ManagerHeight.h230),
@@ -33,6 +37,7 @@ class HomeView extends GetView<HomeController> {
           controller: controller.refreshController,
           onRefresh: controller.onRefresh,
           child: CustomScrollView(
+            controller: controller.scrollController,
             slivers: [
               ///Header
               SliverToBoxAdapter(
