@@ -7,8 +7,8 @@ import 'package:nuntium/features/category/presentation/models/topic.dart';
 import 'package:nuntium/routes/routes.dart';
 
 class SelectFavoriteTopicController extends GetxController {
-  late final _selectFavoriteTopicUseCase = instance<SelectFavoriteTopicUseCase>();
-  late final _topicsUseCase = instance<TopicsUseCase>();
+  late final _selectFavoriteTopicUseCase = getIt<SelectFavoriteTopicUseCase>();
+  late final _topicsUseCase = getIt<TopicsUseCase>();
 
   List<Topic> topics = [];
 

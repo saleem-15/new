@@ -5,7 +5,7 @@ import 'package:nuntium/features/category/domain/use_case/topics_use_case.dart';
 import 'package:nuntium/features/category/presentation/models/topic.dart';
 
 class CategoriesController extends GetxController {
-  late final _topicsUseCase = instance<TopicsUseCase>();
+  late final _topicsUseCase = getIt<TopicsUseCase>();
 
   List<Topic> topics = [];
 

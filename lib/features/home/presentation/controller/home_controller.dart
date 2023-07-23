@@ -20,7 +20,7 @@ import '../model/article.dart';
 import '../view/home_view.dart';
 
 class HomeController extends GetxController {
-  final _homeUseCase = instance<HomeUseCase>();
+  final _homeUseCase = getIt<HomeUseCase>();
   final refreshController = RefreshController();
   final scrollController = ScrollController();
   final searchController = TextEditingController();

@@ -6,7 +6,7 @@ import 'package:nuntium/routes/routes.dart';
 
 class ForgetPasswordController extends GetxController {
   final TextEditingController emailController = TextEditingController();
-  final _forgetPasswordUseCase = instance<ForgetPasswordUseCase>();
+  final _forgetPasswordUseCase = getIt<ForgetPasswordUseCase>();
 
   Future<void> forgetPassword() async {
     (await _forgetPasswordUseCase.execute(

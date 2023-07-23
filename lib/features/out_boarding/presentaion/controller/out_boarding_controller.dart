@@ -3,7 +3,7 @@ import 'package:nuntium/config/dependency_injection.dart';
 import 'package:nuntium/core/storage/local/app_settings_shared_preferences.dart';
 
 class OutBoardingController extends GetxController {
-  final AppSettingsSharedPreferences sharedPreferences = instance<AppSettingsSharedPreferences>();
+  final AppSettingsSharedPreferences sharedPreferences = getIt<AppSettingsSharedPreferences>();
 
   @override
   void onReady() {

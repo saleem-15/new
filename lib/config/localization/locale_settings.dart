@@ -10,7 +10,7 @@ import 'package:nuntium/core/storage/local/app_settings_shared_preferences.dart'
 LocaleSettings localeSettings = LocaleSettings();
 
 class LocaleSettings {
-  LocaleSettings() : _preferences = instance<AppSettingsSharedPreferences>();
+  LocaleSettings() : _preferences = getIt<AppSettingsSharedPreferences>();
 
   final AppSettingsSharedPreferences _preferences;
   TextDirection get textDirection {

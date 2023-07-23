@@ -6,7 +6,7 @@ import 'package:nuntium/routes/routes.dart';
 
 class VerificationController extends GetxController {
   late TextEditingController pinController;
-  late final _verifyCodeUseCase = instance<VerifyCodeUseCase>();
+  late final _verifyCodeUseCase = getIt<VerifyCodeUseCase>();
 
   @override
   void onInit() {

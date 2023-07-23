@@ -8,8 +8,8 @@ import 'package:nuntium/routes/routes.dart';
 import 'package:quickalert/quickalert.dart';
 
 class ProfileController extends GetxController {
-  final _appSettingsSharedPreferences = instance<AppSettingsSharedPreferences>();
-  final _logoutUseCase = instance<LogoutUseCase>();
+  final _appSettingsSharedPreferences = getIt<AppSettingsSharedPreferences>();
+  final _logoutUseCase = getIt<LogoutUseCase>();
 
   late String name;
   late String email;

@@ -12,8 +12,8 @@ import 'package:nuntium/routes/routes.dart';
 import '../../domain/use_case/delete_bookmark_use_case.dart';
 
 class BookmarksController extends GetxController {
-  final _viewBookmarkUseCase = instance<ViewBookmarksUseCase>();
-  final _deleteBookmarkUseCase = instance<DeleteBookmarkUseCase>();
+  final _viewBookmarkUseCase = getIt<ViewBookmarksUseCase>();
+  final _deleteBookmarkUseCase = getIt<DeleteBookmarkUseCase>();
 
   List<BookmarkModel> bookmarks = [];
 

@@ -10,9 +10,9 @@ import '../../domain/use_case/login_with_google_use_case.dart';
 class LoginController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final _loginUseCase = instance<LoginUseCase>();
-  final _loginWithGoogleUseCase = instance<LoginWithGoogleUseCase>();
-  final _appSettingsSharedPreferences = instance<AppSettingsSharedPreferences>();
+  final _loginUseCase = getIt<LoginUseCase>();
+  final _loginWithGoogleUseCase = getIt<LoginWithGoogleUseCase>();
+  final _appSettingsSharedPreferences = getIt<AppSettingsSharedPreferences>();
   var formKey = GlobalKey<FormState>();
 
   Future<void> login() async {

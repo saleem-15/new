@@ -13,7 +13,7 @@ class ChangePasswordController extends GetxController {
 
   final formKey = GlobalKey<FormState>();
 
-  final _changePasswordUseCase = instance<ChangePasswordUseCase>();
+  final _changePasswordUseCase = getIt<ChangePasswordUseCase>();
 
   Future<void> performChangePassword(BuildContext context) async {
     if (formKey.currentState!.validate()) {

@@ -8,7 +8,7 @@ import 'package:nuntium/main.dart';
 import 'package:nuntium/routes/routes.dart';
 
 class SplashController extends GetxController {
-  final AppSettingsSharedPreferences _appSettingsSharedPreferences = instance<AppSettingsSharedPreferences>();
+  final AppSettingsSharedPreferences _appSettingsSharedPreferences = getIt<AppSettingsSharedPreferences>();
 
   @override
   void onInit() {

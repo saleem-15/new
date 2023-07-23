@@ -11,8 +11,8 @@ class RegisterController extends GetxController {
   final confirmPasswordController = TextEditingController();
   final nameController = TextEditingController();
 
-  final _registerUseCase = instance<RegisterUseCase>();
-  final _appSettingsSharedPreferences = instance<AppSettingsSharedPreferences>();
+  final _registerUseCase = getIt<RegisterUseCase>();
+  final _appSettingsSharedPreferences = getIt<AppSettingsSharedPreferences>();
 
   Future<void> register() async {
     (await _registerUseCase.execute(

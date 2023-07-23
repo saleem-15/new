@@ -58,14 +58,12 @@ import 'package:nuntium/features/profile/presentation/controller/profile_control
 import 'package:nuntium/features/terms_and_conditions/presentation/controller/terms_and_conditions_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../features/auth/data/data_source/remote_login_with_google_data_source.dart';
 import '../features/auth/data/data_source/remote_logout_data_source.dart';
 import '../features/auth/data/repository/logout_repository.dart';
-import '../features/auth/domain/use_case/login_with_google_use_case.dart';
 import '../features/auth/domain/use_case/logout_use_case.dart';
 import '../features/splash/controller/splash_controller.dart';
 
-final instance = GetIt.instance;
+final getIt = GetIt.instance;
 
 initModule() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -80,25 +78,25 @@ initModule() async {
     hive.registerAdapter(BookmarkModelAdapter());
   });
 
-  instance.registerLazySingleton<SharedPreferences>(
+  getIt.registerLazySingleton<SharedPreferences>(
     () => sharedPreferences,
   );
 
-  instance.registerLazySingleton<AppSettingsSharedPreferences>(
-    () => AppSettingsSharedPreferences(instance()),
+  getIt.registerLazySingleton<AppSettingsSharedPreferences>(
+    () => AppSettingsSharedPreferences(getIt()),
   );
 
   //why ? you dont use generic type in bellow!
-  instance.registerLazySingleton(() => DioFactory());
+  getIt.registerLazySingleton(() => DioFactory());
 
-  Dio dio = await instance<DioFactory>().getDio();
+  Dio dio = await getIt<DioFactory>().getDio();
 
   // what are classes you register in getIt from all the classes in the app
-  instance.registerLazySingleton<AppApi>(
+  getIt.registerLazySingleton<AppApi>(
     () => AppApi(dio),
   );
 
-  instance.registerLazySingleton<NetworkInfo>(
+  getIt.registerLazySingleton<NetworkInfo>(
     () => NetworkInfoImpl(InternetConnectionCheckerPlus()),
   );
 }
@@ -133,19 +131,19 @@ initMainModule() {
 initHome() {
   disposeWelcome();
 
-  instance.safeRegisterLazySingleton<RemoteHomeDataSource>(
-    RemoteHomeDataSourceImpl(instance<AppApi>()),
+  getIt.safeRegisterLazySingleton<RemoteHomeDataSource>(
+    RemoteHomeDataSourceImpl(getIt<AppApi>()),
   );
 
-  instance.safeRegisterLazySingleton<HomeRepository>(
+  getIt.safeRegisterLazySingleton<HomeRepository>(
     HomeRepositoryImpl(
-      instance<RemoteHomeDataSource>(),
-      instance<NetworkInfo>(),
+      getIt<RemoteHomeDataSource>(),
+      getIt<NetworkInfo>(),
     ),
   );
 
-  instance.safeRegisterLazySingleton<HomeUseCase>(
-    HomeUseCase(instance<HomeRepository>()),
+  getIt.safeRegisterLazySingleton<HomeUseCase>(
+    HomeUseCase(getIt<HomeRepository>()),
   );
 
   Get.put(HomeController());
@@ -158,7 +156,7 @@ disposeHome() {
     name: 'Dependency Injection',
   );
 
-  instance
+  getIt
     ..safeUnRegisterLazySingleton<RemoteHomeDataSource>()
     ..safeUnRegisterLazySingleton<HomeRepository>()
     ..safeUnRegisterLazySingleton<HomeUseCase>();
@@ -172,7 +170,7 @@ initWelcome() {
 }
 
 initWelcomeModule() {
-  instance.safeRegisterLazySingleton<RemoteLoginDataSource>(
+  getIt.safeRegisterLazySingleton<RemoteLoginDataSource>(
     RemoteLoginDataSourceImpl(),
   );
 }
@@ -188,31 +186,31 @@ initLoginModule() {
   disposeWelcome();
   // initVerificationModule();
   // initFcmToken();
-  instance.safeRegisterLazySingleton<RemoteLoginDataSource>(
+  getIt.safeRegisterLazySingleton<RemoteLoginDataSource>(
     RemoteLoginDataSourceImpl(),
   );
 
-  instance.safeRegisterLazySingleton<RemoteLoginWithGoogleDataSource>(
+  getIt.safeRegisterLazySingleton<RemoteLoginWithGoogleDataSource>(
     RemoteLoginWithGoogleDataSourceImpl(),
   );
 
-  instance.safeRegisterLazySingleton<LoginRepository>(
+  getIt.safeRegisterLazySingleton<LoginRepository>(
     LoginRepositoryImplement(
-      instance<RemoteLoginDataSource>(),
-      instance<RemoteLoginWithGoogleDataSource>(),
-      instance<NetworkInfo>(),
+      getIt<RemoteLoginDataSource>(),
+      getIt<RemoteLoginWithGoogleDataSource>(),
+      getIt<NetworkInfo>(),
     ),
   );
 
-  instance.safeRegisterLazySingleton<LoginUseCase>(
+  getIt.safeRegisterLazySingleton<LoginUseCase>(
     LoginUseCase(
-      instance<LoginRepository>(),
+      getIt<LoginRepository>(),
     ),
   );
 
-  instance.safeRegisterLazySingleton<LoginWithGoogleUseCase>(
+  getIt.safeRegisterLazySingleton<LoginWithGoogleUseCase>(
     LoginWithGoogleUseCase(
-      instance<LoginRepository>(),
+      getIt<LoginRepository>(),
     ),
   );
 
@@ -222,7 +220,7 @@ initLoginModule() {
 disposeLoginModule() {
   // disposeFcmToken();
 
-  instance
+  getIt
     ..safeUnRegisterLazySingleton<RemoteLoginDataSource>()
     ..safeUnRegisterLazySingleton<LoginRepository>()
     ..safeUnRegisterLazySingleton<LoginUseCase>();
@@ -233,20 +231,20 @@ disposeLoginModule() {
 initRegisterModule() {
   disposeLoginModule();
 
-  instance.safeRegisterLazySingleton<RemoteRegisterDataSource>(
+  getIt.safeRegisterLazySingleton<RemoteRegisterDataSource>(
     RemoteRegisterDataSourceImpl(),
   );
 
-  instance.safeRegisterLazySingleton<RegisterRepository>(
+  getIt.safeRegisterLazySingleton<RegisterRepository>(
     RegisterRepositoryImpl(
-      instance<RemoteRegisterDataSource>(),
-      instance<NetworkInfo>(),
+      getIt<RemoteRegisterDataSource>(),
+      getIt<NetworkInfo>(),
     ),
   );
 
-  instance.safeRegisterLazySingleton<RegisterUseCase>(
+  getIt.safeRegisterLazySingleton<RegisterUseCase>(
     RegisterUseCase(
-      instance<RegisterRepository>(),
+      getIt<RegisterRepository>(),
     ),
   );
 
@@ -254,7 +252,7 @@ initRegisterModule() {
 }
 
 disposeRegisterModule() {
-  instance
+  getIt
     ..safeUnRegisterLazySingleton<RemoteRegisterDataSource>()
     ..safeUnRegisterLazySingleton<RegisterRepository>()
     ..safeUnRegisterLazySingleton<RegisterUseCase>();
@@ -265,18 +263,18 @@ disposeRegisterModule() {
 initForgetPassword() async {
   disposeLoginModule();
 
-  instance.safeRegisterLazySingleton<RemoteForgetPasswordDataSource>(
+  getIt.safeRegisterLazySingleton<RemoteForgetPasswordDataSource>(
     RemoteForgetPasswordDataSourceImplement(),
   );
-  instance.safeRegisterLazySingleton<ForgetPasswordRepository>(
+  getIt.safeRegisterLazySingleton<ForgetPasswordRepository>(
     ForgetPasswordRepositoryImplement(
-      instance<RemoteForgetPasswordDataSource>(),
-      instance<NetworkInfo>(),
+      getIt<RemoteForgetPasswordDataSource>(),
+      getIt<NetworkInfo>(),
     ),
   );
-  instance.safeRegisterLazySingleton<ForgetPasswordUseCase>(
+  getIt.safeRegisterLazySingleton<ForgetPasswordUseCase>(
     ForgetPasswordUseCase(
-      instance<ForgetPasswordRepository>(),
+      getIt<ForgetPasswordRepository>(),
     ),
   );
 
@@ -284,7 +282,7 @@ initForgetPassword() async {
 }
 
 disposeForgetPassword() async {
-  instance
+  getIt
     ..safeUnRegisterLazySingleton<RemoteForgetPasswordDataSource>()
     ..safeUnRegisterLazySingleton<ForgetPasswordRepository>()
     ..safeUnRegisterLazySingleton<ForgetPasswordUseCase>();
@@ -324,80 +322,80 @@ initVerificationModule() {
 }
 
 initSelectFavouriteModule() {
-  instance.safeRegisterLazySingleton<LocalFavoriteTopicDataSource>(
+  getIt.safeRegisterLazySingleton<LocalFavoriteTopicDataSource>(
     LocalFavoriteTopicDataSourceImplement(),
   );
 
-  instance.safeRegisterLazySingleton<FavoriteTopicRepository>(
+  getIt.safeRegisterLazySingleton<FavoriteTopicRepository>(
     FavoriteTopicRepositoryImplement(
-      instance<LocalFavoriteTopicDataSource>(),
-      instance<NetworkInfo>(),
+      getIt<LocalFavoriteTopicDataSource>(),
+      getIt<NetworkInfo>(),
     ),
   );
-  instance.safeRegisterLazySingleton(
-    SelectFavoriteTopicUseCase(instance<FavoriteTopicRepository>()),
+  getIt.safeRegisterLazySingleton(
+    SelectFavoriteTopicUseCase(getIt<FavoriteTopicRepository>()),
   );
 
-  instance.safeRegisterLazySingleton<RemoteTopicsDataSource>(
+  getIt.safeRegisterLazySingleton<RemoteTopicsDataSource>(
     RemoteTopicsDataSourceImplement(),
   );
 
-  instance.safeRegisterLazySingleton<TopicsRepository>(
+  getIt.safeRegisterLazySingleton<TopicsRepository>(
     TopicsRepositoryImplement(
-      instance<RemoteTopicsDataSource>(),
-      instance<NetworkInfo>(),
+      getIt<RemoteTopicsDataSource>(),
+      getIt<NetworkInfo>(),
     ),
   );
 
-  instance.safeRegisterLazySingleton(
-    TopicsUseCase(instance<TopicsRepository>()),
+  getIt.safeRegisterLazySingleton(
+    TopicsUseCase(getIt<TopicsRepository>()),
   );
 
   Get.put(SelectFavoriteTopicController());
 }
 
 initCategoreisModule() {
-  instance.safeRegisterLazySingleton<RemoteTopicsDataSource>(
+  getIt.safeRegisterLazySingleton<RemoteTopicsDataSource>(
     RemoteTopicsDataSourceImplement(),
   );
 
-  instance.safeRegisterLazySingleton<TopicsRepository>(
+  getIt.safeRegisterLazySingleton<TopicsRepository>(
     TopicsRepositoryImplement(
-      instance<RemoteTopicsDataSource>(),
-      instance<NetworkInfo>(),
+      getIt<RemoteTopicsDataSource>(),
+      getIt<NetworkInfo>(),
     ),
   );
 
-  instance.safeRegisterLazySingleton(
-    TopicsUseCase(instance<TopicsRepository>()),
+  getIt.safeRegisterLazySingleton(
+    TopicsUseCase(getIt<TopicsRepository>()),
   );
   Get.put(CategoriesController());
 }
 
 initBookmarksModule() {
-  instance.safeRegisterLazySingleton<LocalBookmarksDataSource>(
+  getIt.safeRegisterLazySingleton<LocalBookmarksDataSource>(
     LocalBookmarksDataSourceImpl(),
   );
 
-  instance.safeRegisterLazySingleton<BookmarksRepository>(
+  getIt.safeRegisterLazySingleton<BookmarksRepository>(
     BookmarksRepositoryImplement(
-      instance<LocalBookmarksDataSource>(),
+      getIt<LocalBookmarksDataSource>(),
     ),
   );
 
-  instance.safeRegisterLazySingleton(
-    ViewBookmarksUseCase(instance<BookmarksRepository>()),
+  getIt.safeRegisterLazySingleton(
+    ViewBookmarksUseCase(getIt<BookmarksRepository>()),
   );
 
-  instance.safeRegisterLazySingleton(
-    DeleteBookmarkUseCase(instance<BookmarksRepository>()),
+  getIt.safeRegisterLazySingleton(
+    DeleteBookmarkUseCase(getIt<BookmarksRepository>()),
   );
 
   Get.put(BookmarksController());
 }
 
 disposeBookmarksModule() {
-  instance
+  getIt
     ..safeUnRegisterLazySingleton<LocalBookmarksDataSource>()
     ..safeUnRegisterLazySingleton<BookmarksRepository>()
     ..safeUnRegisterLazySingleton<ViewBookmarksUseCase>();
@@ -418,27 +416,27 @@ disposeTermsAndConditionsModule() {
 }
 
 initChangePassword() {
-  instance.safeRegisterLazySingleton<RemoteChangePasswordDataSource>(
+  getIt.safeRegisterLazySingleton<RemoteChangePasswordDataSource>(
     RemoteChangePasswordDataSourceImpl(
-      instance<AppSettingsSharedPreferences>(),
+      getIt<AppSettingsSharedPreferences>(),
     ),
   );
 
-  instance.safeRegisterLazySingleton<ChangePasswordRepository>(
+  getIt.safeRegisterLazySingleton<ChangePasswordRepository>(
     ChangePasswordRepositoryImpl(
-      instance<RemoteChangePasswordDataSource>(),
-      instance<NetworkInfo>(),
+      getIt<RemoteChangePasswordDataSource>(),
+      getIt<NetworkInfo>(),
     ),
   );
 
-  instance.safeRegisterLazySingleton(
-    ChangePasswordUseCase(instance<ChangePasswordRepository>()),
+  getIt.safeRegisterLazySingleton(
+    ChangePasswordUseCase(getIt<ChangePasswordRepository>()),
   );
   Get.put(ChangePasswordController());
 }
 
 disposeChangePassword() {
-  instance
+  getIt
     ..safeUnRegisterLazySingleton<RemoteChangePasswordDataSource>()
     ..safeUnRegisterLazySingleton<ChangePasswordRepository>()
     ..safeUnRegisterLazySingleton<ChangePasswordUseCase>();
@@ -463,18 +461,18 @@ disposeArticleModule() {
 }
 
 initProfileModule() {
-  instance.safeRegisterLazySingleton<RemoteLogoutDataSource>(
+  getIt.safeRegisterLazySingleton<RemoteLogoutDataSource>(
     RemoteLogoutDataSourceImpl(),
   );
 
-  instance.safeRegisterLazySingleton<LogoutRepository>(
+  getIt.safeRegisterLazySingleton<LogoutRepository>(
     LogoutRepositoryImpl(
-      instance<RemoteLogoutDataSource>(),
-      instance<NetworkInfo>(),
+      getIt<RemoteLogoutDataSource>(),
+      getIt<NetworkInfo>(),
     ),
   );
-  instance.safeRegisterLazySingleton(
-    LogoutUseCase(instance<LogoutRepository>()),
+  getIt.safeRegisterLazySingleton(
+    LogoutUseCase(getIt<LogoutRepository>()),
   );
 
   Get.put(ProfileController());
