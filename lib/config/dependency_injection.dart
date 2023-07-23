@@ -15,10 +15,12 @@ import 'package:nuntium/core/storage/local/hive_db.dart';
 import 'package:nuntium/core/storage/local/model/bookmark_db_model.dart';
 import 'package:nuntium/features/article/presentation/controller/article_controller.dart';
 import 'package:nuntium/features/auth/data/data_source/remote_login_data_source.dart';
+import 'package:nuntium/features/auth/data/data_source/remote_login_with_google_data_source.dart';
 import 'package:nuntium/features/auth/data/data_source/remote_register_data_source.dart';
 import 'package:nuntium/features/auth/data/repository/login_repository.dart';
 import 'package:nuntium/features/auth/data/repository/register_repository.dart';
 import 'package:nuntium/features/auth/domain/use_case/login_use_case.dart';
+import 'package:nuntium/features/auth/domain/use_case/login_with_google_use_case.dart';
 import 'package:nuntium/features/auth/domain/use_case/register_use_case.dart';
 import 'package:nuntium/features/auth/presentation/controller/login_controller.dart';
 import 'package:nuntium/features/auth/presentation/controller/register_controller.dart';
@@ -188,15 +190,26 @@ initLoginModule() {
     RemoteLoginDataSourceImpl(),
   );
 
+  instance.safeRegisterLazySingleton<RemoteLoginWithGoogleDataSource>(
+    RemoteLoginWithGoogleDataSourceImpl(),
+  );
+
   instance.safeRegisterLazySingleton<LoginRepository>(
     LoginRepositoryImplement(
-      instance(),
-      instance(),
+      instance<RemoteLoginDataSource>(),
+      instance<RemoteLoginWithGoogleDataSource>(),
+      instance<NetworkInfo>(),
     ),
   );
 
   instance.safeRegisterLazySingleton<LoginUseCase>(
     LoginUseCase(
+      instance<LoginRepository>(),
+    ),
+  );
+
+  instance.safeRegisterLazySingleton<LoginWithGoogleUseCase>(
+    LoginWithGoogleUseCase(
       instance<LoginRepository>(),
     ),
   );

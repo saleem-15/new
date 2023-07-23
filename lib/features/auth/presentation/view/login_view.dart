@@ -94,7 +94,9 @@ class LoginView extends GetView<LoginController> {
                     onPressed: () => controller.login(),
                     text: ManagerStrings.signIn,
                   ),
-                  loginWidget(),
+                  loginWidget(
+                    onGooglePressed: controller.signInWithGoogle,
+                  ),
                 ],
               ),
             ),

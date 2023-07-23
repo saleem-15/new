@@ -1,6 +1,8 @@
+import 'package:nuntium/config/constants.dart';
 import 'package:nuntium/core/util/size_util.dart';
 
 class ManagerHeight {
+  static double screenHeight = SizeUtil.setHeight(Constants.deviceHeight);
   static double h2 = SizeUtil.setHeight(2);
   static double h4 = SizeUtil.setHeight(4);
   static double h6 = SizeUtil.setHeight(6);

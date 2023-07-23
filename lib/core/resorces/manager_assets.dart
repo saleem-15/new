@@ -18,9 +18,9 @@ class ManagerAssets {
 }
 
 class ManagerJson {
-  // static const String loading = '$jsonPath/loading.json';
-  // static const String error = '$jsonPath/error.json';
-  // static const String success = '$jsonPath/success.json';
+  static const String loading = '$baseAnimationPath/loading.json';
+  static const String error_404 = '$baseAnimationPath/error_404.json';
+  static const String error_no_internet = '$baseAnimationPath/error_no_internet.json';
 }
 
 class VectorIcons {
