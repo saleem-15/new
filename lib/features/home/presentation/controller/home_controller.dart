@@ -161,7 +161,6 @@ class HomeController extends GetxController {
   updateBookmarkIcon(BookmarkModel bookmark) {
     ///TODO: article model is not updated
     update([GetBuilderIDs.articleBookmarkIcon(bookmark: bookmark)]);
-    debugger();
   }
 
   @override

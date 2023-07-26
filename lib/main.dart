@@ -35,7 +35,7 @@ void main() async {
   await initModule();
 
   //!!!!!!!!!!! Delete app data (ONLY FOR TEST) !!!!!!!!!!!!!
-  // await instance<AppSettingsSharedPreferences>().clear();
+  // await getIt<AppSettingsSharedPreferences>().clear();
   // await MyHive.clear();
 
   runApp(
