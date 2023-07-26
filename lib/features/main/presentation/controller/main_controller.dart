@@ -17,7 +17,7 @@ class MainController extends GetxController {
     const HomeView(),
     const CategoriesView(),
     const BookmarksView(),
-    const ProfileView()
+    const ProfileView(),
   ];
 
   static const iconSize = ManagerIconSize.s24;

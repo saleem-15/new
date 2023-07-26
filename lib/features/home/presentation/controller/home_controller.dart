@@ -23,6 +23,7 @@ class HomeController extends GetxController {
   final refreshController = RefreshController();
   final scrollController = ScrollController();
   final searchController = TextEditingController();
+  final searchFocusNode = FocusNode();
 
   late final PagingController<int, Article> pagingController;
   late int totalResults;
@@ -163,6 +164,10 @@ class HomeController extends GetxController {
     searchController.dispose();
 
     super.onClose();
+  }
+
+  onPageNotVisible() {
+    searchFocusNode.nextFocus();
   }
 
   void onSearchPressed(String p1) {

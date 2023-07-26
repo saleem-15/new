@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:focus_detector/focus_detector.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:nuntium/core/resorces/manager_fonts.dart';
@@ -25,93 +26,97 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      floatingActionButton: BackToTopButton(
-        scrollController: controller.scrollController,
-      ),
-      body: SafeArea(
-        child: SmartRefresher(
-          header: WaterDropMaterialHeader(offset: ManagerHeight.h230),
-          dragStartBehavior: DragStartBehavior.start,
-          controller: controller.refreshController,
-          onRefresh: controller.onRefresh,
-          child: CustomScrollView(
-            controller: controller.scrollController,
-            slivers: [
-              ///Header
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: ManagerWidth.w20),
-                  child: Header(
-                    title: ManagerStrings.browse,
-                    paragraph: ManagerStrings.homeParagraph,
-                  ),
-                ),
-              ),
-
-              ///search field
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: ManagerWidth.w20),
-                  child: MyTextField(
-                    controller: controller.searchController,
-                    textInputAction: TextInputAction.search,
-                    onFieldSubmitted: controller.onSearchPressed,
-                    hintText: ManagerStrings.search,
-                    icon: IconService.getIcon(
-                      icon: ManagerIcons.search,
-                    ),
-                    suffixIcon: IconService.getIcon(
-                      icon: ManagerIcons.microphone,
+    return FocusDetector(
+      onFocusLost: controller.onPageNotVisible,
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        floatingActionButton: BackToTopButton(
+          scrollController: controller.scrollController,
+        ),
+        body: SafeArea(
+          child: SmartRefresher(
+            header: WaterDropMaterialHeader(offset: ManagerHeight.h235),
+            dragStartBehavior: DragStartBehavior.start,
+            controller: controller.refreshController,
+            onRefresh: controller.onRefresh,
+            child: CustomScrollView(
+              controller: controller.scrollController,
+              slivers: [
+                ///Header
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: ManagerWidth.w20),
+                    child: Header(
+                      title: ManagerStrings.browse,
+                      paragraph: ManagerStrings.homeParagraph,
                     ),
                   ),
                 ),
-              ),
 
-              ///Categories
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: ManagerHeight.h24),
-                  child: const Categories(),
-                ),
-              ),
-
-              ///Articles list
-              PagedSliverList<int, Article>(
-                pagingController: controller.pagingController,
-                builderDelegate: PagedChildBuilderDelegate<Article>(
-                  animateTransitions: true,
-                  itemBuilder: (_, article, __) => Center(
-                    key: Key(article.url!),
-                    child: Padding(
-                      padding: EdgeInsets.only(bottom: ManagerHeight.h24),
-                      child: ArticleCard(
-                        article: article,
-                        onPressed: () => controller.onArticleCardPressed(article),
-                        onBookmarkPressed: () => controller.onBookmarkPressed(article),
+                ///search field
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: ManagerWidth.w20),
+                    child: MyTextField(
+                      controller: controller.searchController,
+                      focusNode: controller.searchFocusNode,
+                      textInputAction: TextInputAction.search,
+                      onFieldSubmitted: controller.onSearchPressed,
+                      hintText: ManagerStrings.search,
+                      icon: IconService.getIcon(
+                        icon: ManagerIcons.search,
+                      ),
+                      suffixIcon: IconService.getIcon(
+                        icon: ManagerIcons.microphone,
                       ),
                     ),
                   ),
+                ),
 
-                  /// No articles
-                  noItemsFoundIndicatorBuilder: (_) => Center(
-                    child: Text(
-                      ManagerStrings.noArticlesFound,
-                      style: getSemiBoldTextStyle(
-                        fontSize: ManagerFontSize.s24,
+                ///Categories
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: ManagerHeight.h24),
+                    child: const Categories(),
+                  ),
+                ),
+
+                ///Articles list
+                PagedSliverList<int, Article>(
+                  pagingController: controller.pagingController,
+                  builderDelegate: PagedChildBuilderDelegate<Article>(
+                    animateTransitions: true,
+                    itemBuilder: (_, article, __) => Center(
+                      key: Key(article.url!),
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: ManagerHeight.h24),
+                        child: ArticleCard(
+                          article: article,
+                          onPressed: () => controller.onArticleCardPressed(article),
+                          onBookmarkPressed: () => controller.onBookmarkPressed(article),
+                        ),
                       ),
                     ),
+
+                    /// No articles
+                    noItemsFoundIndicatorBuilder: (_) => Center(
+                      child: Text(
+                        ManagerStrings.noArticlesFound,
+                        style: getSemiBoldTextStyle(
+                          fontSize: ManagerFontSize.s24,
+                        ),
+                      ),
+                    ),
+
+                    /// Loading Error
+                    firstPageErrorIndicatorBuilder: pageLoadingError,
+
+                    /// Loading Indicator
+                    firstPageProgressIndicatorBuilder: loadingArticlesIndicator,
                   ),
-
-                  /// Loading Error
-                  firstPageErrorIndicatorBuilder: pageLoadingError,
-
-                  /// Loading Indicator
-                  firstPageProgressIndicatorBuilder: loadingArticlesIndicator,
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

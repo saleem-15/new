@@ -47,6 +47,7 @@ dependencies:
   shimmer: ^3.0.0
   google_sign_in: ^6.1.4
   cached_network_image: ^3.2.3
+  focus_detector: ^2.0.1
 
 
 dev_dependencies:
