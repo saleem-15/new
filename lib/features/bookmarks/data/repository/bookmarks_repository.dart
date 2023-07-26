@@ -1,13 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:nuntium/core/error_handler/error_handler.dart';
 
-import 'package:nuntium/core/storage/local/model/bookmark_db_model.dart';
+import 'package:nuntium/core/storage/local/model/article_model.dart';
 import 'package:nuntium/features/bookmarks/data/data_source/local_bookmarks_data_source.dart';
 
 abstract class BookmarksRepository {
-  Either<Failure, List<BookmarkModel>> getBookmarks();
-  Future<Either<Failure, void>> addBookmark(BookmarkModel bookmark);
-  Future<Either<Failure, void>> deleteBookmark(BookmarkModel bookmark);
+  Either<Failure, List<Article>> getBookmarks();
+  Future<Either<Failure, void>> addBookmark(Article bookmark);
+  Future<Either<Failure, void>> deleteBookmark(Article bookmark);
 }
 
 class BookmarksRepositoryImplement implements BookmarksRepository {
@@ -16,7 +16,7 @@ class BookmarksRepositoryImplement implements BookmarksRepository {
   BookmarksRepositoryImplement(this._localBookmarksDataSource);
 
   @override
-  Either<Failure, List<BookmarkModel>> getBookmarks() {
+  Either<Failure, List<Article>> getBookmarks() {
     try {
       final bookmarks = _localBookmarksDataSource.getBookmarks();
 
@@ -29,7 +29,7 @@ class BookmarksRepositoryImplement implements BookmarksRepository {
   }
 
   @override
-  Future<Either<Failure, void>> addBookmark(BookmarkModel bookmark) async {
+  Future<Either<Failure, void>> addBookmark(Article bookmark) async {
     try {
       await _localBookmarksDataSource.addBookmark(bookmark);
       return const Right(null);
@@ -41,7 +41,7 @@ class BookmarksRepositoryImplement implements BookmarksRepository {
   }
 
   @override
-  Future<Either<Failure, void>> deleteBookmark(BookmarkModel bookmark) async {
+  Future<Either<Failure, void>> deleteBookmark(Article bookmark) async {
     try {
       await _localBookmarksDataSource.deleteBookmark(bookmark);
       return const Right(null);

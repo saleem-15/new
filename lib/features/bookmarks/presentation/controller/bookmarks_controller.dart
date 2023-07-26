@@ -1,10 +1,8 @@
-import 'dart:developer';
-
 import 'package:get/get.dart';
 import 'package:nuntium/config/constants.dart';
 import 'package:nuntium/config/dependency_injection.dart';
 import 'package:nuntium/core/cache/cache.dart';
-import 'package:nuntium/core/storage/local/model/bookmark_db_model.dart';
+import 'package:nuntium/core/storage/local/model/article_model.dart';
 import 'package:nuntium/features/bookmarks/domain/use_case/get_bookmark_use_case.dart';
 import 'package:nuntium/features/home/presentation/controller/home_controller.dart';
 import 'package:nuntium/routes/routes.dart';
@@ -15,7 +13,7 @@ class BookmarksController extends GetxController {
   final _viewBookmarkUseCase = getIt<ViewBookmarksUseCase>();
   final _deleteBookmarkUseCase = getIt<DeleteBookmarkUseCase>();
 
-  List<BookmarkModel> bookmarks = [];
+  List<Article> bookmarks = [];
 
   bool isBookmarksFetched = false;
 
@@ -41,12 +39,12 @@ class BookmarksController extends GetxController {
     update([GetBuilderIDs.bookmarks_list]);
   }
 
-  onBookmarkTilePressed(BookmarkModel bookmark) {
-    CacheData.setArticle(bookmark.toArticle());
+  onBookmarkTilePressed(Article bookmark) {
+    CacheData.setArticle(bookmark);
     Get.toNamed(Routes.article);
   }
 
-  Future<void> onBookmarkDismissed(BookmarkModel bookmark) async {
+  Future<void> onBookmarkDismissed(Article bookmark) async {
     (await _deleteBookmarkUseCase.execute(
       DeleteBookmarkUseCaseInput(bookmark: bookmark),
     ))
@@ -54,7 +52,7 @@ class BookmarksController extends GetxController {
       (l) => Get.rawSnackbar(message: l.message),
       (r) {
         bookmarks.remove(bookmark);
-        debugger();
+        bookmark.isSaved = false;
 
         /// update bookmark icon in HomeView
         Get.find<HomeController>().updateBookmarkIcon(bookmark);

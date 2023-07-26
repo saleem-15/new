@@ -12,7 +12,7 @@ import 'package:nuntium/core/network/app_api.dart';
 import 'package:nuntium/core/network/dio_factory.dart';
 import 'package:nuntium/core/storage/local/app_settings_shared_preferences.dart';
 import 'package:nuntium/core/storage/local/hive_db.dart';
-import 'package:nuntium/core/storage/local/model/bookmark_db_model.dart';
+import 'package:nuntium/core/storage/local/model/article_model.dart';
 import 'package:nuntium/features/article/presentation/controller/article_controller.dart';
 import 'package:nuntium/features/auth/data/data_source/remote_login_data_source.dart';
 import 'package:nuntium/features/auth/data/data_source/remote_login_with_google_data_source.dart';
@@ -75,7 +75,7 @@ initModule() async {
 
   // initialize local db (hive) and register custom adapters
   await MyHive.init(registerAdapters: (hive) {
-    hive.registerAdapter(BookmarkModelAdapter());
+    hive.registerAdapter(ArticleAdapter());
   });
 
   getIt.registerLazySingleton<SharedPreferences>(

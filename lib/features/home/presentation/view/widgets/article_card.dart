@@ -9,7 +9,7 @@ import 'package:nuntium/core/resorces/manager_fonts.dart';
 import 'package:nuntium/core/resorces/manager_sizes.dart';
 import 'package:nuntium/core/resorces/manager_styles.dart';
 import 'package:nuntium/features/home/presentation/controller/home_controller.dart';
-import 'package:nuntium/features/home/presentation/model/article.dart';
+import 'package:nuntium/core/storage/local/model/article_model.dart';
 
 class ArticleCard extends StatelessWidget {
   final Article article;
@@ -94,7 +94,7 @@ class ArticleCard extends StatelessWidget {
                       autoRemove: false,
                       assignId: true,
                       key: Key(article.displayText),
-                      id: GetBuilderIDs.articleBookmarkIcon(article: article),
+                      id: GetBuilderIDs.articleBookmarkIcon(article),
                       builder: (_) {
                         return IconButton(
                           onPressed: onBookmarkPressed,

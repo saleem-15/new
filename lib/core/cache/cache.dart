@@ -1,4 +1,4 @@
-import 'package:nuntium/features/home/presentation/model/article.dart';
+import 'package:nuntium/core/storage/local/model/article_model.dart';
 
 class CacheData {
   CacheData._();

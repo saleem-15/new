@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:nuntium/config/constants.dart';
 
-import 'article.dart';
+import 'package:nuntium/core/storage/local/model/article_model.dart';
 
 class Category {
   final String _name;

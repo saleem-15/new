@@ -1,12 +1,12 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:nuntium/core/storage/local/model/bookmark_db_model.dart';
+import 'package:nuntium/core/storage/local/model/article_model.dart';
 
 class MyHive {
   MyHive._();
 
-  static late Box<BookmarkModel> _bookmarkBox;
+  static late Box<Article> _bookmarkBox;
 
-  static const String _bookmarkBoxName = 'bookmark';
+  static const String _bookmarkBoxName = 'bookmarks';
 
   /// pass testPath only if you are testing hive
   static Future<void> init({Function(HiveInterface)? registerAdapters, String? testPath}) async {
@@ -23,7 +23,7 @@ class MyHive {
     _bookmarkBox = await Hive.openBox(_bookmarkBoxName);
   }
 
-  static Future<void> saveBookmark(BookmarkModel bookmark) async {
+  static Future<void> saveBookmark(Article bookmark) async {
     await _bookmarkBox.put(bookmark.url, bookmark);
   }
 
@@ -31,7 +31,7 @@ class MyHive {
     await _bookmarkBox.clear();
   }
 
-  static List<BookmarkModel> getAllBookmarks() {
+  static List<Article> getAllBookmarks() {
     return _bookmarkBox.values.toList();
   }
 

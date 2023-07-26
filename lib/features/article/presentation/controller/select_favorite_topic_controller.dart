@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nuntium/features/home/presentation/model/article.dart';
+import 'package:nuntium/core/storage/local/model/article_model.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class ArticleController extends GetxController {

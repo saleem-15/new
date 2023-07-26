@@ -8,7 +8,7 @@ import 'package:nuntium/config/constants.dart';
 import 'package:nuntium/config/dependency_injection.dart';
 import 'package:nuntium/core/cache/cache.dart';
 import 'package:nuntium/core/storage/local/hive_db.dart';
-import 'package:nuntium/core/storage/local/model/bookmark_db_model.dart';
+import 'package:nuntium/core/storage/local/model/article_model.dart';
 import 'package:nuntium/features/bookmarks/presentation/controller/bookmarks_controller.dart';
 import '../../domain/mapper/home_entity_mapper.dart';
 import '../../presentation/model/category.dart';
@@ -16,7 +16,6 @@ import 'package:nuntium/routes/routes.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../domain/use_case/home_use_case.dart';
-import '../model/article.dart';
 import '../view/home_view.dart';
 
 class HomeController extends GetxController {
@@ -122,17 +121,11 @@ class HomeController extends GetxController {
     if (article.isSaved) {
       await MyHive.deleteBookmark(article.url!);
     } else {
-      await MyHive.saveBookmark(
-        BookmarkModel.fromData(
-          title: article.displayText,
-          url: article.url!,
-          imageUrl: article.imageUrl,
-        ),
-      );
+      await MyHive.saveBookmark(article);
     }
 
     article.isSaved = !article.isSaved;
-    update([GetBuilderIDs.articleBookmarkIcon(article: article)]);
+    update([GetBuilderIDs.articleBookmarkIcon(article)]);
 
     Get.find<BookmarksController>().updateBookmarksList();
   }
@@ -158,9 +151,8 @@ class HomeController extends GetxController {
     update();
   }
 
-  updateBookmarkIcon(BookmarkModel bookmark) {
-    ///TODO: article model is not updated
-    update([GetBuilderIDs.articleBookmarkIcon(bookmark: bookmark)]);
+  updateBookmarkIcon(Article bookmark) {
+    update([GetBuilderIDs.articleBookmarkIcon(bookmark)]);
   }
 
   @override

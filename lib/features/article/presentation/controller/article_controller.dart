@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:nuntium/config/dependency_injection.dart';
 import 'package:nuntium/core/cache/cache.dart';
-import 'package:nuntium/features/home/presentation/model/article.dart';
+import 'package:nuntium/core/storage/local/model/article_model.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 

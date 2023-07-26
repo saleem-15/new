@@ -1,9 +1,9 @@
 import '../../domain/entity/article_entity.dart';
-import '../../presentation/model/article.dart';
+import 'package:nuntium/core/storage/local/model/article_model.dart';
 
 extension ArticleEntityMapper on ArticleEntity {
   Article toPresentation() {
-    return Article(
+    return Article.fromData(
       //TODO: fetch isSaved property for the artice
       isSaved: false,
       author: author,

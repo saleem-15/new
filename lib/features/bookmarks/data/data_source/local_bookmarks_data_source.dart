@@ -1,27 +1,27 @@
 import 'package:nuntium/core/storage/local/hive_db.dart';
-import 'package:nuntium/core/storage/local/model/bookmark_db_model.dart';
+import 'package:nuntium/core/storage/local/model/article_model.dart';
 
 abstract class LocalBookmarksDataSource {
-  List<BookmarkModel> getBookmarks();
+  List<Article> getBookmarks();
 
-  Future<void> addBookmark(BookmarkModel bookmark);
+  Future<void> addBookmark(Article bookmark);
 
-  Future<void> deleteBookmark(BookmarkModel bookmark);
+  Future<void> deleteBookmark(Article bookmark);
 }
 
 class LocalBookmarksDataSourceImpl implements LocalBookmarksDataSource {
   @override
-  Future<void> addBookmark(BookmarkModel bookmark) async {
+  Future<void> addBookmark(Article bookmark) async {
     return await MyHive.saveBookmark(bookmark);
   }
 
   @override
-  List<BookmarkModel> getBookmarks() {
+  List<Article> getBookmarks() {
     return MyHive.getAllBookmarks();
   }
 
   @override
-  Future<void> deleteBookmark(BookmarkModel bookmark) async {
-    return await MyHive.deleteBookmark(bookmark.url);
+  Future<void> deleteBookmark(Article bookmark) async {
+    return await MyHive.deleteBookmark(bookmark.url!);
   }
 }

@@ -1,5 +1,5 @@
 import '../../domain/mapper/article_mapper.dart';
-import '../../presentation/model/article.dart';
+import 'package:nuntium/core/storage/local/model/article_model.dart';
 import '../../presentation/model/home.dart';
 import '../entity/home_entity.dart';
 

@@ -1,4 +1,4 @@
-import 'article.dart';
+import 'package:nuntium/core/storage/local/model/article_model.dart';
 
 class Home {
   String? source;

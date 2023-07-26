@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:nuntium/core/error_handler/error_handler.dart';
-import 'package:nuntium/core/storage/local/model/bookmark_db_model.dart';
 import 'package:nuntium/core/use_case/base_usecase.dart';
 import 'package:nuntium/features/bookmarks/data/repository/bookmarks_repository.dart';
+import 'package:nuntium/core/storage/local/model/article_model.dart';
 
 class DeleteBookmarkUseCaseInput {
-  BookmarkModel bookmark;
+  Article bookmark;
 
   DeleteBookmarkUseCaseInput({required this.bookmark});
 }

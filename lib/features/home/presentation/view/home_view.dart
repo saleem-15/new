@@ -11,7 +11,7 @@ import 'package:nuntium/core/service/icon_service.dart';
 import 'package:nuntium/core/widgets/screen_header.dart';
 import 'package:nuntium/core/widgets/text_field.dart';
 import 'package:nuntium/features/home/presentation/controller/home_controller.dart';
-import 'package:nuntium/features/home/presentation/model/article.dart';
+import 'package:nuntium/core/storage/local/model/article_model.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'widgets/article_card.dart';

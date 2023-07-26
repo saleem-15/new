@@ -5,10 +5,10 @@ import 'package:nuntium/core/resorces/manager_colors.dart';
 import 'package:nuntium/core/resorces/manager_fonts.dart';
 import 'package:nuntium/core/resorces/manager_sizes.dart';
 import 'package:nuntium/core/resorces/manager_styles.dart';
-import 'package:nuntium/core/storage/local/model/bookmark_db_model.dart';
+import 'package:nuntium/core/storage/local/model/article_model.dart';
 
 class BookmarkListTile extends StatelessWidget {
-  final BookmarkModel bookmark;
+  final Article bookmark;
   final void Function()? onPressed;
 
   final ImageProvider image;
@@ -29,6 +29,7 @@ class BookmarkListTile extends StatelessWidget {
       onTap: onPressed,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(ManagerRadius.r12),
@@ -44,11 +45,20 @@ class BookmarkListTile extends StatelessWidget {
             width: ManagerWidth.w16,
           ),
           Expanded(
-            child: Text(
-              bookmark.title,
-              style: getSemiBoldTextStyle(
-                fontSize: ManagerFontSize.s16,
-              ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                  heightFactor: 1.5,
+                  child: Text(
+                    bookmark.title!,
+                    maxLines: 3,
+                    style: getSemiBoldTextStyle(
+                      fontSize: ManagerFontSize.s16,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],

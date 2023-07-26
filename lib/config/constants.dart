@@ -1,5 +1,4 @@
-import 'package:nuntium/core/storage/local/model/bookmark_db_model.dart';
-import 'package:nuntium/features/home/presentation/model/article.dart';
+import 'package:nuntium/core/storage/local/model/article_model.dart';
 
 class Constants {
   static const int splashDuration = 3;
@@ -80,14 +79,8 @@ class ApiConstants {
 class GetBuilderIDs {
   GetBuilderIDs._();
 
-  static String articleBookmarkIcon({Article? article, BookmarkModel? bookmark}) {
-    assert(article != null || bookmark != null);
-
-    if (article != null) {
-      return article.url!;
-    } else {
-      return bookmark!.url;
-    }
+  static String articleBookmarkIcon(Article article) {
+    return article.url!;
   }
 
   static const String categories_list = 'categories_list';
